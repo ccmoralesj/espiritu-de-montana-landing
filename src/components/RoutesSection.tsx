@@ -65,61 +65,79 @@ const RoutesSection = () => {
     },
   ];
 
+  const allRoutes = [...internationalRoutes, ...nationalRoutes];
+
   return (
-    <section id="rutas" className="py-20 bg-muted/30">
+    <section id="rutas" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
             RUTAS INTERNACIONALES Y NACIONALES
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Cada ruta está diseñada para conectarte profundamente con la naturaleza y las culturas locales. 
-            Desde expediciones internacionales hasta joyas ocultas de Colombia.
-          </p>
+          <Button 
+            variant="adventure" 
+            className="view-all-routes rounded-full px-8"
+            onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+          >
+            VER TODAS LAS RUTAS
+          </Button>
         </div>
 
-        {/* International Routes */}
-        <div className="mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground">Rutas Internacionales</h3>
-            <Button 
-              variant="adventure" 
-              className="view-all-international"
-              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-            >
-              Ver Todas
-            </Button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {internationalRoutes.map((route, index) => (
-              <RouteCard key={index} {...route} />
-            ))}
-          </div>
-        </div>
-
-        {/* National Routes */}
-        <div>
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground">Rutas Nacionales</h3>
-            <Button 
-              variant="default" 
-              className="view-all-national"
-              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-            >
-              Ver Todas
-            </Button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {nationalRoutes.map((route, index) => (
-              <RouteCard key={index} {...route} />
-            ))}
-          </div>
+        <div className="space-y-8">
+          {allRoutes.map((route, index) => (
+            <div key={index} className="flex flex-col lg:flex-row items-start lg:items-center gap-6 py-8 border-b border-border last:border-b-0">
+              {/* Date */}
+              <div className="text-muted-foreground text-sm font-medium min-w-[100px]">
+                18.05.2025
+              </div>
+              
+              {/* Content */}
+              <div className="flex-1 space-y-4">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground uppercase">
+                  {route.title}
+                </h3>
+                <p className="text-muted-foreground max-w-md">
+                  {route.description}
+                </p>
+                <Button 
+                  variant="outline" 
+                  className="rounded-full px-6"
+                  onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+                >
+                  VER DETALLE
+                </Button>
+              </div>
+              
+              {/* Metadata */}
+              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 flex items-center justify-center">▲</span>
+                  <span>{route.difficulty}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 flex items-center justify-center">👥</span>
+                  <span>{route.duration}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 flex items-center justify-center">💰</span>
+                  <span>$2.700.000</span>
+                </div>
+              </div>
+              
+              {/* Image */}
+              <div className="w-full lg:w-64 h-32 lg:h-24 rounded-xl overflow-hidden">
+                <img 
+                  src={route.image} 
+                  alt={route.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16 p-8 bg-primary/5 rounded-2xl">
+        <div className="text-center mt-16 p-8 bg-muted/30 rounded-2xl">
           <h3 className="text-2xl font-bold text-foreground mb-4">¿No encuentras la aventura perfecta?</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Diseñamos rutas personalizadas según tus preferencias, nivel de experiencia y tiempo disponible. 
