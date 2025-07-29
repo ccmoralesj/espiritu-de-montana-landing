@@ -33,14 +33,14 @@ const Header = () => {
       </div>
 
       {/* Main header */}
-      <header className="absolute top-9 w-full bg-white/10 backdrop-blur-md z-50 h-20">
+      <header className="absolute top-10 w-full backdrop-blur-md z-50 h-20 font-body tracking-wide">
         <div className="container mx-auto px-4 py-1">
 
           {/* Flex principal con justify-between */}
           <div className="flex items-center justify-between">
 
             {/* Contenedor izquierdo: Logo + Nav */}
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-12">
               {/* Logo */}
               <div className="flex items-center space-x-2">
                 <div className="w-20 flex items-center justify-center">
@@ -49,17 +49,17 @@ const Header = () => {
               </div>
 
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-8">
+              <nav className="hidden md:flex items-center space-x-12 font-semibold">
                 <Button variant="default" className="bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
                   RUTAS
                 </Button>
-                <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                <a href="#tours" className="text-foreground hover:text-primary transition-colors text-sm">
                   TOURS
                 </a>
-                <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                <a href="#espiritu" className="text-foreground hover:text-primary transition-colors text-sm">
                   NUESTRO ESPÍRITU
                 </a>
-                <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                <a href="#tribu" className="text-foreground hover:text-primary transition-colors text-sm">
                   TRIBU DE MONTAÑA
                 </a>
               </nav>

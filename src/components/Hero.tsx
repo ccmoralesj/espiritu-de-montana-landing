@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Play, Bike } from "lucide-react";
-import heroImage from "@/assets/hero-cycling-mountains.jpg";
+import heroImage from "@/assets/[HERO]PlaceHolder.png";
 import { useState } from "react";
 
 const Hero = () => {
@@ -13,7 +13,6 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content Grid */}
@@ -38,7 +37,7 @@ const Hero = () => {
         {/* Right Side - Adventure Info */}
         <div className="text-secondary space-y-6 justify-self-end max-w-md lg:max-w-xl">
           <div className="space-y-4">
-            <h2 className="text-2xl md:text-3xl font-body font-bold">
+            <h2 className="text-2xl md:text-2xl font-body font-bold">
               Aquí empieza tu aventura!
             </h2>
             <p className="font-body text-lg max-w-lg leading-relaxed">
