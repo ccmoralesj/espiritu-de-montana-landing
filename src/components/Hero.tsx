@@ -7,9 +7,9 @@ const Hero = () => {
   const [activeTab, setActiveTab] = useState<'internacionales' | 'nacionales'>('internacionales');
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden mt-20">
+    <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background Video/Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
@@ -17,7 +17,7 @@ const Hero = () => {
       </div>
 
       {/* Content Grid */}
-      <div className="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full">
+      <div className="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full pb-20">
         {/* Left Side - Main Hero Text */}
         <div className="text-white space-y-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-none">
@@ -25,9 +25,9 @@ const Hero = () => {
             <br />
             EN DOS RUEDAS
           </h1>
-          
-          <Button 
-            variant="outline" 
+
+          <Button
+            variant="outline"
             className="bg-black/20 border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-3"
           >
             <Play className="w-5 h-5 mr-2" />
@@ -41,11 +41,11 @@ const Hero = () => {
             <h2 className="text-2xl md:text-3xl font-bold">
               Aquí empieza tu aventura!
             </h2>
-            
+
             <p className="text-lg md:text-xl text-white/90 leading-relaxed">
               Pedalea entre los Andes o conquista senderos locales. Activa el modo explorador y cambia entre rutas internacionales o locales.
             </p>
-            
+
             <p className="text-lg md:text-xl font-bold text-white">
               ¡El destino lo eliges tú, la bici es tu pasaporte!
             </p>
@@ -55,21 +55,19 @@ const Hero = () => {
           <div className="flex bg-white/10 rounded-full p-1 backdrop-blur-sm">
             <button
               onClick={() => setActiveTab('internacionales')}
-              className={`flex-1 py-3 px-6 rounded-full text-sm font-medium transition-all ${
-                activeTab === 'internacionales'
-                  ? 'bg-white text-black'
-                  : 'text-white hover:bg-white/20'
-              }`}
+              className={`flex-1 py-3 px-6 rounded-full text-sm font-medium transition-all ${activeTab === 'internacionales'
+                ? 'bg-white text-black'
+                : 'text-white hover:bg-white/20'
+                }`}
             >
               INTERNACIONALES
             </button>
             <button
               onClick={() => setActiveTab('nacionales')}
-              className={`flex-1 py-3 px-6 rounded-full text-sm font-medium transition-all ${
-                activeTab === 'nacionales'
-                  ? 'bg-white text-black'
-                  : 'text-white hover:bg-white/20'
-              }`}
+              className={`flex-1 py-3 px-6 rounded-full text-sm font-medium transition-all ${activeTab === 'nacionales'
+                ? 'bg-white text-black'
+                : 'text-white hover:bg-white/20'
+                }`}
             >
               NACIONALES
             </button>
@@ -91,8 +89,8 @@ const Hero = () => {
               </div>
               <div className="text-white">
                 <p className="font-bold text-lg">$2.700.000</p>
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   className="bg-primary text-white rounded-full mt-2 w-full hover:bg-primary-hover"
                 >
                   <Bike className="w-4 h-4 mr-2" />
