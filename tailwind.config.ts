@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+      fontFamily: {
+        body: ['Chivo', 'sans-serif'],
+        title: ['Anton', 'sans-serif'],
+      },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

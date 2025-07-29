@@ -19,8 +19,8 @@ const Hero = () => {
       {/* Content Grid */}
       <div className="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full pb-20">
         {/* Left Side - Main Hero Text */}
-        <div className="text-white space-y-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-none">
+        <div className="text-secondary space-y-6 max-w-md lg:max-w-xl">
+          <h1 className="font-title text-4xl md:text-6xl lg:text-7xl font-secondary leading-tight tracking-wide">
             VIVE EL MUNDO
             <br />
             EN DOS RUEDAS
@@ -36,28 +36,27 @@ const Hero = () => {
         </div>
 
         {/* Right Side - Adventure Info */}
-        <div className="text-white space-y-6 lg:ml-8">
+        <div className="text-secondary space-y-6 justify-self-end max-w-md lg:max-w-xl">
           <div className="space-y-4">
-            <h2 className="text-2xl md:text-3xl font-bold">
+            <h2 className="text-2xl md:text-3xl font-body font-bold">
               Aquí empieza tu aventura!
             </h2>
-
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+            <p className="font-body text-lg max-w-lg leading-relaxed">
               Pedalea entre los Andes o conquista senderos locales. Activa el modo explorador y cambia entre rutas internacionales o locales.
             </p>
 
-            <p className="text-lg md:text-xl font-bold text-white">
+            <span className="text-lg max-w-lg font-body font-bold">
               ¡El destino lo eliges tú, la bici es tu pasaporte!
-            </p>
+            </span>
           </div>
 
           {/* Toggle Buttons */}
-          <div className="flex bg-white/10 rounded-full p-1 backdrop-blur-sm">
+          <div className="font-body flex border-2 border-secondary rounded-full p-1 backdrop-blur-sm">
             <button
               onClick={() => setActiveTab('internacionales')}
               className={`flex-1 py-3 px-6 rounded-full text-sm font-medium transition-all ${activeTab === 'internacionales'
-                ? 'bg-white text-black'
-                : 'text-white hover:bg-white/20'
+                ? 'bg-secondary text-white'
+                : 'text-secondary hover:bg-white/20'
                 }`}
             >
               INTERNACIONALES
@@ -65,8 +64,8 @@ const Hero = () => {
             <button
               onClick={() => setActiveTab('nacionales')}
               className={`flex-1 py-3 px-6 rounded-full text-sm font-medium transition-all ${activeTab === 'nacionales'
-                ? 'bg-white text-black'
-                : 'text-white hover:bg-white/20'
+                ? 'bg-secondary text-white'
+                : 'text-secondary hover:bg-white/20'
                 }`}
             >
               NACIONALES

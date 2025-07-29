@@ -24,7 +24,10 @@ const Header = () => {
           </div>
           <div className="flex items-center space-x-4">
             <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
-            <MessageCircle className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+            <MessageCircle
+              className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+            />
           </div>
         </div>
       </div>
@@ -64,17 +67,13 @@ const Header = () => {
 
             {/* CTA Buttons alineado a la derecha */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full border-2 border-gray-400 text-black-700 hover:bg-primary-hover p-2"
+              <MessageCircle
+                className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-              >
-                <MessageCircle className="w-4 h-4" />
-              </Button>
+              />
               <Button
                 variant="outline"
-                className="rounded-full border-2 border-gray-400 text-black-700 hover:bg-primary-hover"
+                className="rounded-full border-2 border-secondary text-black-700 hover:bg-primary-hover"
               >
                 INGRESAR
               </Button>
