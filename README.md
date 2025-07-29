@@ -1,6 +1,3 @@
-Perfecto. Aquí tienes una versión más decente, humana y clara del `README.md`, con una introducción coherente con la identidad de **Espíritu de Montaña**, y dejando las instrucciones técnicas bien organizadas al final.
-
----
 # Espíritu de Montaña — Web App
 
 _Espíritu de Montaña_ es una marca colombiana que crea experiencias transformadoras de aventura en bicicleta de montaña. Más que una agencia de viajes, somos un punto de encuentro entre naturaleza, comunidad y superación personal.  
