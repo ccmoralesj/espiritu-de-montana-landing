@@ -72,49 +72,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Bottom Route Cards */}
-      <div className="absolute bottom-8 left-0 right-0 z-10">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center space-x-4 overflow-x-auto pb-4">
-            {/* Featured Route Card */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 min-w-[200px] border border-white/20">
-              <div className="bg-gradient-to-br from-green-600 to-green-800 rounded-xl p-4 mb-3 h-24 flex items-end">
-                <div className="text-white">
-                  <h3 className="font-bold text-sm">CUSCO Y</h3>
-                  <h3 className="font-bold text-sm">MACHU PICCHU</h3>
-                </div>
-              </div>
-              <div className="text-white">
-                <p className="font-bold text-lg">$2.700.000</p>
-                <Button
-                  size="sm"
-                  className="bg-primary text-white rounded-full mt-2 w-full hover:bg-primary-hover"
-                >
-                  <Bike className="w-4 h-4 mr-2" />
-                  RODEMOS
-                </Button>
-              </div>
-            </div>
-
-            {/* Other Route Indicators */}
-            <div className="flex items-center space-x-8 text-white text-center">
-              <div className="flex flex-col items-center space-y-2">
-                <Bike className="w-8 h-8" />
-                <span className="text-sm font-medium">CANAL DE PANAMÁ</span>
-              </div>
-              <div className="flex flex-col items-center space-y-2">
-                <Bike className="w-8 h-8" />
-                <span className="text-sm font-medium">RIVIERA MAYA</span>
-              </div>
-              <div className="flex flex-col items-center space-y-2">
-                <Bike className="w-8 h-8" />
-                <span className="text-sm font-medium">ECUADOR</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
