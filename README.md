@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+Perfecto. Aquí tienes una versión más decente, humana y clara del `README.md`, con una introducción coherente con la identidad de **Espíritu de Montaña**, y dejando las instrucciones técnicas bien organizadas al final.
 
-## Project info
+---
+# Espíritu de Montaña — Web App
 
-**URL**: https://lovable.dev/projects/a52e51ba-7486-437a-b46f-0cb1801b98f8
+_Espíritu de Montaña_ es una marca colombiana que crea experiencias transformadoras de aventura en bicicleta de montaña. Más que una agencia de viajes, somos un punto de encuentro entre naturaleza, comunidad y superación personal.  
+Este proyecto es el corazón digital de nuestra operación: una plataforma web pensada para mostrar nuestras expediciones, conectar con nuestra comunidad, y facilitar la logística detrás de cada travesía.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Tecnologías utilizadas
 
-**Use Lovable**
+Este proyecto fue desarrollado usando:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a52e51ba-7486-437a-b46f-0cb1801b98f8) and start prompting.
+- [Vite](https://vitejs.dev/) – Empaquetador rápido de desarrollo
+- [React](https://reactjs.org/) – Biblioteca para construir interfaces modernas
+- [TypeScript](https://www.typescriptlang.org/) – Tipado estático para un código más robusto
+- [Tailwind CSS](https://tailwindcss.com/) – Framework de estilos utility-first
+- [shadcn/ui](https://ui.shadcn.com/) – Componentes de UI bien diseñados y personalizables
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## Cómo correr el proyecto localmente
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Asegúrate de tener instalado Node.js y npm. Si no los tienes, te recomendamos instalar Node usando [nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# 1. Clona el repositorio
+git clone <TU_URL_DEL_REPO>
 
-Follow these steps:
+# 2. Entra al directorio del proyecto
+cd <NOMBRE_DEL_PROYECTO>
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 3. Instala las dependencias
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4. Ejecuta el servidor de desarrollo
 npm run dev
-```
+````
 
-**Edit a file directly in GitHub**
+Esto iniciará el servidor local y podrás ver la web en tu navegador (usualmente en [http://localhost:5173](http://localhost:5173)).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Edición y despliegue
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Puedes trabajar en este proyecto de varias maneras:
 
-## What technologies are used for this project?
+### 1. Usando [Lovable](https://lovable.dev/projects/a52e51ba-7486-437a-b46f-0cb1801b98f8)
 
-This project is built with:
+* Haz cambios directamente con prompts.
+* Todo se sincroniza automáticamente con el repositorio.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 2. Usando tu editor de código (VSCode, WebStorm, etc.)
 
-## How can I deploy this project?
+* Clona el repo, haz tus cambios y haz push normalmente.
+* Todos los cambios se reflejan en Lovable también.
 
-Simply open [Lovable](https://lovable.dev/projects/a52e51ba-7486-437a-b46f-0cb1801b98f8) and click on Share -> Publish.
+### 3. Usando GitHub Codespaces
 
-## Can I connect a custom domain to my Lovable project?
+* Ve al repositorio en GitHub.
+* Haz clic en el botón verde "Code", elige la pestaña **Codespaces** y crea uno nuevo.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Despliegue
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Puedes publicar el proyecto directamente desde Lovable:
+
+1. Abre el [proyecto en Lovable](https://lovable.dev/projects/a52e51ba-7486-437a-b46f-0cb1801b98f8)
+2. Haz clic en **Share → Publish**
+
+---
+
+## Dominio personalizado
+
+Para conectar un dominio propio:
+
+1. Ve a **Project > Settings > Domains** en Lovable
+2. Haz clic en **Connect Domain**
+
+Guía completa aquí: [Configurar dominio personalizado](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
