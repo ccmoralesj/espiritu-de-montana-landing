@@ -12,69 +12,130 @@ const Header = () => {
       {/* Top contact bar */}
       <div className="absolute w-full bg-secondary text-white py-3 text-sm z-50">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Mail className="w-4 h-4" />
-            <span>hola@espiritumdemontana.com</span>
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-2">
+              <Mail className="w-4 h-4" />
+              <span>hola@espiritudemontana.com</span>
+            </div>
+            <div className="hidden sm:flex items-center space-x-2">
+              <Phone className="w-4 h-4" />
+              <span>(+57) 305 449 9987</span>
+            </div>
           </div>
-          <div className="text-xl">›</div>
+          <div className="hidden lg:flex items-center space-x-4">
+            <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+            <MessageCircle
+              className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+            />
+          </div>
+          <div className="block lg:hidden flex items-center space-x-4">
+            <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+            <MessageCircle
+              className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+            />
+            <div className="block lg:hidden text-xl pb-1">›</div>
+          </div>
+
         </div>
       </div>
 
       {/* Main header */}
-      <header className="absolute top-12 w-full backdrop-blur-md z-50 h-16 font-body tracking-wide">
-        <div className="container mx-auto px-4 py-4">
+      <header className="absolute top-12 w-full z-50 h-16 font-body tracking-wide">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+
+          {/* Hidden "Rutas" mobile Button */}
+          <Button variant="default" className="block lg:hidden bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
+            RUTAS
+          </Button>
+
+          {/* Contenedor izquierdo: Logo + Nav */}
           <div className="flex items-center justify-between">
-            
-            {/* Left - RUTAS Button */}
-            <Button className="bg-primary text-white rounded-full px-6 py-2 font-semibold text-sm flex items-center space-x-2">
-              <Bike className="w-4 h-4" />
-              <span>RUTAS</span>
-            </Button>
 
-            {/* Center - Logo */}
-            <div className="flex items-center justify-center">
-              <img src="/logo.png" alt="Espíritu de Montaña" className="h-12" />
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <div className="w-20 flex items-center justify-center">
+                <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" />
+              </div>
             </div>
 
-            {/* Right - WhatsApp + Menu */}
-            <div className="flex items-center space-x-4">
-              <MessageCircle
-                className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-              />
-              <button onClick={toggleMenu} className="lg:hidden">
-                {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-              </button>
-            </div>
+            {/* Navegación Desktop */}
+            <nav className="pl-10 hidden md:flex items-center space-x-12 font-semibold">
+              <Button variant="default" className="bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
+                RUTAS
+              </Button>
+              <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
+                TOURS
+              </a>
+              <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium">
+                NUESTRO ESPÍRITU
+              </a>
+              <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium">
+                TRIBU DE MONTAÑA
+              </a>
+            </nav>
           </div>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <nav className="lg:hidden mt-4 pb-4 border-t border-border">
-              <div className="flex flex-col space-y-4 pt-4">
-                <a href="#rutas" className="text-foreground hover:text-primary transition-colors font-medium">
-                  RUTAS
-                </a>
-                <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
-                  TOURS
-                </a>
-                <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium">
-                  NUESTRO ESPÍRITU
-                </a>
-                <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium">
-                  TRIBU DE MONTAÑA
-                </a>
-                <Button
-                  variant="outline"
-                  className="w-full mt-2"
-                  onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-                >
-                  Contactar
-                </Button>
-              </div>
-            </nav>
-          )}
+          {/* CTA Buttons alineado a la derecha */}
+          <div className="hidden md:flex items-center space-x-4">
+            <MessageCircle
+              className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
+              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+            />
+            <Button
+              variant="outline"
+              className="rounded-full border-2 border-secondary text-black-700 hover:bg-primary-hover"
+            >
+              INGRESAR
+            </Button>
+          </div>
+
+          {/* Botón hamburguesa mobile */}
+          <Button
+            variant="outline"
+            className="lg:hidden text-foreground focus:outline-none border-secondary"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menú"
+          >
+            {isMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </Button>
         </div>
+
+        {/* Navegación Mobile */}
+        {isMenuOpen && (
+          <nav className="lg:hidden mt-4 pb-4 border-t border-border bg-white">
+            <div className="container mx-auto px-4 flex flex-col space-y-4 pt-4">
+              <a href="#rutas" className="text-foreground hover:text-primary transition-colors font-medium">
+                RUTAS
+              </a>
+              <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
+                TOURS
+              </a>
+              <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium">
+                NUESTRO ESPÍRITU
+              </a>
+              <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium">
+                TRIBU DE MONTAÑA
+              </a>
+              <Button
+                variant="outline"
+                className="w-full mt-2"
+                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              >
+                Contactar
+              </Button>
+            </div>
+          </nav>
+        )}
       </header>
     </>
   );
