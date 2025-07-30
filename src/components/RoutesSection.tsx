@@ -47,7 +47,7 @@ const RoutesSection = () => {
     },
     {
       title: "Sierra Nevada",
-      location: "Magdalena, Colombia", 
+      location: "Magdalena, Colombia",
       description: "Desde el mar hasta las montañas nevadas, una ruta que conecta todos los pisos térmicos de Colombia.",
       image: routeRivieraMaya, // Placeholder - replace with Sierra Nevada image
       difficulty: "Avanzado",
@@ -78,8 +78,8 @@ const RoutesSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">
               RUTAS INTERNACIONALES Y NACIONALES
             </h2>
-            <Button 
-              variant="adventure" 
+            <Button
+              variant="adventure"
               className="view-all-routes rounded-full px-8"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
             >
@@ -94,7 +94,7 @@ const RoutesSection = () => {
                 <div className="text-muted-foreground text-sm font-medium min-w-[100px]">
                   18.05.2025
                 </div>
-                
+
                 {/* Content */}
                 <div className="flex-1 space-y-4">
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground uppercase">
@@ -103,15 +103,15 @@ const RoutesSection = () => {
                   <p className="text-muted-foreground max-w-md">
                     {route.description}
                   </p>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="rounded-full px-6"
                     onClick={() => window.open('https://wa.me/1234567890', '_blank')}
                   >
                     VER DETALLE
                   </Button>
                 </div>
-                
+
                 {/* Metadata */}
                 <div className="flex items-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
@@ -127,11 +127,11 @@ const RoutesSection = () => {
                     <span>$2.700.000</span>
                   </div>
                 </div>
-                
+
                 {/* Image */}
                 <div className="w-full lg:w-64 h-32 lg:h-24 rounded-xl overflow-hidden">
-                  <img 
-                    src={route.image} 
+                  <img
+                    src={route.image}
                     alt={route.title}
                     className="w-full h-full object-cover"
                   />
@@ -144,11 +144,11 @@ const RoutesSection = () => {
           <div className="text-center mt-16 p-8 bg-muted/30 rounded-2xl">
             <h3 className="text-2xl font-bold text-foreground mb-4">¿No encuentras la aventura perfecta?</h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Diseñamos rutas personalizadas según tus preferencias, nivel de experiencia y tiempo disponible. 
+              Diseñamos rutas personalizadas según tus preferencias, nivel de experiencia y tiempo disponible.
               Cada aventura es única, como tú.
             </p>
-            <Button 
-              variant="adventure" 
+            <Button
+              variant="adventure"
               size="lg"
               className="custom-route-cta"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
@@ -165,8 +165,8 @@ const RoutesSection = () => {
             <h2 className="text-3xl font-bold text-foreground uppercase leading-tight">
               RUTAS INTERNACIONALES Y NACIONALES
             </h2>
-            <Button 
-              variant="adventure" 
+            <Button
+              variant="adventure"
               className="w-full rounded-full py-4 text-lg font-medium"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
             >
@@ -178,8 +178,8 @@ const RoutesSection = () => {
           <div className="space-y-6">
             {/* Route Image */}
             <div className="w-full h-64 rounded-2xl overflow-hidden">
-              <img 
-                src={featuredRoute.image} 
+              <img
+                src={featuredRoute.image}
                 alt={featuredRoute.title}
                 className="w-full h-full object-cover"
               />
@@ -217,8 +217,8 @@ const RoutesSection = () => {
             </p>
 
             {/* Detail Button */}
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="w-fit rounded-full px-8 py-3"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
             >

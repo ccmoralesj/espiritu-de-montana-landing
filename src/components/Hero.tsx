@@ -16,7 +16,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="top-16 lg:top-0 relative z-10 container mx-auto px-4 h-full flex flex-col justify-center">
+      <div className="top-20 lg:top-0 relative z-10 container mx-auto px-4 h-full flex flex-col justify-center">
         {/* Desktop Layout */}
         <div className="hidden lg:grid grid-cols-2 gap-8 items-center pb-20">
           {/* Left Side - Main Hero Text */}

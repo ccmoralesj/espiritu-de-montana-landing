@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, MessageCircle, Instagram, Bike } from "lucide-react";
 import { useState } from "react";
+import MobileHeader from "./MobileHeader";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,20 +23,20 @@ const Header = () => {
               <span>(+57) 305 449 9987</span>
             </div>
           </div>
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
             <MessageCircle
               className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             />
           </div>
-          <div className="block lg:hidden flex items-center space-x-4">
+          <div className="block md:hidden flex items-center space-x-4">
             <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
             <MessageCircle
               className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             />
-            <div className="block lg:hidden text-xl pb-1">›</div>
+            <div className="bloc text-xl pb-1">›</div>
           </div>
 
         </div>
@@ -46,7 +47,7 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
 
           {/* Hidden "Rutas" mobile Button */}
-          <Button variant="default" className="block lg:hidden bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
+          <Button variant="default" className="block md:hidden bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
             RUTAS
           </Button>
 
@@ -94,48 +95,19 @@ const Header = () => {
           {/* Botón hamburguesa mobile */}
           <Button
             variant="outline"
-            className="lg:hidden text-foreground focus:outline-none border-secondary"
+            className="md:hidden text-foreground focus:outline-none border-secondary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Abrir menú"
           >
-            {isMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </Button>
         </div>
 
         {/* Navegación Mobile */}
-        {isMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t border-border bg-white">
-            <div className="container mx-auto px-4 flex flex-col space-y-4 pt-4">
-              <a href="#rutas" className="text-foreground hover:text-primary transition-colors font-medium">
-                RUTAS
-              </a>
-              <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
-                TOURS
-              </a>
-              <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium">
-                NUESTRO ESPÍRITU
-              </a>
-              <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium">
-                TRIBU DE MONTAÑA
-              </a>
-              <Button
-                variant="outline"
-                className="w-full mt-2"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-              >
-                Contactar
-              </Button>
-            </div>
-          </nav>
-        )}
+        {isMenuOpen && (<MobileHeader isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />)}
+
       </header>
     </>
   );
