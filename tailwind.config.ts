@@ -23,6 +23,7 @@ export default {
         title: ['Anton', 'sans-serif'],
       },
 			colors: {
+        white: '#EEF8F2',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

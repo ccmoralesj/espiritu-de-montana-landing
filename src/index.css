@@ -19,13 +19,13 @@
     --popover-foreground: 20 14% 4%;
 
     /* Adventure green primary palette */
-    --primary: 142 71% 45%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 147 45% 52%;
+    --primary-foreground: 142 52% 95%;
     --primary-hover: 142 71% 35%;
 
     /* gray-black tone secondary */
-    --secondary: 180 7% 12%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 186 8% 12%;
+    --secondary-foreground: 142 52% 95%;
 
     /* Muted nature tones */
     --muted: 60 9% 98%;
@@ -36,12 +36,12 @@
     --accent-foreground: 0 0% 100%;
 
     /* Adventure orange for CTAs */
-    --adventure: 24 100% 50%;
-    --adventure-foreground: 0 0% 100%;
+    --adventure: 2 85% 57%;
+    --adventure-foreground: 142 52% 95%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 142 52% 95%;
 
     /* Borders and inputs */
     --border: 20 6% 90%;

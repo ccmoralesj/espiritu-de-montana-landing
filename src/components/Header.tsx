@@ -36,7 +36,7 @@ const Header = () => {
               className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             />
-            <div className="bloc text-xl pb-1">›</div>
+            <div className="text-xl pb-1">›</div>
           </div>
 
         </div>
@@ -47,7 +47,7 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
 
           {/* Hidden "Rutas" mobile Button */}
-          <Button variant="default" className="block md:hidden bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
+          <Button variant="default" className="block md:hidden bg-primary text-white rounded-full px-6 py-0 h-8 hover:bg-primary-hover">
             RUTAS
           </Button>
 
@@ -106,7 +106,7 @@ const Header = () => {
         </div>
 
         {/* Navegación Mobile */}
-        {isMenuOpen && (<MobileHeader isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />)}
+        {isMenuOpen && (<MobileHeader setIsMenuOpen={setIsMenuOpen} />)}
 
       </header>
     </>

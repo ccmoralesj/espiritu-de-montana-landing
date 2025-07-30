@@ -1,19 +1,61 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, MessageCircle, Instagram, Bike } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface MobileHeaderProps {
-  isMenuOpen?: boolean;
+  isVisible?: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsVisible(true), 10);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
-      <div className="fixed inset-0 z-50 bg-white lg:hidden" >
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+
+      <div className={`
+          fixed inset-0 z-50 bg-primary lg:hidden transition-opacity duration-500
+          ${isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+        `}
+      >
+        {/* Top contact bar */}
+        <div className="w-full bg-secondary text-white py-3 text-sm z-50">
+          <div className="container mx-auto px-4 flex justify-between items-center">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <Mail className="w-4 h-4" />
+                <span>hola@espiritudemontana.com</span>
+              </div>
+              <div className="hidden sm:flex items-center space-x-2">
+                <Phone className="w-4 h-4" />
+                <span>(+57) 305 449 9987</span>
+              </div>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+              <MessageCircle
+                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              />
+            </div>
+            <div className="block md:hidden flex items-center space-x-4">
+              <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+              <MessageCircle
+                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              />
+              <div className="text-xl pb-1">›</div>
+            </div>
+
+          </div>
+        </div>
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           {/* Hidden "Rutas" mobile Button */}
-          <Button variant="default" className="bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
+          <Button variant="default" className="bg-white text-secondary rounded-full px-6 py-0 h-8 hover:bg-primary-hover">
             RUTAS
           </Button>
 
@@ -36,33 +78,41 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
             </svg>
           </Button>
         </div>
-        <nav >
-          <div className="container mx-auto px-4 py-6 flex flex-col space-y-6">
-            <a href="#rutas" className="text-foreground hover:text-primary transition-colors font-medium text-lg">
-              RUTAS
-            </a>
-            <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium text-lg">
-              TOURS
-            </a>
-            <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium text-lg">
-              NUESTRO ESPÍRITU
-            </a>
-            <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium text-lg">
-              TRIBU DE MONTAÑA
-            </a>
-            <Button
-              variant="outline"
-              className="w-full mt-4"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-            >
-              Contactar
-            </Button>
-            <Button
-              variant="outline"
-              className=" w-full mt-4"
-            >
-              INGRESAR
-            </Button>
+        <nav className="h-full">
+          <div className="container mx-auto px-4 py-6 flex flex-col space-y-6 h-full">
+            <div className="flex justify-between">
+              <a href="#tours" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
+                TOURS
+              </a>
+              <div className="bloc text-xl pb-1">›</div>
+            </div>
+            <div className="flex justify-between">
+              <a href="#espiritu" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
+                NUESTRO ESPÍRITU
+              </a>
+              <div className="bloc text-xl pb-1">›</div>
+            </div>
+            <div className="flex justify-between">
+              <a href="#tribu" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
+                TRIBU DE MONTAÑA
+              </a>
+              <div className="bloc text-xl pb-1">›</div>
+            </div>
+            <div className="flex flex-col space-y-4 justify-end">
+              <Button
+                variant="outline"
+                className="rounded-full border-2 border-secondary text-secondary font-bold hover:bg-primary-hover"
+                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              >
+                CONTACTAR
+              </Button>
+              <Button
+                variant="outline"
+                className="rounded-full border-2 border-secondary text-secondary font-bold hover:bg-primary-hover"
+              >
+                INGRESAR
+              </Button>
+            </div>
           </div>
         </nav>
       </div>
