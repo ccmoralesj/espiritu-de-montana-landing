@@ -92,17 +92,23 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Botón hamburguesa mobile */}
-          <Button
-            variant="outline"
-            className="md:hidden text-foreground focus:outline-none border-secondary"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Abrir menú"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </Button>
+          {/* Botón hamburguesa y contacto mobile */}
+          <div className="flex">
+            <MessageCircle
+              className="md:hidden w-10 h-10 cursor-pointer hover:text-primary transition-colors"
+              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+            />
+            <Button
+              variant="outline"
+              className="md:hidden text-foreground focus:outline-none border-secondary"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Abrir menú"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </Button>
+          </div>
         </div>
 
         {/* Navegación Mobile */}
