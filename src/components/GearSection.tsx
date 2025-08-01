@@ -39,7 +39,7 @@ const GearSection = () => {
               <span className="text-primary">AVENTURA TOTAL</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Proporcionamos todo el equipo necesario para que te enfoques únicamente en disfrutar la experiencia. 
+              Proporcionamos todo el equipo necesario para que te enfoques únicamente en disfrutar la experiencia.
               Tecnología de punta y equipos probados en las condiciones más exigentes.
             </p>
 
@@ -61,8 +61,8 @@ const GearSection = () => {
             </div>
 
             <div className="space-y-4">
-              <Button 
-                variant="adventure" 
+              <Button
+                variant="adventure"
                 size="lg"
                 className="gear-inquiry-cta w-full sm:w-auto"
                 onClick={() => window.open('https://wa.me/1234567890', '_blank')}
@@ -78,27 +78,27 @@ const GearSection = () => {
           {/* Image */}
           <div className="relative">
             <Card className="overflow-hidden border-0 shadow-2xl">
-              <img 
-                src={gearImage} 
+              <img
+                src={gearImage}
                 alt="Equipo de ciclismo profesional"
                 className="w-full h-auto object-cover"
               />
             </Card>
-            
+
             {/* Floating Stats */}
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl border">
+            {/* <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl border">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-1">15+</div>
                 <div className="text-sm text-muted-foreground">Años de Experiencia</div>
               </div>
-            </div>
-            
-            <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-xl border">
+            </div> */}
+
+            {/* <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-xl border">
               <div className="text-center">
                 <div className="text-3xl font-bold text-adventure mb-1">500+</div>
                 <div className="text-sm text-muted-foreground">Aventureros Felices</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

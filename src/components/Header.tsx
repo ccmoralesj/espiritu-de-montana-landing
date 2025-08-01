@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, MessageCircle, Instagram, Bike } from "lucide-react";
 import { useState } from "react";
-import MobileHeader from "./MobileHeader";
+import MobileHeader from "./Mobile/MobileHeader";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
