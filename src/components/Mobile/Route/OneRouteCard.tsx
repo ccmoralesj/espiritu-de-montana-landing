@@ -23,7 +23,7 @@ const OneRouteCard: React.FC<OneRouteProps> = ({ route }) => {
       </div>
 
       {/* Metadata Icons */}
-      <div className="font-body flex tems-center gap-3 text-base text-muted-foreground justify-between whitespace-nowrap">
+      <div className="font-body flex items-center gap-3 text-base text-muted-foreground justify-between whitespace-nowrap">
         <div className="flex items-center gap-2">
           <span className="text-lg">▲</span>
           <span>{route.difficulty}</span>

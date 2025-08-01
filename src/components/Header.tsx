@@ -50,20 +50,17 @@ const Header = () => {
           <Button variant="default" className="block md:hidden bg-primary text-white rounded-full px-6 py-0 h-8 hover:bg-primary-hover">
             RUTAS
           </Button>
-
-          {/* Contenedor izquierdo: Logo + Nav */}
-          <div className="flex items-center justify-between">
+          {/* Lado izquierdo*/}
+          <div className="flex items-center gap-4">
 
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-20 flex items-center justify-center">
-                <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" />
-              </div>
+            <div className="w-20">
+              <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" />
             </div>
 
-            {/* Navegación Desktop */}
-            <nav className="pl-10 hidden md:flex items-center space-x-12 font-semibold">
-              <Button variant="default" className="bg-primary text-white rounded-full px-6 hover:bg-primary-hover">
+            {/* Desktop Nav */}
+            <nav className="pl-4 hidden md:flex items-center space-x-12 font-semibold">
+              <Button variant="default" className="bg-primary text-white rounded-full px-6 h-8 hover:bg-primary-hover">
                 RUTAS
               </Button>
               <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
@@ -78,37 +75,41 @@ const Header = () => {
             </nav>
           </div>
 
-          {/* CTA Buttons alineado a la derecha */}
-          <div className="hidden md:flex items-center space-x-4">
-            <MessageCircle
-              className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-            />
-            <Button
-              variant="outline"
-              className="rounded-full border-2 border-secondary text-black-700 hover:bg-primary-hover"
-            >
-              INGRESAR
-            </Button>
+          {/* LADO DERECHO */}
+          <div className="flex items-center space-x-4">
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center space-x-4">
+              <MessageCircle
+                className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              />
+              <Button
+                variant="outline"
+                className="rounded-full border-2 border-secondary text-black-700 hover:bg-primary-hover"
+              >
+                INGRESAR
+              </Button>
+            </div>
+
+            {/* MObile Hamburger */}
+            <div className="flex md:hidden space-x2">
+              <MessageCircle
+                className="w-10 h-10 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              />
+              <Button
+                variant="outline"
+                className="text-foreground focus:outline-none border-secondary"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Abrir menú"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </Button>
+            </div>
           </div>
 
-          {/* Botón hamburguesa y contacto mobile */}
-          <div className="flex">
-            <MessageCircle
-              className="md:hidden w-10 h-10 cursor-pointer hover:text-primary transition-colors"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-            />
-            <Button
-              variant="outline"
-              className="md:hidden text-foreground focus:outline-none border-secondary"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Abrir menú"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </Button>
-          </div>
         </div>
 
         {/* Navegación Mobile */}
