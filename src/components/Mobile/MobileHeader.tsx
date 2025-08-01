@@ -26,11 +26,11 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
         <div className="w-full bg-secondary text-white py-3 text-sm z-50">
           <div className="container mx-auto px-4 flex justify-between items-center">
             <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 <span>hola@espiritudemontana.com</span>
               </div>
-              <div className="hidden sm:flex items-center space-x-2">
+              <div className="hidden sm:flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 <span>(+57) 305 449 9987</span>
               </div>
@@ -53,8 +53,8 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
 
           </div>
         </div>
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          {/* Hidden "Rutas" mobile Button */}
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+
           <Button variant="default" className="bg-white text-secondary rounded-full px-6 py-0 h-8 hover:bg-primary-hover">
             RUTAS
           </Button>

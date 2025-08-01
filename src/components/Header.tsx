@@ -11,10 +11,13 @@ const Header = () => {
   return (
     <>
       {/* Top contact bar */}
-      <div className="absolute w-full bg-secondary text-white py-3 text-sm z-50">
+      <div className={`
+        w-full bg-secondary text-white py-3 text-sm z-50
+        ${isMenuOpen ? 'hidden' : 'absolute'}
+        `}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2">
+            <div className="font-body flex items-center space-x-2">
               <Mail className="w-4 h-4" />
               <span>hola@espiritudemontana.com</span>
             </div>
@@ -76,9 +79,9 @@ const Header = () => {
           </div>
 
           {/* LADO DERECHO */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-4">
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center gap-4">
               <MessageCircle
                 className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}
@@ -91,7 +94,7 @@ const Header = () => {
               </Button>
             </div>
 
-            {/* MObile Hamburger */}
+            {/* Mobile Hamburger */}
             <div className="flex md:hidden space-x2">
               <MessageCircle
                 className="w-10 h-10 cursor-pointer hover:text-primary transition-colors"
