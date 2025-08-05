@@ -17,8 +17,8 @@ const RoutesSection = () => {
               RUTAS INTERNACIONALES Y NACIONALES
             </h2>
             <Button
-              variant="adventure"
-              className="font-body view-all-routes rounded-full px-8 bg-primary hover:bg-primary-hover"
+              variant="default"
+              className="font-body view-all-routes rounded-full px-8 hover:bg-primary-hover"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
             >
               VER TODAS LAS RUTAS
@@ -38,7 +38,7 @@ const RoutesSection = () => {
             </h2>
             <Button
               variant="adventure"
-              className="font-body w-2/3 h-12 rounded-full py-4 text-lg  bg-primary hover:bg-primary-hover"
+              className="font-body w-2/3 h-12 rounded-full py-4 text-lg bg-primary hover:bg-primary-hover"
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
             >
               VER TODAS LAS RUTAS
