@@ -45,7 +45,7 @@ const OneRouteCard: React.FC<OneRouteProps> = ({ route }) => {
 
       {/* Description */}
       <p className="font-body text-muted-foreground text-base leading-relaxed">
-        {route.description}
+        {route.short_description}
       </p>
 
       {/* Detail Button */}

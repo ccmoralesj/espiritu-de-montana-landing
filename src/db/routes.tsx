@@ -1,0 +1,81 @@
+import { Route } from "@/interfaces/Route";
+
+export const internationalRoutes: Route[] = [
+  {
+    title: "Circuito Canal de Panamá",
+    date: '18.05.2025',
+    location: "Panamá, Centroamérica",
+    short_description: "Pedalea a través de la historia del canal más famoso del mundo, entre selva tropical y paisajes únicos.",
+    long_description: "Siente la magia de este pueblo encantador enclavado en la montaña. Jericó te invita a recorrer sus coloridas calles, conocer su historia y respirar aire fresco mientras ruedas junto a quienes comparten tu pasión por la bici.\n\nPrepara tu grupo y déjate llevar por rutas llenas de cultura, tradición y paisajes que enamoran.",
+    image: 'https://images.unsplash.com/photo-1632505702897-cc41b0ba3b64?q=80&w=2533&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    difficulty: "Intermedio",
+    price: '$2.700.000',
+    duration: "40 Km",
+    category: 'internacional' as const,
+  },
+  {
+    title: "Riviera Maya Ancestral",
+    date: '18.05.2025',
+    location: "Quintana Roo, México",
+    short_description: "Descubre ruinas mayas ocultas mientras recorres senderos milenarios en la península de Yucatán.",
+    long_description: "Siente la magia de este pueblo encantador enclavado en la montaña. Jericó te invita a recorrer sus coloridas calles, conocer su historia y respirar aire fresco mientras ruedas junto a quienes comparten tu pasión por la bici.\n\nPrepara tu grupo y déjate llevar por rutas llenas de cultura, tradición y paisajes que enamoran.",
+    image: 'https://images.unsplash.com/photo-1524544187526-2b2855b65f16?q=80&w=1065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    difficulty: "Intermedio",
+    price: '$2.700.000',
+    duration: "38 Km",
+    category: 'internacional' as const,
+  },
+  {
+    title: "Cordillera de los Andes",
+    date: '18.05.2025',
+    location: "Bolivia",
+    short_description: "Una expedición épica por los senderos más altos de América, entre lagos sagrados y picos nevados.",
+    long_description: "Siente la magia de este pueblo encantador enclavado en la montaña. Jericó te invita a recorrer sus coloridas calles, conocer su historia y respirar aire fresco mientras ruedas junto a quienes comparten tu pasión por la bici.\n\nPrepara tu grupo y déjate llevar por rutas llenas de cultura, tradición y paisajes que enamoran.",
+    image: 'https://images.unsplash.com/photo-1632505702897-cc41b0ba3b64?q=80&w=2533&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    difficulty: "Avanzado",
+    price: '$2.700.000',
+    duration: "28 Km",
+    category: 'internacional' as const,
+  },
+];
+
+export const nationalRoutes: Route[] = [
+  {
+    title: "Cocora y Nevados",
+    date: '18.05.2025',
+    location: "Quindío, Colombia",
+    short_description: "Atraviesa el valle de las palmas de cera más altas del mundo y experimenta la magia del paisaje cafetero.",
+    long_description: "Siente la magia de este pueblo encantador enclavado en la montaña. Jericó te invita a recorrer sus coloridas calles, conocer su historia y respirar aire fresco mientras ruedas junto a quienes comparten tu pasión por la bici.\n\nPrepara tu grupo y déjate llevar por rutas llenas de cultura, tradición y paisajes que enamoran.",
+    image: 'https://images.unsplash.com/photo-1524544187526-2b2855b65f16?q=80&w=1065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    difficulty: "Intermedio",
+    price: '$2.700.000',
+    duration: "32 Km",
+    category: 'nacional' as const,
+  },
+  {
+    title: "Sierra Nevada",
+    date: '18.05.2025',
+    location: "Magdalena, Colombia",
+    short_description: "Desde el mar hasta las montañas nevadas, una ruta que conecta todos los pisos térmicos de Colombia.",
+    long_description: "Siente la magia de este pueblo encantador enclavado en la montaña. Jericó te invita a recorrer sus coloridas calles, conocer su historia y respirar aire fresco mientras ruedas junto a quienes comparten tu pasión por la bici.\n\nPrepara tu grupo y déjate llevar por rutas llenas de cultura, tradición y paisajes que enamoran.",
+    image: 'https://images.unsplash.com/photo-1632505702897-cc41b0ba3b64?q=80&w=2533&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    difficulty: "Avanzado",
+    price: '$2.700.000',
+    duration: "52 Km",
+    category: 'nacional' as const,
+  },
+  {
+    title: "Tatacoa y Huila",
+    date: '18.05.2025',
+    location: "Huila, Colombia",
+    short_description: "Pedalea por el desierto más sorprendente de Colombia y descubre paisajes de otro planeta.",
+    long_description: "Siente la magia de este pueblo encantador enclavado en la montaña. Jericó te invita a recorrer sus coloridas calles, conocer su historia y respirar aire fresco mientras ruedas junto a quienes comparten tu pasión por la bici.\n\nPrepara tu grupo y déjate llevar por rutas llenas de cultura, tradición y paisajes que enamoran.",
+    image: 'https://images.unsplash.com/photo-1524544187526-2b2855b65f16?q=80&w=1065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    difficulty: "Fácil",
+    price: '$2.700.000',
+    duration: "40 Km",
+    category: 'nacional' as const,
+  },
+];
+
+export const allRoutes: Route[] = [...internationalRoutes, ...nationalRoutes];

@@ -24,7 +24,7 @@ const ReasonsToJoin = () => {
     <section className="py-20 bg-accent">
       <div className="container mx-auto px-4">
         <div className="pt-10 mb-4">
-          <h2 className="font-title text-2xl md:text-3xl text-secondary leading-tight tracking-wide">
+          <h2 className="font-title text-3xl md:text-3xl text-secondary leading-tight tracking-wide">
             POR QUÉ UNIRTE A LA AVENTURA
           </h2>
         </div>

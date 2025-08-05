@@ -5,7 +5,8 @@ export interface Route {
   title: string;
   date: string;
   location: string;
-  description: string;
+  short_description: string;
+  long_description: string;
   image: string;
   difficulty: Difficulty;
   price: string;

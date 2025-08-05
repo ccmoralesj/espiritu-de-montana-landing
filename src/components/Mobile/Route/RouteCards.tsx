@@ -11,7 +11,7 @@ const RouteCards: React.FC<RouteProps> = ({ routes }) => {
     <>
       <div className="block">
         <div className="space-y-8 pt-4">
-          {routes.map((route, index) => (
+          {routes.map((route) => (
             <div className="w-[92%] mx-auto space-y-4 pb-8 border-b border-border last:border-b-0">
               <OneRouteCard route={route} />
             </div>
