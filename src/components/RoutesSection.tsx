@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import RouteRows from "./Route/RouteRows";
 import { Route } from "@/interfaces/Route";
 import RouteCards from "./Mobile/Route/RouteCards";
-import { allRoutes } from "@/db/routes";
+import { internationalRoutes } from "@/db/routes";
 
 const RoutesSection = () => {
   return (
@@ -25,7 +25,7 @@ const RoutesSection = () => {
             </Button>
           </div>
           {/* Route Row */}
-          < RouteRows routes={allRoutes as Route[]} />
+          < RouteRows routes={internationalRoutes} />
         </div>
 
 
@@ -46,7 +46,7 @@ const RoutesSection = () => {
           </div>
 
           {/* Route Card */}
-          < RouteCards routes={allRoutes as Route[]} />
+          < RouteCards routes={internationalRoutes} />
         </div>
       </div>
     </section>

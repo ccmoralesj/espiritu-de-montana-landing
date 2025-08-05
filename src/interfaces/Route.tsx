@@ -1,5 +1,5 @@
 export type Difficulty = 'Fácil' | 'Intermedio' | 'Avanzado';
-export type Category = 'nacional' | 'internacional';
+export type Category = 'nacional' | 'internacional' | 'local';
 
 export interface Route {
   title: string;
