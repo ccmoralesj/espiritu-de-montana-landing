@@ -31,9 +31,9 @@
     --muted: 60 9% 98%;
     --muted-foreground: 25 5% 45%;
 
-    /* Accent - warm earth */
-    --accent: 32 81% 58%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - light gray */
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 20%;
 
     /* Adventure red for CTAs */
     --adventure: 2 85% 57%;

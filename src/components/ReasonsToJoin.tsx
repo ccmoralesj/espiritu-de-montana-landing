@@ -6,25 +6,25 @@ const ReasonsToJoin = () => {
     {
       number: "01.",
       title: "GUÍAS LOCALES + ATENCIÓN EN INGLÉS",
-      image: "/lovable-uploads/1a413544-b7a6-4b8d-9a25-34c833e6fc9b.png"
+      image: "https://v5.airtableusercontent.com/v3/u/43/43/1754366400000/PDrcUN_fQUMXoLe2XEyrLA/i3zAZRiHyIZF2ELiCTDo3NE0VdCdt3xpEp-iw2q0wgUVygtvV2_G1ZHHCU6QVK0FGNJj6vsuegLqxRqrjZ4HMyUlB-idbM9Es0Uq4oZaKmq8Yfv--yFhGqjjxV8NSg4DN-D96BeAet1em1Iw7Xm0oQ/alJX5u-zhKnqvNIyGFLdFesbkGLwJW-yWBsNfNP8kBI"
     },
     {
       number: "02.",
       title: "EXPERIENCIAS SEGURAS Y AUTÉNTICAS",
-      image: "/lovable-uploads/b7d80422-6d5d-49ba-858d-007fde62a690.png"
+      image: "https://images.pexels.com/photos/8926961/pexels-photo-8926961.jpeg"
     },
     {
       number: "03.",
       title: "CONOCE NUEVAS FRONTERAS EN BICI",
-      image: "/lovable-uploads/1a413544-b7a6-4b8d-9a25-34c833e6fc9b.png"
+      image: "https://images.pexels.com/photos/32552591/pexels-photo-32552591.jpeg"
     }
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-accent">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-title">
+        <div className="pt-10 mb-4">
+          <h2 className="font-title text-2xl md:text-3xl text-secondary leading-tight tracking-wide">
             POR QUÉ UNIRTE A LA AVENTURA
           </h2>
         </div>
@@ -32,11 +32,11 @@ const ReasonsToJoin = () => {
         {/* Desktop Layout */}
         <div className="hidden md:grid grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
-            <div key={index} className="space-y-6">
-              <div className="text-muted-foreground font-bold text-lg">
+            <div key={index} className="space-y-2">
+              <div className="text-muted-foreground font-body text-lg">
                 {reason.number}
               </div>
-              <h3 className="text-xl font-bold text-foreground font-title leading-tight">
+              <h3 className="text-xl font-title text-secondary tracking-wide">
                 {reason.title}
               </h3>
               <Card className="overflow-hidden border-0 shadow-lg">
@@ -53,18 +53,18 @@ const ReasonsToJoin = () => {
         {/* Mobile Layout */}
         <div className="md:hidden space-y-12">
           {reasons.map((reason, index) => (
-            <div key={index} className="space-y-4">
-              <div className="text-muted-foreground font-bold text-lg">
+            <div key={index} className="space-y-2">
+              <div className="text-muted-foreground font-body text-lg">
                 {reason.number}
               </div>
-              <h3 className="text-xl font-bold text-foreground font-title leading-tight">
+              <h3 className="text-secondary font-body leading-tight tracking-wide">
                 {reason.title}
               </h3>
               <Card className="overflow-hidden border-0 shadow-lg">
                 <img
                   src={reason.image}
                   alt={reason.title}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover overflow-hidden"
                 />
               </Card>
             </div>
