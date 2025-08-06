@@ -30,7 +30,7 @@ const GearSection = () => {
   ];
 
   return (
-    <section className="relative py-20 bg-accent overflow-hidden">
+    <section className="relative py-20 bg-accent overflow-hidden h-[58rem] md:h-auto">
       {/* Green Vector Background */}
       <div className="absolute inset-0">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
@@ -77,9 +77,9 @@ const GearSection = () => {
 
             {/* Gear Items positioned around the bike */}
             <section className="flex w-full gap-40 -translate-y-[7%]">
-              <aside className="flex flex-col gap-20 w-full items-center justify-between">
+              <aside className="flex flex-col gap-20 w-full items-center justify-end gap-20">
                 {/* Top Left - Helmet */}
-                <div className="h-64 text-center flex flex-col items-center">
+                <div className="h-64 text-center flex flex-col items-center justify-end">
                   <div className="w-48 h-48">
                     <img
                       src={gearItems[0].image}
@@ -98,7 +98,7 @@ const GearSection = () => {
                 </div>
 
                 {/* Bottom Left - Water Bottle */}
-                <div className="h-64 text-center flex flex-col items-center">
+                <div className="h-64 text-center flex flex-col items-center justify-end">
                   <div className="w-52 h-52">
                     <img
                       src={gearItems[2].image}
@@ -116,9 +116,9 @@ const GearSection = () => {
 
                 </div>
               </aside>
-              <aside className="flex flex-col w-full items-center justify-between">
+              <aside className="flex flex-col w-full items-center justify-end gap-20">
                 {/* Top Right - Backpack */}
-                <div className="h-64 text-center flex flex-col items-center">
+                <div className="h-64 text-center flex flex-col items-center justify-end">
                   <div className="w-52 h-52">
                     <img
                       src={gearItems[1].image}
@@ -137,7 +137,7 @@ const GearSection = () => {
                 </div>
 
                 {/* Bottom Right - Gloves & Sunglasses */}
-                <div className="h-64 text-center flex flex-col items-center">
+                <div className="h-64 text-center flex flex-col items-center justify-end">
                   <div className="w-52 h-52">
                     <img
                       src={gearItems[3].image}
