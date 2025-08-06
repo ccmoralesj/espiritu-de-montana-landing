@@ -30,7 +30,7 @@ const GearSection = () => {
   ];
 
   return (
-    <section className="relative py-20 bg-accent overflow-hidden h-[58rem] md:h-auto">
+    <section className="relative py-20 bg-accent overflow-hidden h-[58rem] lg:h-auto">
       {/* Green Vector Background */}
       <div className="absolute inset-0">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
@@ -167,7 +167,7 @@ const GearSection = () => {
           </span>
           {/* Central Title and Bike */}
           <div className="absolute transform translate-y-1/2 text-center">
-            <div className="h-auto mx-auto mb-6">
+            <div className="w-[26rem] lg:w-full h-auto mx-auto mb-6">
               <img
                 src={gearImage}
                 alt="Bicicleta de montaña"
