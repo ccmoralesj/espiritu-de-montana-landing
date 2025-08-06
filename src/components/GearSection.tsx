@@ -1,104 +1,185 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Bike, Backpack, Shield, Droplets } from "lucide-react";
 import gearImage from "@/assets/cycling-gear.jpg";
+import helmetImage from "@/assets/gear-helmet.png";
+import backpackImage from "@/assets/gear-backpack.png";
+import bottleImage from "@/assets/gear-bottle.png";
+import accessoriesImage from "@/assets/gear-accessories.png";
 
 const GearSection = () => {
   const gearItems = [
     {
-      icon: Bike,
-      title: "Bicicletas Especializadas",
-      description: "Mountain bikes de alta gama perfectamente ajustadas para cada tipo de terreno y aventura."
+      label: "PROTECCIÓN",
+      image: helmetImage,
+      alt: "Casco de protección para ciclismo"
     },
     {
-      icon: Backpack,
-      title: "Equipo de Bikepacking",
-      description: "Alforjas, tiendas ultraligeras y todo el equipo necesario para expediciones de varios días."
+      label: "BACKPACK Y ROPA CÓMODA", 
+      image: backpackImage,
+      alt: "Mochila y ropa cómoda para aventuras"
     },
     {
-      icon: Shield,
-      title: "Seguridad Completa",
-      description: "Cascos certificados, protecciones y kit de primeros auxilios para máxima tranquilidad."
+      label: "HIDRATACIÓN",
+      image: bottleImage,
+      alt: "Botella de hidratación"
     },
     {
-      icon: Droplets,
-      title: "Hidratación y Nutrición",
-      description: "Sistemas de hidratación y alimentación energética para mantener tu rendimiento óptimo."
+      label: "GUANTES Y GAFAS",
+      image: accessoriesImage,
+      alt: "Guantes y gafas de protección"
     }
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              EQUIPO DE
-              <br />
-              <span className="text-primary">AVENTURA TOTAL</span>
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Proporcionamos todo el equipo necesario para que te enfoques únicamente en disfrutar la experiencia.
-              Tecnología de punta y equipos probados en las condiciones más exigentes.
-            </p>
+    <section className="relative py-20 bg-accent overflow-hidden">
+      {/* Green Vector Background */}
+      <div className="absolute inset-0">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+          <path 
+            d="M0,300 Q300,200 600,300 T1200,300 L1200,500 Q900,400 600,500 T0,500 Z" 
+            fill="hsl(var(--primary))" 
+            fillOpacity="0.1"
+          />
+          <path 
+            d="M0,400 Q400,350 800,400 T1200,400 L1200,600 Q800,550 400,600 T0,600 Z" 
+            fill="hsl(var(--primary))" 
+            fillOpacity="0.08"
+          />
+          <path 
+            d="M200,100 Q500,50 800,100 T1200,100 L1200,250 Q900,200 600,250 T200,250 Z" 
+            fill="hsl(var(--primary))" 
+            fillOpacity="0.06"
+          />
+        </svg>
+      </div>
 
-            <div className="space-y-6 mb-8">
-              {gearItems.map((item, index) => {
-                const IconComponent = item.icon;
-                return (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <IconComponent className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="font-title text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-wide mb-4">
+            NUESTRO EQUIPO RECOMIENDA
+          </h2>
+          <p className="font-body text-lg text-muted-foreground">
+            Que llevar para las rutas?
+          </p>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:block">
+          <div className="relative w-full h-[600px] max-w-5xl mx-auto">
+            {/* Central Bike Image */}
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <img
+                src={gearImage}
+                alt="Bicicleta de montaña"
+                className="w-72 h-auto object-contain"
+              />
             </div>
 
-            <div className="space-y-4">
-              <Button
-                variant="adventure"
-                size="lg"
-                className="gear-inquiry-cta w-full sm:w-auto"
-                onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-              >
-                Consultar Disponibilidad de Equipo
-              </Button>
-              <p className="text-sm text-muted-foreground">
-                * También puedes traer tu propio equipo si prefieres usar el tuyo
-              </p>
+            {/* Gear Items positioned around the bike */}
+            {/* Top Left - Helmet */}
+            <div className="absolute top-0 left-0">
+              <div className="text-center">
+                <div className="w-32 h-32 mb-4">
+                  <img
+                    src={gearItems[0].image}
+                    alt={gearItems[0].alt}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="inline-block px-6 py-2 bg-primary/20 rounded-full border-2 border-primary/30">
+                  <span className="font-body text-sm font-medium text-primary">
+                    {gearItems[0].label}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Top Right - Backpack */}
+            <div className="absolute top-0 right-0">
+              <div className="text-center">
+                <div className="w-32 h-32 mb-4">
+                  <img
+                    src={gearItems[1].image}
+                    alt={gearItems[1].alt}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="inline-block px-6 py-2 bg-primary/20 rounded-full border-2 border-primary/30">
+                  <span className="font-body text-sm font-medium text-primary">
+                    {gearItems[1].label}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Left - Water Bottle */}
+            <div className="absolute bottom-0 left-0">
+              <div className="text-center">
+                <div className="w-32 h-32 mb-4">
+                  <img
+                    src={gearItems[2].image}
+                    alt={gearItems[2].alt}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="inline-block px-6 py-2 bg-primary/20 rounded-full border-2 border-primary/30">
+                  <span className="font-body text-sm font-medium text-primary">
+                    {gearItems[2].label}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Right - Gloves & Sunglasses */}
+            <div className="absolute bottom-0 right-0">
+              <div className="text-center">
+                <div className="w-32 h-32 mb-4">
+                  <img
+                    src={gearItems[3].image}
+                    alt={gearItems[3].alt}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="inline-block px-6 py-2 bg-primary/20 rounded-full border-2 border-primary/30">
+                  <span className="font-body text-sm font-medium text-primary">
+                    {gearItems[3].label}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="lg:hidden space-y-8">
+          {/* Central Title and Bike */}
+          <div className="text-center">
+            <div className="w-64 h-48 mx-auto mb-6">
+              <img
+                src={gearImage}
+                alt="Bicicleta de montaña"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative">
-            <Card className="overflow-hidden border-0 shadow-2xl">
-              <img
-                src={gearImage}
-                alt="Equipo de ciclismo profesional"
-                className="w-full h-auto object-cover"
-              />
-            </Card>
-
-            {/* Floating Stats */}
-            {/* <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl border">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">15+</div>
-                <div className="text-sm text-muted-foreground">Años de Experiencia</div>
+          {/* Gear Items Grid */}
+          <div className="grid grid-cols-2 gap-6">
+            {gearItems.map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="w-24 h-24 mx-auto mb-3">
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="inline-block px-4 py-2 bg-primary/20 rounded-full border-2 border-primary/30">
+                  <span className="font-body text-xs font-medium text-primary">
+                    {item.label}
+                  </span>
+                </div>
               </div>
-            </div> */}
-
-            {/* <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-xl border">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-adventure mb-1">500+</div>
-                <div className="text-sm text-muted-foreground">Aventureros Felices</div>
-              </div>
-            </div> */}
+            ))}
           </div>
         </div>
       </div>
