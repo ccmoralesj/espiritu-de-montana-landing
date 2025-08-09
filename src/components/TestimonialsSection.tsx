@@ -30,7 +30,7 @@ const TestimonialsSection = () => {
       name: "CARLOS RODRÍGUEZ",
       date: "Abril 8, 2025",
       avatar: "/lovable-uploads/02cb4c16-7988-4b8e-b198-8679a7e4ddb2.png",
-      rating: 5,
+      rating: 4,
       comment: "Las rutas organizadas por Espíritu de Montaña superaron todas mis expectativas. Cada detalle está pensado para crear momentos únicos."
     },
     {
@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
       name: "DIEGO MORALES",
       date: "Marzo 30, 2025",
       avatar: "/lovable-uploads/02cb4c16-7988-4b8e-b198-8679a7e4ddb2.png",
-      rating: 5,
+      rating: 3,
       comment: "La organización es impecable y el ambiente siempre es fantástico. Cada salida es una nueva oportunidad de superar límites y disfrutar."
     },
     {
@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
       name: "ANA LÓPEZ",
       date: "Marzo 12, 2025",
       avatar: "/lovable-uploads/02cb4c16-7988-4b8e-b198-8679a7e4ddb2.png",
-      rating: 5,
+      rating: 4,
       comment: "Espíritu de Montaña ha transformado mi forma de ver el ciclismo. No es solo deporte, es comunidad, es crecimiento personal y mucha diversión."
     }
   ];
@@ -169,35 +169,39 @@ const TestimonialsSection = () => {
 
 const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
   return (
-    <div className="bg-card rounded-lg p-6 shadow-sm border border-border">
+    <div className="bg-background rounded-lg p-8 h-full">
       {/* User Info */}
-      <div className="flex items-center gap-4 mb-4">
-        <Avatar className="h-12 w-12">
+      <div className="flex items-center gap-4 mb-6">
+        <Avatar className="h-16 w-16">
           <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-          <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+          <AvatarFallback className="text-lg font-semibold">{testimonial.name.charAt(0)}</AvatarFallback>
         </Avatar>
         <div>
-          <h4 className="font-title text-lg text-secondary leading-tight tracking-wide">
+          <h4 className="font-title text-xl text-secondary leading-tight tracking-wide font-bold">
             {testimonial.name}
           </h4>
-          <p className="font-body text-sm text-muted-foreground">
+          <p className="font-body text-base text-muted-foreground mt-1">
             {testimonial.date}
           </p>
         </div>
       </div>
 
       {/* Star Rating */}
-      <div className="flex gap-1 mb-4">
-        {[...Array(testimonial.rating)].map((_, i) => (
+      <div className="flex gap-1 mb-6">
+        {[...Array(5)].map((_, i) => (
           <Star
             key={i}
-            className="h-4 w-4 fill-accent text-accent"
+            className={`h-5 w-5 ${
+              i < testimonial.rating 
+                ? 'fill-accent text-accent' 
+                : 'fill-muted text-muted'
+            }`}
           />
         ))}
       </div>
 
       {/* Comment */}
-      <p className="font-body text-foreground leading-relaxed">
+      <p className="font-body text-lg text-foreground leading-relaxed">
         {testimonial.comment}
       </p>
     </div>
