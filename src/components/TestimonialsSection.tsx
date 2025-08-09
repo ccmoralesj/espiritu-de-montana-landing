@@ -5,6 +5,8 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
 
   const testimonials = [
     {
@@ -58,11 +60,23 @@ const TestimonialsSection = () => {
   ];
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    if (isAnimating) return;
+    setDirection('right');
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 2) % testimonials.length);
+      setIsAnimating(false);
+    }, 300);
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    if (isAnimating) return;
+    setDirection('left');
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 2 + testimonials.length) % testimonials.length);
+      setIsAnimating(false);
+    }, 300);
   };
 
   return (
@@ -101,10 +115,20 @@ const TestimonialsSection = () => {
           </div>
 
           {/* Testimonials Grid - Desktop */}
-          <div className="hidden lg:block lg:w-1/2">
-            <div className="grid grid-cols-1 gap-8">
-              {testimonials.slice(currentIndex, currentIndex + 2).map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+          <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
+            <div 
+              className={`grid grid-cols-1 gap-8 transition-transform duration-300 ease-in-out ${
+                isAnimating 
+                  ? direction === 'right' 
+                    ? '-translate-x-full' 
+                    : 'translate-x-full'
+                  : 'translate-x-0'
+              }`}
+            >
+              {testimonials.slice(currentIndex, currentIndex + 2).map((testimonial, index) => (
+                <div key={`${testimonial.id}-${currentIndex}`}>
+                  <TestimonialCard testimonial={testimonial} />
+                </div>
               ))}
             </div>
           </div>
