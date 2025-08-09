@@ -64,9 +64,9 @@ const TestimonialsSection = () => {
     setDirection('right');
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 2) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
       setIsAnimating(false);
-    }, 300);
+    }, 500);
   };
 
   const prevTestimonial = () => {
@@ -74,9 +74,9 @@ const TestimonialsSection = () => {
     setDirection('left');
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 2 + testimonials.length) % testimonials.length);
+      setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
       setIsAnimating(false);
-    }, 300);
+    }, 500);
   };
 
   return (
@@ -114,19 +114,17 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Testimonials Grid - Desktop */}
+          {/* Testimonials Carousel - Desktop */}
           <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
             <div 
-              className={`grid grid-cols-1 gap-8 transition-transform duration-300 ease-in-out ${
-                isAnimating 
-                  ? direction === 'right' 
-                    ? '-translate-x-full' 
-                    : 'translate-x-full'
-                  : 'translate-x-0'
-              }`}
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ 
+                transform: `translateX(-${currentIndex * 50}%)`,
+                width: `${testimonials.length * 50}%` 
+              }}
             >
-              {testimonials.slice(currentIndex, currentIndex + 2).map((testimonial, index) => (
-                <div key={`${testimonial.id}-${currentIndex}`}>
+              {testimonials.map((testimonial, index) => (
+                <div key={testimonial.id} className="w-1/2 flex-shrink-0 pr-4">
                   <TestimonialCard testimonial={testimonial} />
                 </div>
               ))}
