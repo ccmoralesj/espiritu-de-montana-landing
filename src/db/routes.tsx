@@ -10,7 +10,7 @@ export const internationalRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1581905764498-1c3f95ffb6e1?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Intermedio",
     price: "$200 USD",
-    duration: "3–4 h",
+    duration: "72 km",
     category: "internacional"
   },
   {
@@ -22,7 +22,7 @@ export const internationalRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1527515542815-2f81f369aa78?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Intermedio",
     price: "$110 USD",
-    duration: "5–6 h",
+    duration: "25 km",
     category: "internacional"
   },
   {
@@ -34,7 +34,7 @@ export const internationalRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1610148263521-cba0eaea9ea1?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Avanzado",
     price: "$3,500 USD",
-    duration: "10 días / ~460 km",
+    duration: "460 km",
     category: "internacional"
   },
   {
@@ -46,7 +46,7 @@ export const internationalRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1592453465547-61015f59d0fc?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Avanzado",
     price: "$900 USD",
-    duration: "4 días / ~180 km",
+    duration: "180 km",
     category: "internacional"
   },
   {
@@ -58,7 +58,7 @@ export const internationalRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1508253578933-fed8d1f2b7af?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Avanzado",
     price: "$2,800 USD",
-    duration: "5 días / ~150 km",
+    duration: "150 km",
     category: "internacional"
   }
 ];
@@ -86,7 +86,7 @@ export const nationalRoutes: Route[] = [
     image: "...",
     difficulty: "Avanzado",
     price: "COP 1.875.000",
-    duration: "120 km total",
+    duration: "120 km",
     category: "nacional"
   },
   {
@@ -149,7 +149,7 @@ export const localRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1600851166610-0de56e075a39?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Fácil",
     price: "COP 405.000",
-    duration: "60 km + trekking",
+    duration: "60 km",
     category: "nacional"
   },
   {
@@ -185,7 +185,7 @@ export const localRoutes: Route[] = [
     image: "https://images.unsplash.com/photo-1517821099600-fed6759794c9?auto=format&fit=crop&q=80&w=1080",
     difficulty: "Avanzado",
     price: "COP 1.100.000",
-    duration: "30 km descenso",
+    duration: "30 km",
     category: "nacional"
   },
   {
