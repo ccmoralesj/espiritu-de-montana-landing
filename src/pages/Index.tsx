@@ -4,6 +4,7 @@ import RoutesSection from "@/components/RoutesSection";
 import ReasonsToJoin from "@/components/ReasonsToJoin";
 import LocalAdventures from "@/components/LocalAdventures";
 import GearSection from "@/components/GearSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
       <ReasonsToJoin />
       <LocalAdventures />
       <GearSection />
+      <TestimonialsSection />
       <Footer />
     </div>
   );
