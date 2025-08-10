@@ -12,4 +12,6 @@ export interface Route {
   price: string;
   duration: string;
   category: Category;
+  capacity: number;
+  riders: number;
 }

@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Clock, MapPin, Users, Star, Search, Phone } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 import { Route, Category } from "@/interfaces/Route";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
@@ -139,79 +140,83 @@ const Routes = () => {
 
           {/* Routes Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredRoutes.map((route, index) => (
-              <Card 
-                key={index} 
-                className="group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                onClick={() => handleRouteClick(route)}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={route.image}
-                    alt={route.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge 
-                      className={`${
-                        route.category === 'internacional' 
-                          ? 'bg-adventure text-adventure-foreground' 
-                          : route.category === 'nacional'
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-secondary text-secondary-foreground'
-                      }`}
-                    >
-                      {route.category === 'internacional' ? 'Internacional' : 
-                       route.category === 'nacional' ? 'Nacional' : 'Local'}
-                    </Badge>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <Badge className={getDifficultyColor(route.difficulty)}>
-                      {route.difficulty}
-                    </Badge>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="font-body text-sm opacity-90">{route.date}</p>
-                  </div>
-                </div>
-
-                <CardContent className="p-6">
-                  <div className="mb-4">
-                    <h3 className="font-title text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">
-                      {route.title}
-                    </h3>
-                    <div className="flex items-center text-sm text-muted-foreground mb-3">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      <span className="font-body">{route.location}</span>
+            {filteredRoutes.map((route, index) => {
+              const capacityPercentage = (route.riders / route.capacity) * 100;
+              const isFull = route.riders >= route.capacity;
+              
+              return (
+                <Card 
+                  key={index} 
+                  className="group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                  onClick={() => handleRouteClick(route)}
+                >
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={route.image}
+                      alt={route.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    
+                    {/* Country/Location Badge */}
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-white/90 text-secondary font-semibold px-4 py-1 rounded-full">
+                        {route.location.toUpperCase()}
+                      </Badge>
                     </div>
-                    <p className="font-body text-muted-foreground leading-relaxed line-clamp-3">
-                      {route.short_description}
-                    </p>
-                  </div>
 
-                  <div className="flex items-center justify-between mb-4 text-sm">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center text-muted-foreground">
-                        <Clock className="w-4 h-4 mr-1" />
-                        <span className="font-body">{route.duration}</span>
+                    {/* Full Overlay */}
+                    {isFull && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <div className="bg-red-500 text-white px-6 py-3 rounded-full font-bold text-lg">
+                          CERRADO
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Progress Bar */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <div className="bg-white/20 rounded-full h-2 overflow-hidden">
+                        <div 
+                          className="h-full bg-primary transition-all duration-300"
+                          style={{ width: `${capacityPercentage}%` }}
+                        />
+                      </div>
+                      <div className="text-white text-sm font-semibold mt-2 text-right">
+                        {Math.round(capacityPercentage)}%
                       </div>
                     </div>
-                    <div className="font-body font-bold text-primary text-lg">
-                      {route.price}
-                    </div>
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   </div>
 
-                  <Button
-                    variant="outline"
-                    className="w-full font-body border-secondary text-secondary hover:bg-secondary hover:text-white transition-all"
-                  >
-                    VER DETALLES
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                  <CardContent className="p-6">
+                    <div className="mb-4">
+                      <h3 className="font-title text-2xl font-bold text-secondary mb-3 uppercase tracking-wide">
+                        {route.title}
+                      </h3>
+                      <div className="flex items-center justify-between">
+                        <p className="font-body text-muted-foreground text-lg">
+                          Desde
+                        </p>
+                        <div className="font-body font-bold text-secondary text-2xl">
+                          {route.price}
+                        </div>
+                      </div>
+                    </div>
+
+                    <Button
+                      variant="outline"
+                      className="w-full font-body border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-all rounded-full py-3 text-lg font-semibold"
+                      disabled={isFull}
+                    >
+                      VER DETALLE
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           {/* Empty State */}
