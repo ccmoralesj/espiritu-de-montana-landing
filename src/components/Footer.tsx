@@ -57,7 +57,7 @@ const Footer = () => {
           <div className="flex items-end w-full justify-start lg:justify-end">
             <div className="flex flex-col w-full font-body text-white tracking-wide justify-start lg:justify-end">
               {/* Buttons Span */}
-              <span className="flex space-x-4 py-4 w-full justify-center lg:justify-end order-2">
+              <span className="flex space-x-4 py-4 w-full justify-center md:justify-start lg:justify-end order-2">
                 <Button
                   variant='default'
                   onClick={() => window.open('https://wa.me/573054499987', '_blank')}
