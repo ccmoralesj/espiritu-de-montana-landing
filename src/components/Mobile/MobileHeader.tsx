@@ -28,7 +28,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>hola@espiritudemontana.com</span>
+                <span>info@edm.com.co</span>
               </div>
               <div className="hidden sm:flex items-center gap-2">
                 <Phone className="w-4 h-4" />
@@ -36,14 +36,18 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+              <Instagram
+                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')} />
               <MessageCircle
                 className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}
               />
             </div>
             <div className="block md:hidden flex items-center space-x-4">
-              <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+              <Instagram
+                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')} />
               <MessageCircle
                 className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}

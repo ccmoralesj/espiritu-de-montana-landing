@@ -6,8 +6,6 @@ import MobileHeader from "./Mobile/MobileHeader";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   return (
     <>
       {/* Top contact bar */}
@@ -19,7 +17,7 @@ const Header = () => {
           <div className="flex items-center space-x-6">
             <div className="font-body flex items-center space-x-2">
               <Mail className="w-4 h-4" />
-              <span>hola@espiritudemontana.com</span>
+              <span>info@edm.com.co</span>
             </div>
             <div className="hidden sm:flex items-center space-x-2">
               <Phone className="w-4 h-4" />
@@ -27,7 +25,9 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+            <Instagram
+              className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+              onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')} />
             <MessageCircle
               className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
