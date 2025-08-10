@@ -53,6 +53,7 @@ const OneRoute: React.FC<OneRouteProps> = ({ route }) => {
         <img
           src={route.image}
           alt={route.title}
+          loading="lazy"
           className="w-full h-full object-cover"
         />
       </div>

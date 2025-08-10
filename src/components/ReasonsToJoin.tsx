@@ -44,6 +44,7 @@ const ReasonsToJoin = () => {
                 <img
                   src={reason.image}
                   alt={reason.title}
+                  loading="lazy"
                   className="w-full h-80 object-cover"
                 />
               </Card>
@@ -65,6 +66,7 @@ const ReasonsToJoin = () => {
                 <img
                   src={reason.image}
                   alt={reason.title}
+                  loading="lazy"
                   className="w-full h-64 object-cover overflow-hidden"
                 />
               </Card>

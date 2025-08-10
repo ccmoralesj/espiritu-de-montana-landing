@@ -58,7 +58,7 @@ const Header = () => {
 
             {/* Logo */}
             <div className="w-20">
-              <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" />
+              <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" loading="lazy" />
             </div>
 
             {/* Desktop Nav */}

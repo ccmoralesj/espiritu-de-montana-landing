@@ -64,6 +64,7 @@ const GearSection = () => {
                 <img
                   src={gearImage}
                   alt="Bicicleta de montaña"
+                  loading="lazy"
                   className="w-[32rem] h-auto object-contain"
                 />
                 <div className="text-center mb-4 mt-4">
@@ -86,6 +87,7 @@ const GearSection = () => {
                     <img
                       src={gearItems[0].image}
                       alt={gearItems[0].alt}
+                      loading="lazy"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -105,6 +107,7 @@ const GearSection = () => {
                     <img
                       src={gearItems[2].image}
                       alt={gearItems[2].alt}
+                      loading="lazy"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -125,6 +128,7 @@ const GearSection = () => {
                     <img
                       src={gearItems[1].image}
                       alt={gearItems[1].alt}
+                      loading="lazy"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -144,6 +148,7 @@ const GearSection = () => {
                     <img
                       src={gearItems[3].image}
                       alt={gearItems[3].alt}
+                      loading="lazy"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -173,6 +178,7 @@ const GearSection = () => {
               <img
                 src={gearImage}
                 alt="Bicicleta de montaña"
+                loading="lazy"
                 className="w-full h-full object-contain"
               />
               <div className="text-center mb-4 mt-4">
@@ -195,6 +201,7 @@ const GearSection = () => {
                     <img
                       src={item.image}
                       alt={item.alt}
+                      loading="lazy"
                       className="w-full h-full object-contain"
                     />
                   </a>

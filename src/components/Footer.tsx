@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             {/* Logo */}
             <div className="w-20">
-              <img src="/logo-white.png" alt="Espíritu de Montaña" className="w-20" />
+              <img src="/logo-white.png" alt="Espíritu de Montaña" className="w-20" loading="lazy" />
             </div>
             <nav className="flex flex-col font-body font-semibold text-white tracking-wide">
               <a href="#tours" className="hover:text-primary transition-colors font-medium">

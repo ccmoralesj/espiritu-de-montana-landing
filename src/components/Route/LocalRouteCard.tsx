@@ -21,6 +21,7 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ route, selectedLocation }) =>
             <img
               src={route.image}
               alt={route.title}
+              loading="lazy"
               className="w-full h-80 lg:h-96 object-cover"
             />
           </Card>
