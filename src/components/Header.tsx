@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MessageCircle, Instagram, Bike } from "lucide-react";
+import { Menu, X, Phone, Mail, Instagram, Bike } from "lucide-react";
 import { useState } from "react";
 import MobileHeader from "./Mobile/MobileHeader";
 
@@ -10,16 +10,16 @@ const Header = () => {
     <>
       {/* Top contact bar */}
       <div className={`
-        w-full bg-secondary text-white py-3 text-sm z-50
+        w-full bg-secondary text-white py-4 text-sm z-50
         ${isMenuOpen ? 'hidden' : 'absolute'}
         `}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-6">
-            <div className="font-body flex items-center space-x-2">
+            <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
               <span>info@edm.com.co</span>
             </div>
-            <div className="hidden sm:flex items-center space-x-2">
+            <div className="hidden sm:flex items-center gap-2">
               <Phone className="w-4 h-4" />
               <span>(+57) 305 449 9987</span>
             </div>
@@ -28,18 +28,41 @@ const Header = () => {
             <Instagram
               className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
               onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')} />
-            <MessageCircle
-              className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+            <img
+              src="/whatsapp-logo.svg"
+              alt="Espíritu de Montaña"
+              className="w-4 h-4 cursor-pointer hover:border-primary transition-all duration-300"
+              style={{
+                filter: 'brightness(0) saturate(100%) invert(90%)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(330%) hue-rotate(70deg) brightness(100%) contrast(146%)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(90%)';
+              }}
+              loading="lazy"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             />
           </div>
           <div className="block md:hidden flex items-center space-x-4">
             <Instagram className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
-            <MessageCircle
-              className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+            <img
+              src="/whatsapp-logo.svg"
+              alt="Espíritu de Montaña"
+              className="w-4 h-4 cursor-pointer hover:border-primary transition-all duration-300"
+              style={{
+                filter: 'brightness(0) saturate(100%) invert(90%)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(330%) hue-rotate(70deg) brightness(100%) contrast(146%)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(90%)';
+              }}
+              loading="lazy"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             />
-            <div className="text-xl pb-1">›</div>
           </div>
 
         </div>
@@ -50,8 +73,8 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
 
           {/* Hidden "Rutas" mobile Button */}
-          <Button 
-            variant="default" 
+          <Button
+            variant="default"
             className="block md:hidden bg-primary text-white rounded-full px-6 py-0 h-8 hover:bg-primary-hover"
             onClick={() => window.location.href = '/rutas'}
           >
@@ -67,8 +90,8 @@ const Header = () => {
 
             {/* Desktop Nav */}
             <nav className="pl-4 hidden md:flex items-center space-x-12 font-semibold">
-              <Button 
-                variant="default" 
+              <Button
+                variant="default"
                 className="bg-primary text-white rounded-full px-6 h-8 hover:bg-primary-hover"
                 onClick={() => window.location.href = '/rutas'}
               >
@@ -90,8 +113,20 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
-              <MessageCircle
-                className="w-8 h-8 cursor-pointer hover:text-primary transition-colors"
+              <img
+                src="/whatsapp-logo.svg"
+                alt="Espíritu de Montaña"
+                className="w-8 h-8 cursor-pointer hover:border-primary transition-all duration-300"
+                style={{
+                  filter: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(330%) hue-rotate(70deg) brightness(100%) contrast(146%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter = 'none';
+                }}
+                loading="lazy"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}
               />
               <Button
@@ -103,9 +138,21 @@ const Header = () => {
             </div>
 
             {/* Mobile Hamburger */}
-            <div className="flex md:hidden space-x2">
-              <MessageCircle
-                className="w-10 h-10 cursor-pointer hover:text-primary transition-colors"
+            <div className="flex md:hidden space-x2 items-center">
+              <img
+                src="/whatsapp-logo.svg"
+                alt="Espíritu de Montaña"
+                className="w-8 h-8 cursor-pointer hover:border-primary transition-all duration-300 m-2"
+                style={{
+                  filter: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(330%) hue-rotate(70deg) brightness(100%) contrast(146%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter = 'none';
+                }}
+                loading="lazy"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}
               />
               <Button

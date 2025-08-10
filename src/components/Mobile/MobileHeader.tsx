@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MessageCircle, Instagram, Bike } from "lucide-react";
+import { Menu, X, Phone, Mail, Instagram, Bike } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface MobileHeaderProps {
@@ -35,32 +35,35 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
                 <span>(+57) 305 449 9987</span>
               </div>
             </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <Instagram
-                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
-                onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')} />
-              <MessageCircle
-                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
-              />
-            </div>
+
             <div className="block md:hidden flex items-center space-x-4">
               <Instagram
                 className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
                 onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')} />
-              <MessageCircle
-                className="w-4 h-4 cursor-pointer hover:text-primary transition-colors"
+              <img
+                src="/whatsapp-logo.svg"
+                alt="Espíritu de Montaña"
+                className="w-4 h-4 cursor-pointer hover:border-primary transition-all duration-300 m-2"
+                style={{
+                  filter: 'brightness(0) saturate(100%) invert(90%)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(330%) hue-rotate(70deg) brightness(100%) contrast(146%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(90%)';
+                }}
+                loading="lazy"
                 onClick={() => window.open('https://wa.me/573054499987', '_blank')}
               />
-              <div className="text-xl pb-1">›</div>
             </div>
 
           </div>
         </div>
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
 
-          <Button 
-            variant="default" 
+          <Button
+            variant="default"
             className="bg-white text-secondary rounded-full px-6 py-0 h-8 hover:bg-primary-hover"
             onClick={() => window.location.href = '/rutas'}
           >
@@ -75,9 +78,21 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
           </div>
 
           {/* Botón hamburguesa mobile */}
-          <div className="flex">
-            <MessageCircle
-              className="md:hidden w-10 h-10 cursor-pointer hover:text-primary transition-colors"
+          <div className="flex items-center">
+            <img
+              src="/whatsapp-logo.svg"
+              alt="Espíritu de Montaña"
+              className="w-8 h-8 cursor-pointer hover:border-primary transition-all duration-300 m-2"
+              style={{
+                filter: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(330%) hue-rotate(70deg) brightness(100%) contrast(146%)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = 'none';
+              }}
+              loading="lazy"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             />
             <Button
@@ -98,19 +113,17 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
               <a href="#tours" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
                 TOURS
               </a>
-              <div className="bloc text-xl pb-1">›</div>
             </div>
             <div className="flex justify-between">
               <a href="#espiritu" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
                 NUESTRO ESPÍRITU
               </a>
-              <div className="bloc text-xl pb-1">›</div>
+
             </div>
             <div className="flex justify-between">
               <a href="#tribu" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
                 TRIBU DE MONTAÑA
               </a>
-              <div className="bloc text-xl pb-1">›</div>
             </div>
             <div className="flex flex-col space-y-4 justify-end">
               <Button
