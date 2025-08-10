@@ -1,9 +1,11 @@
-import gearImage from "@/assets/cycling-gear.png";
-import helmetImage from "@/assets/gear-helmet.png";
-import backpackImage from "@/assets/gear-backpack.png";
-import bottleImage from "@/assets/gear-bottle.png";
-import accessoriesImage from "@/assets/gear-accessories.png";
+import { assetsFolders, jsDelivrCDN, jsDelivrRepo } from "@/consts/assets";
 import { Button } from "./ui/button";
+
+const gearImage = `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/cycling-gear.png`;
+const helmetImage = `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/gear-helmet.png`;
+const backpackImage = `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/gear-backpack.png`;
+const bottleImage = `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/gear-bottle.png`;
+const accessoriesImage = `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/gear-accessories.png`;
 
 const GearSection = () => {
   const gearItems = [

@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { assetsFolders, jsDelivrCDN, jsDelivrRepo } from "@/consts/assets";
 
 const ReasonsToJoin = () => {
   const reasons = [
     {
       number: "01.",
       title: "GUÍAS LOCALES + ATENCIÓN EN INGLÉS",
-      image: "https://v5.airtableusercontent.com/v3/u/43/43/1754366400000/PDrcUN_fQUMXoLe2XEyrLA/i3zAZRiHyIZF2ELiCTDo3NE0VdCdt3xpEp-iw2q0wgUVygtvV2_G1ZHHCU6QVK0FGNJj6vsuegLqxRqrjZ4HMyUlB-idbM9Es0Uq4oZaKmq8Yfv--yFhGqjjxV8NSg4DN-D96BeAet1em1Iw7Xm0oQ/alJX5u-zhKnqvNIyGFLdFesbkGLwJW-yWBsNfNP8kBI"
+      image: `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/local-guides.jpg`
     },
     {
       number: "02.",
