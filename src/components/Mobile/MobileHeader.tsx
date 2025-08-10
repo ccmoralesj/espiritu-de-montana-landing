@@ -59,7 +59,11 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
         </div>
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
 
-          <Button variant="default" className="bg-white text-secondary rounded-full px-6 py-0 h-8 hover:bg-primary-hover">
+          <Button 
+            variant="default" 
+            className="bg-white text-secondary rounded-full px-6 py-0 h-8 hover:bg-primary-hover"
+            onClick={() => window.location.href = '/rutas'}
+          >
             RUTAS
           </Button>
 

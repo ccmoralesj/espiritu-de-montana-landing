@@ -50,7 +50,11 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
 
           {/* Hidden "Rutas" mobile Button */}
-          <Button variant="default" className="block md:hidden bg-primary text-white rounded-full px-6 py-0 h-8 hover:bg-primary-hover">
+          <Button 
+            variant="default" 
+            className="block md:hidden bg-primary text-white rounded-full px-6 py-0 h-8 hover:bg-primary-hover"
+            onClick={() => window.location.href = '/rutas'}
+          >
             RUTAS
           </Button>
           {/* Lado izquierdo*/}
@@ -63,7 +67,11 @@ const Header = () => {
 
             {/* Desktop Nav */}
             <nav className="pl-4 hidden md:flex items-center space-x-12 font-semibold">
-              <Button variant="default" className="bg-primary text-white rounded-full px-6 h-8 hover:bg-primary-hover">
+              <Button 
+                variant="default" 
+                className="bg-primary text-white rounded-full px-6 h-8 hover:bg-primary-hover"
+                onClick={() => window.location.href = '/rutas'}
+              >
                 RUTAS
               </Button>
               <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
