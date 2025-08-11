@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,11 +9,38 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
 import RouteCards from "@/components/RoutesPage/RouteCards";
+import Pagination from "@/components/RoutesPage/Pagination";
 
 const Routes = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>('internacional');
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [routesPerPage, setRoutesPerPage] = useState(8);
   const navigate = useNavigate();
+  const searchBarRef = useRef<HTMLDivElement>(null);
+
+  // Update routes per page based on screen size
+  useEffect(() => {
+    const updateRoutesPerPage = () => {
+      if (window.innerWidth >= 1024) { // lg screens
+        setRoutesPerPage(8);
+      } else if (window.innerWidth >= 768) { // md screens
+        setRoutesPerPage(6);
+      } else { // sm screens
+        setRoutesPerPage(5);
+      }
+    };
+
+    updateRoutesPerPage();
+    window.addEventListener('resize', updateRoutesPerPage);
+
+    return () => window.removeEventListener('resize', updateRoutesPerPage);
+  }, []);
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchTerm]);
 
   const filteredRoutes = allRoutes.filter(route => {
     const matchesCategory = route.category === selectedCategory;
@@ -23,12 +50,31 @@ const Routes = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const totalPages = Math.ceil(filteredRoutes.length / routesPerPage);
+
   const handleRouteClick = (route: Route) => {
     // Create a URL-friendly slug from the route title
     const slug = route.title.toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^\w-]/g, '');
     navigate(`/rutas/${slug}`, { state: { route } });
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+
+    // Responsive scroll behavior:
+    // - Large screens (≥1024px): No scroll (pagination is at top)
+    // - Medium/Small screens (<1024px): Scroll to search bar section
+    if (window.innerWidth < 1024) {
+      // Scroll to search bar section instead of very top
+      if (searchBarRef.current) {
+        searchBarRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
   };
 
   return (
@@ -105,29 +151,47 @@ const Routes = () => {
           </div>
 
           {/* Search Bar and Desktop Pagination */}
-          <div className="flex flex-wrap justify-between items-center mb-10">
-            <div className="relative w-full max-w-md">
+          <div ref={searchBarRef} className="flex flex-wrap justify-between items-center mb-10">
+            <div className="relative w-full lg:max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 type="text"
                 placeholder="Buscar por título o ubicación..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-3 rounded-full border-muted-foreground/30 font-body"
+                className="pl-10 pr-4 py-3 rounded-full border-muted-foreground/30 font-body text-center lg:text-start"
               />
             </div>
 
             {/* Desktop Pagination */}
-            <div className="hidden lg:flex items-center gap-2 font-body text-secondary">
-              <span>Páginas</span>
-              <Button variant="ghost" className="w-8 h-8 p-0 bg-primary text-primary-foreground rounded-full">1</Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">2</Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">3</Button>
+            <div className="hidden lg:block">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                showPageInfo={true}
+                totalItems={filteredRoutes.length}
+                itemsPerPage={routesPerPage}
+              />
             </div>
           </div>
 
+          {/* Results Summary */}
+          {filteredRoutes.length > 0 && (
+            <div className="mb-6 text-center lg:text-left">
+              <p className="font-body text-sm text-muted-foreground">
+                Página {currentPage} de {totalPages} • {filteredRoutes.length} ruta{filteredRoutes.length !== 1 ? 's' : ''} encontrada{filteredRoutes.length !== 1 ? 's' : ''}
+              </p>
+            </div>
+          )}
+
           {/* Routes Grid */}
-          <RouteCards routes={filteredRoutes} handleRouteClick={handleRouteClick} />
+          <RouteCards
+            routes={filteredRoutes}
+            handleRouteClick={handleRouteClick}
+            currentPage={currentPage}
+            routesPerPage={routesPerPage}
+          />
 
           {/* Empty State */}
           {filteredRoutes.length === 0 && (
@@ -138,14 +202,16 @@ const Routes = () => {
             </div>
           )}
 
-          {/* Pagination - Mobile Bottom, Desktop Top */}
+          {/* Pagination - Mobile Bottom */}
           <div className="block lg:hidden mt-12">
-            <div className="flex justify-center items-center gap-2 font-body text-secondary">
-              <span>Páginas</span>
-              <Button variant="ghost" className="w-8 h-8 p-0 bg-primary text-primary-foreground rounded-full">1</Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">2</Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">3</Button>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              showPageInfo={true}
+              totalItems={filteredRoutes.length}
+              itemsPerPage={routesPerPage}
+            />
           </div>
         </div>
       </main>
