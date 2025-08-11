@@ -11,9 +11,15 @@ import { useNavigate } from "react-router-dom";
 
 const Routes = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>('internacional');
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  const filteredRoutes = allRoutes.filter(route => route.category === selectedCategory);
+  const filteredRoutes = allRoutes.filter(route => {
+    const matchesCategory = route.category === selectedCategory;
+    const matchesSearch = searchTerm === '' ||
+      route.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const handleRouteClick = (route: Route) => {
     // Create a URL-friendly slug from the route title
@@ -102,7 +108,9 @@ const Routes = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Buscar"
+                placeholder="Buscar rutas..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-3 rounded-full border-muted-foreground/30 font-body"
               />
             </div>

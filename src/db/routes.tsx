@@ -30,7 +30,7 @@ export const internationalRoutes: Route[] = [
     riders: 15
   },
   {
-    title: "Cruce de los Andes (Bolivia–Perú)",
+    title: "Cruce de los Andes",
     date: "05.07.2025",
     location: "Bolivia",
     short_description: "Aventura épica por el altiplano andino, desde Bolivia hasta Cusco.",
@@ -44,7 +44,7 @@ export const internationalRoutes: Route[] = [
     riders: 8
   },
   {
-    title: "Ecuador Volcano Loop",
+    title: "Ruta de Volcanes",
     date: "15.09.2025",
     location: "Ecuador",
     short_description: "Ruta circular que rodea volcanes como Cotopaxi y Quilotoa.",
