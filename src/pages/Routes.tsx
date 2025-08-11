@@ -66,13 +66,24 @@ const Routes = () => {
     // Responsive scroll behavior:
     // - Large screens (≥1024px): No scroll (pagination is at top)
     // - Medium/Small screens (<1024px): Scroll to search bar section
-    if (window.innerWidth < 1024) {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 1024) {
       // Scroll to search bar section instead of very top
       if (searchBarRef.current) {
-        searchBarRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // Add a small delay to ensure the page state has updated
+        setTimeout(() => {
+          const searchBarElement = searchBarRef.current;
+          if (searchBarElement) {
+            const rect = searchBarElement.getBoundingClientRect();
+            // Calculate scroll position: element position + current scroll - 100px offset for better UX
+            const scrollTop = window.pageYOffset + rect.top - 100;
+            window.scrollTo({
+              top: scrollTop,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
       }
     }
   };

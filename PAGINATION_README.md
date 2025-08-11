@@ -23,6 +23,7 @@ Este documento describe el sistema de paginación implementado para la página d
 - Reinicio automático de página cuando cambian los filtros
 - Desplazamiento suave hacia la barra de búsqueda al cambiar de página (solo en pantallas medianas y pequeñas)
 - Sin desplazamiento automático en pantallas grandes
+- Scroll preciso que se detiene en la barra de búsqueda con offset de 100px desde arriba
 - Retroalimentación visual con efectos hover y transiciones
 - Estados deshabilitados para botones de navegación cuando sea apropiado
 
