@@ -51,11 +51,11 @@ const Routes = () => {
           </div>
 
           {/* Filter Buttons and Contact Button */}
-          <div className="flex flex-wrap justify-between items-center mb-12 ">
-            <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12 gap-4 lg:gap-0">
+            <div className="flex gap-4 overflow-x-auto pb-2 lg:pb-0 w-full lg:w-auto scrollbar-hide">
               <Button
                 variant={selectedCategory === 'internacional' ? 'default' : 'outline'}
-                className={`font-body px-8 py-3 rounded-full transition-all ${selectedCategory === 'internacional'
+                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'internacional'
                   ? 'bg-primary text-primary-foreground'
                   : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
                   }`}
@@ -65,7 +65,7 @@ const Routes = () => {
               </Button>
               <Button
                 variant={selectedCategory === 'nacional' ? 'default' : 'outline'}
-                className={`font-body px-8 py-3 rounded-full transition-all ${selectedCategory === 'nacional'
+                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'nacional'
                   ? 'bg-primary text-primary-foreground'
                   : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
                   }`}
@@ -75,7 +75,7 @@ const Routes = () => {
               </Button>
               <Button
                 variant={selectedCategory === 'local' ? 'default' : 'outline'}
-                className={`font-body px-8 py-3 rounded-full transition-all ${selectedCategory === 'local'
+                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'local'
                   ? 'bg-primary text-primary-foreground'
                   : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
                   }`}
@@ -88,7 +88,7 @@ const Routes = () => {
             {/* Contact Button */}
             <Button
               variant="default"
-              className="bg-primary text-primary-foreground font-body px-8 py-3 rounded-full hover:bg-primary-hover flex items-center gap-2"
+              className="bg-primary text-primary-foreground font-body mt-2 lg:mt-0 px-8 py-3 rounded-full hover:bg-primary-hover flex items-center gap-2 w-full lg:w-auto"
               onClick={() => window.open('https://wa.me/573054499987', '_blank')}
             >
               <Phone className="w-4 h-4" />
@@ -116,7 +116,7 @@ const Routes = () => {
           </div>
 
           {/* Routes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center lg:justify-items-start">
             {filteredRoutes.map((route, index) => {
               const capacityPercentage = (route.riders / route.capacity) * 100;
               const isFull = route.riders >= route.capacity;
@@ -177,8 +177,8 @@ const Routes = () => {
                           className="absolute inset-0 rounded-2xl bg-black/30 backdrop-blur-sm"
                           style={{
                             // máscara: 0% = transparente (arriba), 100% = mostrado (abajo)
-                            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 33%)',
-                            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 33%)'
+                            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0) 33%)',
+                            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0) 33%)'
                           }}
                         />
                       </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Route } from "@/interfaces/Route";
 import { localRoutes } from "@/db/routes";
-import LocalRouteCard from "./Route/LocalRouteCard";
+import LocalRouteCard from "./RouteLanding/LocalRouteCard";
 
 const LocalAdventures = () => {
   const [selectedType, setSelectedType] = useState("AVENTURA");
