@@ -17,7 +17,8 @@ const Routes = () => {
   const filteredRoutes = allRoutes.filter(route => {
     const matchesCategory = route.category === selectedCategory;
     const matchesSearch = searchTerm === '' ||
-      route.title.toLowerCase().includes(searchTerm.toLowerCase());
+      route.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      route.location.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -108,7 +109,7 @@ const Routes = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Buscar rutas..."
+                placeholder="Buscar por título o ubicación..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-3 rounded-full border-muted-foreground/30 font-body"
