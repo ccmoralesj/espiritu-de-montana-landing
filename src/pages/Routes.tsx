@@ -58,13 +58,13 @@ const Routes = () => {
           </div>
 
           {/* Filter Buttons and Contact Button */}
-          <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12 gap-4 lg:gap-0">
-            <div className="flex gap-4 overflow-x-auto pb-2 lg:pb-0 w-full lg:w-auto scrollbar-hide">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12 gap-4 lg:gap-0 lg:py-4">
+            <div className="flex gap-4 overflow-x-auto pb-2 w-full lg:w-auto scrollbar-hide">
               <Button
                 variant={selectedCategory === 'internacional' ? 'default' : 'outline'}
                 className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'internacional'
                   ? 'bg-primary text-primary-foreground'
-                  : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
+                  : 'border-secondary text-secondary hover:bg-primary hover:text-white'
                   }`}
                 onClick={() => setSelectedCategory('internacional')}
               >
@@ -74,7 +74,7 @@ const Routes = () => {
                 variant={selectedCategory === 'nacional' ? 'default' : 'outline'}
                 className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'nacional'
                   ? 'bg-primary text-primary-foreground'
-                  : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
+                  : 'border-secondary text-secondary hover:bg-primary hover:text-white'
                   }`}
                 onClick={() => setSelectedCategory('nacional')}
               >
@@ -84,7 +84,7 @@ const Routes = () => {
                 variant={selectedCategory === 'local' ? 'default' : 'outline'}
                 className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'local'
                   ? 'bg-primary text-primary-foreground'
-                  : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
+                  : 'border-secondary text-secondary hover:bg-primary hover:text-white'
                   }`}
                 onClick={() => setSelectedCategory('local')}
               >
