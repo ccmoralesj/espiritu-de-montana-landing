@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search, Phone } from "lucide-react";
 import { Route, Category } from "@/interfaces/Route";
@@ -30,7 +29,7 @@ const Routes = () => {
 
       {/* Main Content */}
       <main className="pt-32 pb-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 mt-10">
 
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm font-body text-muted-foreground mb-8">
@@ -52,7 +51,7 @@ const Routes = () => {
           </div>
 
           {/* Filter Buttons and Contact Button */}
-          <div className="flex flex-wrap justify-between items-center mb-12">
+          <div className="flex flex-wrap justify-between items-center mb-12 ">
             <div className="flex flex-wrap gap-4">
               <Button
                 variant={selectedCategory === 'internacional' ? 'default' : 'outline'}
@@ -117,84 +116,98 @@ const Routes = () => {
           </div>
 
           {/* Routes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredRoutes.map((route, index) => {
               const capacityPercentage = (route.riders / route.capacity) * 100;
               const isFull = route.riders >= route.capacity;
 
               return (
-                <Card
-                  key={index}
-                  className="group cursor-pointer overflow-hidden rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-                  onClick={() => handleRouteClick(route)}
-                >
-                  <div className="relative h-80 overflow-hidden rounded-2xl">
-                    {/* Image */}
-                    <img
-                      src={route.image}
-                      alt={route.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
-                    />
+                <>
+                  <div
+                    key={index}
+                    className="group h-[37rem] w-80 border-0 cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 transform hover:-translate-y-4"
+                    onClick={() => handleRouteClick(route)}
+                  >
+                    <div className="relative overflow-hidden rounded-2xl">
+                      {/* Image */}
+                      <img
+                        src={route.image}
+                        alt={route.title}
+                        loading="lazy"
+                        className="w-full h-[29rem] object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
+                      />
 
-                    {/* Country/Location Badge (top-left) */}
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-white/90 text-secondary font-semibold px-4 py-1 rounded-full shadow-sm text-sm">
-                        {route.location.toUpperCase()}
-                      </span>
-                    </div>
-
-                    {/* CERRADO pill (bottom-left) */}
-                    {isFull && (
-                      <div className="absolute left-4 bottom-4 transform translate-y-2">
-                        <span className="bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-sm">
-                          CERRADO
+                      {/* Country/Location Badge (top-left) */}
+                      <div className="absolute top-4 left-4 z-50">
+                        <span className="bg-white/90 text-secondary font-semibold px-4 py-1 rounded-full shadow-sm text-sm">
+                          {route.location.toUpperCase()}
                         </span>
                       </div>
-                    )}
 
-                    {/* Progress bar (bottom, centered) */}
-                    <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
-                      <div className="relative">
-                        <div className="bg-white/30 rounded-full h-2 overflow-hidden">
-                          <div
-                            className="h-full bg-[hsl(var(--primary))] transition-all duration-300 rounded-full"
-                            style={{ width: `${Math.min(100, Math.round(capacityPercentage))}%` }}
-                          />
+                      {/* CERRADO pill (bottom-left) */}
+                      {isFull && (
+                        <div className="absolute bottom-6 left-2 right-4 transform translate-y-2 z-50">
+                          <span className="bg-adventure text-white px-4 py-2 rounded-full font-bold text-sm shadow-sm">
+                            CERRADO
+                          </span>
                         </div>
-                        <div className="absolute right-0 top-0 -translate-y-6 text-white text-sm font-semibold drop-shadow">
-                          {Math.round(capacityPercentage)}%
+                      )}
+
+                      {/* Progress bar (bottom, centered) */}
+                      {!isFull && (
+                        <div className="absolute bottom-4 left-4 right-4 pointer-events-none z-50">
+                          <div className="relative">
+                            <div className="bg-white/40 rounded-full h-2 overflow-hidden">
+                              <div
+                                className="h-full bg-primary transition-all duration-300 rounded-full"
+                                style={{ width: `${Math.min(100, Math.round(capacityPercentage))}%` }}
+                              />
+                            </div>
+                            <div className="absolute right-0 top-0 -translate-y-6 text-white text-sm font-semibold drop-shadow">
+                              {Math.round(capacityPercentage)}%
+                            </div>
+                          </div>
                         </div>
+                      )}
+
+
+                      <div className="absolute inset-0 pointer-events-none z-40 rounded-2xl">
+                        {/* Overlay visual: degradado oscuro + backdrop blur solo en la parte baja */}
+                        <div
+                          className="absolute inset-0 rounded-2xl bg-black/30 backdrop-blur-sm"
+                          style={{
+                            // máscara: 0% = transparente (arriba), 100% = mostrado (abajo)
+                            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 33%)',
+                            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 33%)'
+                          }}
+                        />
                       </div>
                     </div>
 
-                    {/* Gradient overlay (sutil) */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                    <CardContent className="p-1 mt-2 ml-2">
+                      <div className="mb-2">
+                        <h3 className="font-title text-2xl text-secondary uppercase tracking-wide">
+                          {route.title}
+                        </h3>
+                        <div className="flex items-center gap-4">
+                          <p className="font-body text-muted-foreground text-md">Desde</p>
+                          <div className="font-body text-secondary text-2xl tracking-wide">
+                            {route.price}
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button
+                        variant="outline"
+                        className="w-32 h-8 font-body border-2 border-secondary text-secondary hover:bg-primary hover:text-white transition-all rounded-full py-1 text-md font-semibold tracking-wide"
+                        disabled={isFull}
+                      >
+                        VER DETALLE
+                      </Button>
+                    </CardContent>
                   </div>
 
-                  <CardContent className="p-6">
-                    <div className="mb-4">
-                      <h3 className="font-title text-2xl font-bold text-secondary mb-3 uppercase tracking-wide">
-                        {route.title}
-                      </h3>
-                      <div className="flex items-center justify-between">
-                        <p className="font-body text-muted-foreground text-lg">Desde</p>
-                        <div className="font-body font-bold text-secondary text-2xl">
-                          {route.price}
-                        </div>
-                      </div>
-                    </div>
-
-                    <Button
-                      variant="outline"
-                      className="w-full font-body border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-all rounded-full py-3 text-lg font-semibold"
-                      disabled={isFull}
-                    >
-                      VER DETALLE
-                    </Button>
-                  </CardContent>
-                </Card>
-
+                </>
               );
             })}
           </div>

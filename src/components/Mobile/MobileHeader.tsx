@@ -73,7 +73,13 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-20 flex items-center justify-center">
-              <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" loading="lazy" />
+              <img
+                src="/logo.png"
+                alt="Espíritu de Montaña"
+                className="w-20"
+                loading="lazy"
+                onClick={() => window.location.href = '/'}
+              />
             </div>
           </div>
 

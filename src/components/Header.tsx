@@ -84,8 +84,14 @@ const Header = () => {
           <div className="flex items-center gap-4">
 
             {/* Logo */}
-            <div className="w-20">
-              <img src="/logo.png" alt="Espíritu de Montaña" className="w-20" loading="lazy" />
+            <div className="w-20 cursor-pointer">
+              <img
+                src="/logo.png"
+                alt="Espíritu de Montaña"
+                className="w-20"
+                loading="lazy"
+                onClick={() => window.location.href = '/'}
+              />
             </div>
 
             {/* Desktop Nav */}
