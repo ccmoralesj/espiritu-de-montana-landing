@@ -58,8 +58,8 @@ const Routes = () => {
           </div>
 
           {/* Filter Buttons and Contact Button */}
-          <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12 gap-4 lg:gap-0 lg:py-4">
-            <div className="flex gap-4 overflow-x-auto pb-2 w-full lg:w-auto scrollbar-hide">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center mb-8 lg:mb-12 gap-4 lg:gap-0">
+            <div className="flex gap-4 overflow-x-auto w-full pb-4 lg:w-auto scrollbar-hide items-center py-4 lg:py-4">
               <Button
                 variant={selectedCategory === 'internacional' ? 'default' : 'outline'}
                 className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'internacional'
@@ -103,8 +103,8 @@ const Routes = () => {
             </Button>
           </div>
 
-          {/* Search Bar and Pagination */}
-          <div className="flex flex-wrap justify-between items-center mb-8">
+          {/* Search Bar and Desktop Pagination */}
+          <div className="flex flex-wrap justify-between items-center mb-10">
             <div className="relative w-full max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
@@ -116,7 +116,8 @@ const Routes = () => {
               />
             </div>
 
-            <div className="flex items-center gap-2 font-body text-secondary">
+            {/* Desktop Pagination */}
+            <div className="hidden lg:flex items-center gap-2 font-body text-secondary">
               <span>Páginas</span>
               <Button variant="ghost" className="w-8 h-8 p-0 bg-primary text-primary-foreground rounded-full">1</Button>
               <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">2</Button>
@@ -229,6 +230,16 @@ const Routes = () => {
               </p>
             </div>
           )}
+
+          {/* Pagination - Mobile Bottom, Desktop Top */}
+          <div className="block lg:hidden mt-12">
+            <div className="flex justify-center items-center gap-2 font-body text-secondary">
+              <span>Páginas</span>
+              <Button variant="ghost" className="w-8 h-8 p-0 bg-primary text-primary-foreground rounded-full">1</Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">2</Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-secondary hover:bg-primary hover:text-primary-foreground rounded-full">3</Button>
+            </div>
+          </div>
         </div>
       </main>
 
