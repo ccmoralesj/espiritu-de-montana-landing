@@ -1,11 +1,10 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { MapPin, Users, Mountain, Car, Utensils, Shield, Camera, ChevronRight, DollarSign, Calendar } from "lucide-react";
+import { MapPin, Users, Mountain, Car, Utensils, Shield, Camera, ChevronRight, Calendar, Ticket } from "lucide-react";
 import { Route } from "@/interfaces/Route";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
@@ -70,7 +69,7 @@ const RouteDetail = () => {
       <Header />
 
       {/* Main Content */}
-      <main className="pt-32 pb-20">
+      <main className="pt-32">
         <div className="container mx-auto px-4 mt-10">
 
           {/* Breadcrumb */}
@@ -96,12 +95,12 @@ const RouteDetail = () => {
             </BreadcrumbList>
           </Breadcrumb>
 
-          {/* Desktop Layout */}
-          <div className="hidden lg:block flex my-12 w-full">
+          {/* --- Responsive Layout (stacks on mobile, rows on lg+) --- */}
+          <div className="flex flex-col gap-12 my-12 w-full">
             {/* First Row */}
-            <div className="flex gap-10 w-full mb-20">
+            <section className="flex flex-col lg:flex-row gap-10 w-full items-start lg:items-stretch">
               {/* Left Side */}
-              <div className="flex flex-col w-1/2">
+              <div className="w-full lg:w-1/2 flex flex-col lg:justify-between">
                 {/* Title and Progress */}
                 <div className="mb-8">
                   <h1 className="font-title text-4xl xl:text-5xl text-secondary uppercase leading-tight tracking-wide mb-6">
@@ -134,26 +133,26 @@ const RouteDetail = () => {
                   )}
                 </div>
                 {/* Price and Dates */}
-                <div className="flex flex-col items-start gap-8 mt-auto">
+                <div className="flex flex-col items-start gap-8">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <DollarSign className="w-6 h-6 text-primary" />
+                    <div className="p-2">
+                      <Ticket className="w-8 h-8 text-primary" fill="none" />
                     </div>
                     <span className="font-body text-3xl text-secondary font-bold tracking-wide">
                       {route.price}
                     </span>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 flex-wrap">
                     <Button
                       variant="outline"
-                      className="px-8 py-3 rounded-full border-secondary text-secondary hover:bg-secondary hover:text-white"
+                      className="px-8 py-2 rounded-full border-secondary text-secondary hover:bg-primary hover:text-white"
                     >
                       JUNIO 23, 2025
                     </Button>
                     <Button
                       variant="outline"
-                      className="px-8 py-3 rounded-full border-secondary text-secondary hover:bg-secondary hover:text-white"
+                      className="px-8 py-2 rounded-full border-secondary text-secondary hover:bg-primary hover:text-white"
                     >
                       JULIO 12, 2025
                     </Button>
@@ -162,9 +161,9 @@ const RouteDetail = () => {
               </div>
 
               {/* Right Side */}
-              <div className="w-1/2">
+              <div className="w-full lg:w-1/2">
                 {/* Images and Map */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
                     {/* Main Image */}
                     <div className="relative">
@@ -177,10 +176,10 @@ const RouteDetail = () => {
                       </Card>
                       <Button
                         variant="outline"
-                        className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white border-gray-300"
+                        className="absolute font-body tracking-wide bottom-4 left-4 rounded-3xl bg-white/90 backdrop-blur-sm hover:bg-white border-gray-300"
                       >
-                        <Camera className="w-4 h-4 mr-2" />
-                        VER FOTOS
+                        <Camera className="w-4 h-4" />
+                        FOTOS
                       </Button>
                     </div>
 
@@ -195,16 +194,16 @@ const RouteDetail = () => {
                       </Card>
                       <Button
                         variant="outline"
-                        className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white border-gray-300"
+                        className="absolute font-body tracking-wide bottom-4 left-4 rounded-3xl bg-white/90 backdrop-blur-sm hover:bg-white border-gray-300"
                       >
-                        <Camera className="w-4 h-4 mr-2" />
-                        VER FOTOS
+                        <Camera className="w-4 h-4" />
+                        FOTOS
                       </Button>
                     </div>
                   </div>
 
                   {/* Map Placeholder */}
-                  <div className="bg-gray-100 rounded-3xl flex items-center justify-center h-full">
+                  <div className="bg-gray-100 rounded-3xl flex items-center justify-center lg:h-full">
                     <div className="text-center text-gray-500">
                       <MapPin className="w-16 h-16 mx-auto mb-4" />
                       <p className="font-body text-lg">Mapa de la ruta</p>
@@ -212,295 +211,204 @@ const RouteDetail = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
             {/* Divider */}
             <div className="border-b border-border mb-12"></div>
 
             {/* Second Row */}
-            <div className="flex mb-20 justify-between">
+            <section className="flex flex-col lg:flex-row gap-8 w-full items-center lg:items-start justify-start lg:justify-between mb-12 lg-mb-0">
               {/* Stats Section */}
-              <div className="mb-16">
-                <h2 className="font-title text-xl text-secondary uppercase mb-8 text-center">
-                  VIVAMOS EL MUNDO JUNTOS!
+              <div className="flex flex-col items-center lg:items-start">
+                <h2 className="font-title text-xl text-secondary uppercase mb-6 text-center tracking-wide">
+                  ¡VIVAMOS EL MUNDO JUNTOS!
                 </h2>
 
-                <div className="flex justify-center gap-16 mb-12">
-                  <div className="text-center">
-                    <Mountain className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-title text-2xl text-secondary mb-1">Difícil</p>
+                <div className="flex justify-center gap-6 lg:gap-16">
+                  <div className="flex items-center gap-1 lg:gap-2 text-center">
+                    <Mountain className="w-8 h-8 mx-auto mb-3 text-muted-foreground" />
+                    <p className="font-body text-lg text-secondary mb-1">Difícil</p>
                   </div>
-                  <div className="text-center">
-                    <MapPin className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-title text-2xl text-secondary mb-1">54 Km</p>
+                  <div className="flex items-center gap-1 lg:gap-2 text-center">
+                    <MapPin className="w-8 h-8 mx-auto mb-3 text-muted-foreground" />
+                    <p className="font-body text-lg text-secondary mb-1">54 Km</p>
                   </div>
-                  <div className="text-center">
-                    <Calendar className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-title text-2xl text-secondary mb-1">7 Días</p>
+                  <div className="flex items-center gap-1 lg:gap-2 text-center">
+                    <Calendar className="w-8 h-8 mx-auto mb-3 text-muted-foreground" />
+                    <p className="font-body text-lg text-secondary mb-1">7 Días</p>
                   </div>
                 </div>
               </div>
 
               {/* Package Selection */}
-              <div className="flex justify-between">
-                <div className="flex flex-col w-1/3">
-                  <h3 className="font-title w-fit text-xl text-secondary uppercase mb-4">
+              <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start">
+                <div className="flex flex-col w-full lg:w-1/3 items-center lg:items-start">
+                  <h3 className="font-title w-fit text-xl text-secondary uppercase mb-4 tracking-wide">
                     SEPARA TU CUPO
                   </h3>
-                  <p className="font-body text-muted-foreground text-md mb-8 w-3/4">
+                  <p className="font-body text-muted-foreground text-md w-full lg:w-3/4 text-center lg:text-start mb-4 lg:mb-0">
                     ¡No pierdas tu lugar para esta experiencia inolvidable!
                   </p>
                 </div>
 
-                <div className="flex gap-4 ustify-between">
-                  <Button
-                    variant="default"
-                    className="w-full px-10 py-16 bg-primary"
+                <div className="w-full lg:w-2/3 flex flex-col lg:flex-row gap-4 items-center lg:items-start">
+                  <a
                     onClick={() => setSelectedPackage('package1')}
+                    className="w-full lg:w-fit flex-1 px-2 py-8 bg-primary rounded-md cursor-pointer hover:bg-primary/90 transition"
                   >
-                    <div className="flex justify-between items-center w-full">
-                      <div className="text-left">
-                        <p className="font-body text-2xl text-backgorund">$1.800.000</p>
-                        <div className="flex mt-4 justify-between items-center">
-                          <p className="font-body text-lg text-secondary tracking-wide">PAQUETE 01</p>
-                          <ChevronRight size={80} className=" text-secondary" style={{ transform: 'scale(1.5)' }} />
-                        </div>
+                    <div className="flex flex-col items-center">
+                      <p className="font-body text-3xl text-background">$1.800.000</p>
+                      <div className="flex mt-2 justify-between items-center">
+                        <p className="font-body font-semibold text-lg text-secondary tracking-wide">PAQUETE 01</p>
+                        <ChevronRight className="w-6 h-6 text-secondary ml-8" />
                       </div>
                     </div>
-                  </Button>
+                  </a>
 
-                  <Button
-                    variant="default"
-                    className="w-full px-10 py-16 bg-primary"
+                  <a
                     onClick={() => setSelectedPackage('package2')}
+                    className="w-full lg:w-fit flex-1 px-2 py-8 bg-primary rounded-md cursor-pointer hover:bg-primary/90 transition"
                   >
-                    <div className="flex justify-between items-center w-full">
-                      <div className="text-left">
-                        <p className="font-body text-2xl text-backgorund">$1.400.000</p>
-                        <div className="flex mt-4 justify-between items-center">
-                          <p className="font-body text-lg text-secondary tracking-wide">PAQUETE 02</p>
-                          <ChevronRight size={80} className="text-secondary" style={{ transform: 'scale(1.5)' }} />
-                        </div>
+                    <div className="flex flex-col items-center">
+                      <p className="font-body text-3xl text-background">$1.400.000</p>
+                      <div className="flex mt-2 justify-between items-center">
+                        <p className="font-body font-semibold text-lg text-secondary tracking-wide">PAQUETE 02</p>
+                        <ChevronRight className="w-6 h-6 text-secondary ml-8" />
                       </div>
                     </div>
-                  </Button>
+                  </a>
                 </div>
               </div>
-            </div>
+            </section>
 
             {/* Divider */}
-            <div className="border-b border-border mb-12"></div>
+            <div className="border-b border-border mb-4 lg:mb-12"></div>
 
-            <div>
-              {/* Large Image */}
-              <div className="mb-16">
-                <div className="relative">
-                  <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                    <img
-                      src={route.image}
-                      alt={route.title}
-                      className="w-full h-96 object-cover"
-                    />
-                  </Card>
-                  <Button
-                    variant="outline"
-                    className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm hover:bg-white border-gray-300"
-                  >
-                    <Camera className="w-4 h-4 mr-2" />
-                    VER FOTOS
-                  </Button>
-                </div>
-              </div>
+            {/* Third Row */}
+            <section className="w-full bg-accent rounded-2xl shadow-lg">
+              <div className="max-w-7xl mx-auto px-6 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                  {/* Left: Large image card */}
+                  <div className="relative">
+                    <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
+                      <img
+                        src={route.image}
+                        alt={route.title}
+                        className="w-full h-[26rem] md:h-[32rem] object-cover rounded-3xl"
+                      />
+                    </Card>
 
-              {/* Tabs Section */}
-              <div className="mb-16">
-                <Tabs defaultValue="incluye" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3 mb-8">
-                    <TabsTrigger
-                      value="incluye"
-                      className="text-lg font-medium data-[state=active]:text-primary data-[state=active]:bg-primary/10"
+                    {/* VER FOTOS button (absolute over image, same look desktop & mobile) */}
+                    <button
+                      onClick={() => {/* abrir galería */ }}
+                      className="font-body absolute bottom-6 left-6 inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-full font-semibold shadow-sm hover:bg-white transition"
+                      aria-label="Ver fotos"
                     >
-                      QUE INCLUYE
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="no-incluye"
-                      className="text-lg font-medium data-[state=active]:text-primary data-[state=active]:bg-primary/10"
-                    >
-                      QUE NO INCLUYE
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="transporte"
-                      className="text-lg font-medium data-[state=active]:text-primary data-[state=active]:bg-primary/10"
-                    >
-                      TRANSPORTE
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="incluye" className="mt-8">
-                    <div>
-                      <h3 className="font-title text-xl text-secondary mb-6">
-                        Donde cada calle cuenta una historia y cada pedaleada es una experiencia
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {includedItems.map((item, index) => (
-                          <div key={index} className="flex items-center gap-3">
-                            <item.icon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                            <span className="font-body text-muted-foreground">{item.text}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="no-incluye" className="mt-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex items-center gap-3">
-                        <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                        <span className="font-body text-muted-foreground">Gastos personales</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                        <span className="font-body text-muted-foreground">Propinas</span>
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="transporte" className="mt-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex items-center gap-3">
-                        <Car className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                        <span className="font-body text-muted-foreground">Transporte incluido desde punto de encuentro</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Car className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                        <span className="font-body text-muted-foreground">Vehículo de apoyo durante la ruta</span>
-                      </div>
-                    </div>
-                  </TabsContent>
-                </Tabs>
-              </div>
-
-              {/* CTA Button */}
-              <div className="text-center">
-                <Button
-                  className="font-body text-lg px-12 py-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                  onClick={handleContact}
-                >
-                  VER ITINERARIO
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Layout */}
-          <div className="lg:hidden">
-            {/* Images and Map */}
-            <div className="mb-8">
-              <div className="grid grid-cols-1 gap-4 mb-6">
-                <div className="relative">
-                  <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                    <img
-                      src={route.image}
-                      alt={route.title}
-                      className="w-full h-48 object-cover"
-                    />
-                  </Card>
-                </div>
-                <div className="relative">
-                  <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                    <img
-                      src={route.image}
-                      alt={route.title}
-                      className="w-full h-48 object-cover"
-                    />
-                  </Card>
-                  <Button
-                    variant="outline"
-                    className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white border-gray-300 text-sm"
-                  >
-                    <Camera className="w-4 h-4 mr-2" />
-                    FOTOS
-                  </Button>
-                </div>
-              </div>
-
-              {/* Map Placeholder */}
-              <div className="bg-gray-100 rounded-3xl flex items-center justify-center h-40 mb-6">
-                <div className="text-center text-gray-500">
-                  <MapPin className="w-12 h-12 mx-auto mb-2" />
-                  <p className="font-body text-sm">Mapa</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Title and Progress */}
-            <div className="mb-8">
-              <h1 className="font-title text-3xl text-secondary uppercase leading-tight tracking-wide mb-6">
-                {route.title}
-              </h1>
-
-              {/* Progress Bar */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="w-full bg-gray-200 rounded-full h-2 mr-4">
-                    <div
-                      className="bg-primary h-2 rounded-full transition-all duration-300"
-                      style={{ width: `${progressPercentage}%` }}
-                    ></div>
+                      <Camera className="w-4 h-4" />
+                      <span className="text-sm tracking-wide">VER FOTOS</span>
+                    </button>
                   </div>
-                  <span className="font-body font-bold text-xl text-secondary whitespace-nowrap">
-                    {progressPercentage}%
-                  </span>
+
+                  {/* Right: Tabs + content */}
+                  <div>
+                    {/* Tabs headers (visual: separators + active highlight) */}
+                    {/* Divider */}
+                    <div className="border-b border-border mb-4"></div>
+                    <Tabs defaultValue="incluye" className="w-full">
+                      <TabsList className="flex justify-start lg:justify-center items-center gap-6 border-0 bg-transparent p-0 overflow-x-auto scrollbar-hide whitespace-nowrap">
+                        <TabsTrigger
+                          value="incluye"
+                          className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
+                          data-[state=active]:bg-transparent 
+                          data-[state=active]:border-b-2
+                          data-[state=active]:border-primary
+                          data-[state=active]:shadow-none
+                          data-[state=active]:text-primary
+                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
+                          whitespace-nowrap"
+                        >
+                          QUE INCLUYE
+                        </TabsTrigger>
+                        <span className="text-muted-foreground">•</span>
+                        <TabsTrigger
+                          value="no-incluye"
+                          className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
+                          data-[state=active]:bg-transparent 
+                          data-[state=active]:border-b-2
+                          data-[state=active]:border-primary
+                          data-[state=active]:shadow-none
+                          data-[state=active]:text-primary
+                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
+                          whitespace-nowrap"
+                        >
+                          QUE NO INCLUYE
+                        </TabsTrigger>
+                        <span className="text-muted-foreground">•</span>
+                        <TabsTrigger
+                          value="transporte"
+                          className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
+                          data-[state=active]:bg-transparent 
+                          data-[state=active]:border-b-2
+                          data-[state=active]:border-primary
+                          data-[state=active]:shadow-none
+                          data-[state=active]:text-primary
+                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
+                          whitespace-nowrap"
+                        >
+                          TRANSPORTE
+                        </TabsTrigger>
+                      </TabsList>
+                      {/* Divider */}
+                      <div className="border-b border-border mt-4"></div>
+                      {/* CONTENT: mantiene estructura responsive */}
+                      <TabsContent value="incluye" className="mt-4">
+                        <h3 className="font-body text-lg font-semibold text-secondary mb-6">
+                          Donde cada calle cuenta una historia y cada pedaleada es una experiencia
+                        </h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {includedItems.map((item, i) => (
+                            <div key={i} className="flex items-start gap-4">
+                              <item.icon className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                              <span className="font-body text-muted-foreground leading-relaxed">
+                                {item.text}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="no-incluye" className="mt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="flex items-start gap-4">
+                            <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                            <span className="font-body text-muted-foreground">Gastos personales</span>
+                          </div>
+                          <div className="flex items-start gap-4">
+                            <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                            <span className="font-body text-muted-foreground">Propinas</span>
+                          </div>
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="transporte" className="mt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="flex items-start gap-4">
+                            <Car className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                            <span className="font-body text-muted-foreground">Transporte incluido desde punto de encuentro</span>
+                          </div>
+                          <div className="flex items-start gap-4">
+                            <Car className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                            <span className="font-body text-muted-foreground">Vehículo de apoyo durante la ruta</span>
+                          </div>
+                        </div>
+                      </TabsContent>
+                    </Tabs>
+                  </div>
                 </div>
               </div>
+            </section>
 
-              <p className="font-body text-base text-muted-foreground leading-relaxed mb-4">
-                {route.long_description.split('\n\n')[0]}
-              </p>
-
-              {route.long_description.split('\n\n').length > 1 && (
-                <p className="font-body text-base text-muted-foreground leading-relaxed">
-                  {route.long_description.split('\n\n')[1]}
-                </p>
-              )}
-            </div>
-
-            {/* Price and Dates */}
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <MapPin className="w-6 h-6 text-primary" />
-                </div>
-                <span className="font-title text-3xl text-secondary font-bold">
-                  {route.price}
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <Button
-                  variant="outline"
-                  className="w-full px-8 py-3 rounded-full border-secondary text-secondary hover:bg-secondary hover:text-white"
-                >
-                  JUNIO 23, 2025
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full px-8 py-3 rounded-full border-secondary text-secondary hover:bg-secondary hover:text-white"
-                >
-                  JULIO 12, 2025
-                </Button>
-              </div>
-            </div>
-
-            {/* Rest of mobile content would continue here... */}
-            <div className="text-center">
-              <Button
-                className="font-body text-lg px-12 py-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                onClick={handleContact}
-              >
-                VER ITINERARIO
-              </Button>
-            </div>
           </div>
         </div>
       </main>

@@ -8,7 +8,7 @@ const LocalAdventures = () => {
   const [selectedType, setSelectedType] = useState("AVENTURA");
   const [selectedLocation, setSelectedLocation] = useState("JERICÓ");
 
-  const adventureTypes = ["AVENTURA", "GASTRONÓMICOS", "CULTURALES"];
+  const adventureTypes = ["AVENTURA", "PRIVADOS", "CULTURALES"];
   const locations = localRoutes.map(route => route.title.toUpperCase())
 
   // Sample data - you can replace with actual data
