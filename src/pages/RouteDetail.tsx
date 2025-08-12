@@ -220,7 +220,7 @@ const RouteDetail = () => {
             <section className="flex flex-col lg:flex-row gap-8 w-full items-center lg:items-start justify-start lg:justify-between mb-12 lg-mb-0">
               {/* Stats Section */}
               <div className="flex flex-col items-center lg:items-start">
-                <h2 className="font-title text-xl text-secondary uppercase mb-6 text-center tracking-wide">
+                <h2 className="font-title text-2xl text-secondary uppercase mb-6 text-center tracking-wide">
                   ¡VIVAMOS EL MUNDO JUNTOS!
                 </h2>
 
@@ -243,7 +243,7 @@ const RouteDetail = () => {
               {/* Package Selection */}
               <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start">
                 <div className="flex flex-col w-full lg:w-1/3 items-center lg:items-start">
-                  <h3 className="font-title w-fit text-xl text-secondary uppercase mb-4 tracking-wide">
+                  <h3 className="font-title w-fit text-2xl text-secondary uppercase mb-4 tracking-wide">
                     SEPARA TU CUPO
                   </h3>
                   <p className="font-body text-muted-foreground text-md w-full lg:w-3/4 text-center lg:text-start mb-4 lg:mb-0">
