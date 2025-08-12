@@ -5,12 +5,17 @@ Este documento describe el sistema de paginación implementado para la página d
 
 ## Características
 
-### Paginación Responsiva
+### Responsive Pagination
 - **Pantallas grandes (≥1024px)**: 8 rutas por página
 - **Pantallas medianas (≥768px)**: 6 rutas por página  
 - **Pantallas pequeñas (<768px)**: 5 rutas por página
 
-### Características del Componente de Paginación
+### Consistencia de Diseño
+- Breadcrumbs consistentes con RouteDetail.tsx usando componentes UI estándar
+- Misma apariencia y comportamiento en toda la aplicación
+- Componentes Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator
+
+### Pagination Component Features
 - Botones de navegación Anterior/Siguiente
 - Visualización de números de página con puntos suspensivos para grandes cantidades de páginas
 - Resaltado de página actual
@@ -32,7 +37,7 @@ Este documento describe el sistema de paginación implementado para la página d
 ### Archivos Modificados
 1. **`src/components/RoutesPage/Pagination.tsx`** - Nuevo componente de paginación
 2. **`src/components/RoutesPage/RouteCards.tsx`** - Actualizado para manejar paginación
-3. **`src/pages/Routes.tsx`** - Página principal de rutas con lógica de paginación
+3. **`src/pages/Routes.tsx`** - Página principal de rutas con lógica de paginación y breadcrumbs consistentes
 
 ### Componentes Principales
 

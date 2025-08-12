@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
 import RouteCards from "@/components/RoutesPage/RouteCards";
 import Pagination from "@/components/RoutesPage/Pagination";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const Routes = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>('internacional');
@@ -97,11 +98,21 @@ const Routes = () => {
         <div className="container mx-auto px-4 mt-10">
 
           {/* Breadcrumb */}
-          <nav className="flex items-center space-x-2 text-sm font-body text-muted-foreground mb-8">
-            <a href="/" className="hover:text-primary transition-colors">Home</a>
-            <span>/</span>
-            <span className="text-secondary">Rutas</span>
-          </nav>
+          <Breadcrumb className="mb-8">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/" className="text-muted-foreground hover:text-secondary">
+                  Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="text-secondary font-medium">
+                  Rutas
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
           {/* Page Title and Description */}
           <div className="mb-12">

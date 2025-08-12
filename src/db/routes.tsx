@@ -40,7 +40,7 @@ export const internationalRoutes: Route[] = [
     price: "$3,500.000",
     duration: "460 km",
     category: "internacional",
-    capacity: 12,
+    capacity: 25,
     riders: 8
   },
   {
@@ -68,7 +68,7 @@ export const internationalRoutes: Route[] = [
     price: "$2,800.000",
     duration: "150 km",
     category: "internacional",
-    capacity: 10,
+    capacity: 16,
     riders: 6
   }
 ];
@@ -114,7 +114,7 @@ export const nationalRoutes: Route[] = [
     duration: "25 km",
     category: "nacional",
     capacity: 30,
-    riders: 22
+    riders: 10
   },
   {
     title: "Tatamá Bosque Nuboso",
@@ -142,7 +142,7 @@ export const nationalRoutes: Route[] = [
     duration: "55 km",
     category: "nacional",
     capacity: 16,
-    riders: 11
+    riders: 5
   }
 ];
 
@@ -173,7 +173,7 @@ export const localRoutes: Route[] = [
     duration: "60 km",
     category: "local",
     capacity: 20,
-    riders: 15
+    riders: 9
   },
   {
     title: "Norcasia",
@@ -187,7 +187,7 @@ export const localRoutes: Route[] = [
     duration: "38 km",
     category: "local",
     capacity: 18,
-    riders: 12
+    riders: 7
   },
   {
     title: "Sonsón",
@@ -200,8 +200,8 @@ export const localRoutes: Route[] = [
     price: "$248.000",
     duration: "42 km",
     category: "local",
-    capacity: 22,
-    riders: 16
+    capacity: 25,
+    riders: 2
   },
   {
     title: "Santa Fe de Antioquia",
@@ -214,7 +214,7 @@ export const localRoutes: Route[] = [
     price: "$1,100.000",
     duration: "30 km",
     category: "local",
-    capacity: 12,
+    capacity: 30,
     riders: 8
   },
   {
@@ -228,8 +228,8 @@ export const localRoutes: Route[] = [
     price: "$420.000",
     duration: "60 km",
     category: "local",
-    capacity: 24,
-    riders: 18
+    capacity: 20,
+    riders: 5
   },
   {
     title: "La Danta",
@@ -243,7 +243,7 @@ export const localRoutes: Route[] = [
     duration: "60 km",
     category: "local",
     capacity: 24,
-    riders: 18
+    riders: 10
   },
   {
     title: "Nariño",
@@ -256,8 +256,8 @@ export const localRoutes: Route[] = [
     price: "$420.000",
     duration: "60 km",
     category: "local",
-    capacity: 24,
-    riders: 18
+    capacity: 30,
+    riders: 2
   },
   {
     title: "San Rafel",
@@ -270,8 +270,8 @@ export const localRoutes: Route[] = [
     price: "$420.000",
     duration: "60 km",
     category: "local",
-    capacity: 24,
-    riders: 18
+    capacity: 25,
+    riders: 23
   }
 ];
 
