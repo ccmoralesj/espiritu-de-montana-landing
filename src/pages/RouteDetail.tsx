@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { MapPin, Users, Mountain, Car, Utensils, Shield, Camera, ChevronRight, Calendar, Ticket } from "lucide-react";
-import { Route } from "@/interfaces/Route";
+import { Adventure } from "@/interfaces/Adventure";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -17,7 +17,7 @@ const RouteDetail = () => {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   // Get route from state or find by slug
-  const route: Route = location.state?.route || allRoutes.find(r =>
+  const route: Adventure = location.state?.route || allRoutes.find(r =>
     r.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') === slug
   );
 
@@ -37,7 +37,7 @@ const RouteDetail = () => {
   const progressPercentage = Math.round((route.riders / route.capacity) * 100);
 
   const handleContact = () => {
-    const message = `Hola! Estoy interesado en la ruta "${route.title}" programada para el ${route.date}. ¿Podrían darme más información?`;
+    const message = `Hola! Estoy interesado en la ruta "${route.title}" programada para el ${route.firstDate}. ¿Podrían darme más información?`;
     window.open(`https://wa.me/573054499987?text=${encodeURIComponent(message)}`, '_blank');
   };
 

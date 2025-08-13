@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Route } from "@/interfaces/Route";
+import { Adventure } from "@/interfaces/Adventure";
 import { localRoutes } from "@/db/routes";
 import LocalRouteCard from "./RouteLanding/LocalRouteCard";
 
@@ -12,7 +12,7 @@ const LocalAdventures = () => {
   const locations = localRoutes.map(route => route.title.toUpperCase())
 
   // Sample data - you can replace with actual data
-  const sampleRoute: Route = localRoutes[0]
+  const sampleRoute: Adventure = localRoutes[0]
 
   return (
     <section className="py-20 bg-background">

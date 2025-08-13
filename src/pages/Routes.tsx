@@ -3,22 +3,29 @@ import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search, Phone } from "lucide-react";
-import { Route, Category } from "@/interfaces/Route";
-import { allRoutes } from "@/db/routes";
+import { Adventure, Category } from "@/interfaces/Adventure";
+// import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
 import RouteCards from "@/components/RoutesPage/RouteCards";
 import Pagination from "@/components/RoutesPage/Pagination";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { useAdventures } from "@/hooks/api/useAdventures";
 
 const Routes = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('internacional');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('Internacional');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [routesPerPage, setRoutesPerPage] = useState(8);
   const navigate = useNavigate();
   const searchBarRef = useRef<HTMLDivElement>(null);
+
+  const { adventures, loading: loadingAdventures, error } = useAdventures()
+
+  if (loadingAdventures) {
+    console.log('Cargando aventuras...')
+  }
 
   // Update routes per page based on screen size
   useEffect(() => {
@@ -43,7 +50,7 @@ const Routes = () => {
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
 
-  const filteredRoutes = allRoutes.filter(route => {
+  const filteredRoutes = adventures.filter(route => {
     const matchesCategory = route.category === selectedCategory;
     const matchesSearch = searchTerm === '' ||
       route.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -53,7 +60,7 @@ const Routes = () => {
 
   const totalPages = Math.ceil(filteredRoutes.length / routesPerPage);
 
-  const handleRouteClick = (route: Route) => {
+  const handleRouteClick = (route: Adventure) => {
     // Create a URL-friendly slug from the route title
     const slug = route.title.toLowerCase()
       .replace(/\s+/g, '-')
@@ -130,32 +137,32 @@ const Routes = () => {
           <div className="flex flex-col lg:flex-row lg:justify-between items-center mb-8 lg:mb-12 gap-4 lg:gap-0">
             <div className="flex gap-4 overflow-x-auto w-full pb-4 lg:w-auto scrollbar-hide items-center py-4 lg:py-4">
               <Button
-                variant={selectedCategory === 'internacional' ? 'default' : 'outline'}
-                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'internacional'
+                variant={selectedCategory === 'Internacional' ? 'default' : 'outline'}
+                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'Internacional'
                   ? 'bg-primary text-primary-foreground'
                   : 'border-secondary text-secondary hover:bg-primary hover:text-white'
                   }`}
-                onClick={() => setSelectedCategory('internacional')}
+                onClick={() => setSelectedCategory('Internacional')}
               >
                 INTERNACIONAL
               </Button>
               <Button
-                variant={selectedCategory === 'nacional' ? 'default' : 'outline'}
-                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'nacional'
+                variant={selectedCategory === 'Nacional' ? 'default' : 'outline'}
+                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'Nacional'
                   ? 'bg-primary text-primary-foreground'
                   : 'border-secondary text-secondary hover:bg-primary hover:text-white'
                   }`}
-                onClick={() => setSelectedCategory('nacional')}
+                onClick={() => setSelectedCategory('Nacional')}
               >
                 NACIONAL
               </Button>
               <Button
-                variant={selectedCategory === 'local' ? 'default' : 'outline'}
-                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'local'
+                variant={selectedCategory === 'Local' ? 'default' : 'outline'}
+                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'Local'
                   ? 'bg-primary text-primary-foreground'
                   : 'border-secondary text-secondary hover:bg-primary hover:text-white'
                   }`}
-                onClick={() => setSelectedCategory('local')}
+                onClick={() => setSelectedCategory('Local')}
               >
                 LOCAL
               </Button>
@@ -203,6 +210,15 @@ const Routes = () => {
             <div className="mb-6 text-center lg:text-left">
               <p className="font-body text-sm text-muted-foreground">
                 Página {currentPage} de {totalPages} • {filteredRoutes.length} ruta{filteredRoutes.length !== 1 ? 's' : ''} encontrada{filteredRoutes.length !== 1 ? 's' : ''}
+              </p>
+            </div>
+          )}
+
+          {/* Loading State */}
+          {loadingAdventures && (
+            <div className="text-center py-20">
+              <p className="font-body text-xl text-muted-foreground">
+                Cargando aventuras...
               </p>
             </div>
           )}
