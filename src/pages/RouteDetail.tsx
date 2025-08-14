@@ -9,6 +9,7 @@ import { Adventure } from "@/interfaces/Adventure";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { formatDateLong, formatPrice, imagePlaceholderUrl } from "@/consts/utils";
 
 const RouteDetail = () => {
   const { slug } = useParams();
@@ -37,20 +38,8 @@ const RouteDetail = () => {
   const progressPercentage = Math.round((route.riders / route.capacity) * 100);
 
   const handleContact = () => {
-    const message = `Hola! Estoy interesado en la ruta "${route.title}" programada para el ${route.firstDate}. ¿Podrían darme más información?`;
+    const message = `Hola! Estoy interesado en la ruta "${route.title}" programada para el ${formatDateLong(route.firstDate)}. ¿Podrían darme más información?`;
     window.open(`https://wa.me/573054499987?text=${encodeURIComponent(message)}`, '_blank');
-  };
-
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: route.title,
-        text: route.short_description,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-    }
   };
 
   const includedItems = [
@@ -139,7 +128,7 @@ const RouteDetail = () => {
                       <Ticket className="w-8 h-8 text-primary" fill="none" />
                     </div>
                     <span className="font-body text-3xl text-secondary font-bold tracking-wide">
-                      {route.price}
+                      {formatPrice(route.price, route.currency)}
                     </span>
                   </div>
 
@@ -169,7 +158,7 @@ const RouteDetail = () => {
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
                         <img
-                          src={route.image}
+                          src={route.image.large || imagePlaceholderUrl(400, 300)}
                           alt={route.title}
                           className="w-full h-64 object-cover"
                         />
@@ -187,7 +176,7 @@ const RouteDetail = () => {
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
                         <img
-                          src={route.image}
+                          src={route.image.large || imagePlaceholderUrl(400, 300)}
                           alt={route.title}
                           className="w-full h-64 object-cover"
                         />
@@ -292,7 +281,7 @@ const RouteDetail = () => {
                   <div className="relative">
                     <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
                       <img
-                        src={route.image}
+                        src={route.image.large || imagePlaceholderUrl(400, 300)}
                         alt={route.title}
                         className="w-full h-[26rem] md:h-[32rem] object-cover rounded-3xl"
                       />

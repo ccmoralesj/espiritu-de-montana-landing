@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Route } from "@/interfaces/Route";
+import { formatDateLong, formatPrice, imagePlaceholderUrl } from "@/consts/utils";
+import { Adventure } from "@/interfaces/Adventure";
 
 interface OneRouteProps {
-  route: Route;
+  route: Adventure;
 }
 
 const OneRouteCard: React.FC<OneRouteProps> = ({ route }) => {
@@ -11,7 +12,7 @@ const OneRouteCard: React.FC<OneRouteProps> = ({ route }) => {
       {/* Route Image */}
       <div className="w-full h-44 rounded-2xl overflow-hidden">
         <img
-          src={route.image}
+          src={route.image.large || imagePlaceholderUrl(400, 300)}
           alt={route.title}
           loading="lazy"
           className="w-full h-full object-cover"
@@ -20,7 +21,7 @@ const OneRouteCard: React.FC<OneRouteProps> = ({ route }) => {
 
       {/* Date */}
       <div className="font-body text-muted-foreground">
-        {route.date}
+        {formatDateLong(route.firstDate)}
       </div>
 
       {/* Metadata Icons */}
@@ -35,7 +36,7 @@ const OneRouteCard: React.FC<OneRouteProps> = ({ route }) => {
         </div>
         <div className="flex items-center gap-2">
           <span className="text-lg">💰</span>
-          <span>{route.price}</span>
+          <span>{formatPrice(route.price, route.currency)}</span>
         </div>
       </div>
 

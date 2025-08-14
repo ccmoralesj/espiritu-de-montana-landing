@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Route } from "@/interfaces/Route";
+import { Adventure } from "@/interfaces/Adventure";
 import { CardContent } from "../ui/card";
+import { formatDateLong, formatPrice, imagePlaceholderUrl } from "@/consts/utils";
 
 interface RouteProps {
-  route: Route;
-  handleRouteClick: (route: Route) => void;
+  route: Adventure;
+  handleRouteClick: (route: Adventure) => void;
 }
 
 const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
@@ -15,7 +16,7 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
       <div className="relative overflow-hidden rounded-2xl">
         {/* Image */}
         <img
-          src={route.image}
+          src={route.image.large || imagePlaceholderUrl(400, 300)}
           alt={route.title}
           loading="lazy"
           className="w-full h-[29rem] object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
@@ -47,8 +48,13 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
                   style={{ width: `${Math.min(100, Math.round(capacityPercentage))}%` }}
                 />
               </div>
-              <div className="absolute right-0 top-0 -translate-y-6 text-white text-sm font-semibold drop-shadow">
-                {Math.round(capacityPercentage)}%
+              <div className="flex w-full justify-between absolute right-0 top-0 -translate-y-7 px-1.5 text-background/80 text-sm font-semibold drop-shadow">
+                <span>
+                  {formatDateLong(route.firstDate)}
+                </span>
+                <div className="">
+                  {Math.round(capacityPercentage)}%
+                </div>
               </div>
             </div>
           </div>
@@ -76,7 +82,7 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
           <div className="flex items-center gap-4">
             <p className="font-body text-muted-foreground text-md">Desde</p>
             <div className="font-body text-secondary text-2xl tracking-wide">
-              {route.price}
+              {formatPrice(route.price, route.currency)}
             </div>
           </div>
         </div>

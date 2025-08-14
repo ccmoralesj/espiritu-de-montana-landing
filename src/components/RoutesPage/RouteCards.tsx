@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Route } from "@/interfaces/Route";
+import { Adventure } from "@/interfaces/Adventure";
 import { CardContent } from "../ui/card";
 import OneRouteCard from "./OneRouteCard";
 
 interface RouteProps {
-  routes: Route[];
-  handleRouteClick: (route: Route) => void;
+  routes: Adventure[];
+  handleRouteClick: (route: Adventure) => void;
   currentPage: number;
   routesPerPage: number;
 }

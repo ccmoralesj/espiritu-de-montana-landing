@@ -16,12 +16,11 @@ export interface Adventure {
   location: string;
   short_description: string;
   long_description: string;
-  image: string;
-  // image: {
-  //   thumbnail: string;
-  //   large: string;
-  //   full: string;
-  // };
+  image: {
+    thumbnail: string;
+    large: string;
+    full: string;
+  };
   difficulty: Difficulty;
   price: number;
   alternativePrice?: number;

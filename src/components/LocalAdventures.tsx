@@ -11,8 +11,6 @@ const LocalAdventures = () => {
   const adventureTypes = ["AVENTURA", "PRIVADOS", "CULTURALES"];
   const locations = localRoutes.map(route => route.title.toUpperCase())
 
-  // Sample data - you can replace with actual data
-  const sampleRoute: Adventure = localRoutes[0]
 
   return (
     <section className="py-20 bg-background">

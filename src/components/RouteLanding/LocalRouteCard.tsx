@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Route } from "@/interfaces/Route";
+import { Adventure } from "@/interfaces/Adventure";
 import { Card } from "../ui/card";
+import { formatPrice, imagePlaceholderUrl } from "@/consts/utils";
 
 interface OneRouteProps {
-  route: Route;
+  route: Adventure;
   selectedLocation: string;
 }
 
@@ -19,7 +20,7 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ route, selectedLocation }) =>
         <div className="">
           <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
             <img
-              src={route.image}
+              src={route.image.large || imagePlaceholderUrl(400, 300)}
               alt={route.title}
               loading="lazy"
               className="w-full h-80 lg:h-96 object-cover"
@@ -57,7 +58,7 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ route, selectedLocation }) =>
               <svg className="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
               </svg>
-              <span className="font-body font-semibold text-secondary">{route.price}</span>
+              <span className="font-body font-semibold text-secondary">{formatPrice(route.price, route.currency)}</span>
             </div>
           </div>
 
