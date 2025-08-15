@@ -9,7 +9,8 @@ import { Adventure } from "@/interfaces/Adventure";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { formatDateLong, formatPrice, imagePlaceholderUrl } from "@/consts/utils";
+import { formatDateLong, formatPrice } from "@/consts/utils";
+import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 const RouteDetail = () => {
   const { slug } = useParams();
@@ -157,11 +158,15 @@ const RouteDetail = () => {
                     {/* Main Image */}
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                        <img
-                          src={route.image.large || imagePlaceholderUrl(400, 300)}
-                          alt={route.title}
-                          className="w-full h-64 object-cover"
-                        />
+                        {route.image.large !== "" ?
+                          (<img
+                            src={route.image.large}
+                            alt={route.title}
+                            className="w-full h-64 object-cover"
+                          />
+                          ) : (
+                            <ImagePlaceholder width="100%" height="16rem" />
+                          )}
                       </Card>
                       <Button
                         variant="outline"
@@ -175,11 +180,15 @@ const RouteDetail = () => {
                     {/* Second Image */}
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                        <img
-                          src={route.image.large || imagePlaceholderUrl(400, 300)}
-                          alt={route.title}
-                          className="w-full h-64 object-cover"
-                        />
+                        {route.image.large !== "" ?
+                          (<img
+                            src={route.image.large}
+                            alt={route.title}
+                            className="w-full h-64 object-cover"
+                          />
+                          ) : (
+                            <ImagePlaceholder width="100%" height="16rem" />
+                          )}
                       </Card>
                       <Button
                         variant="outline"
@@ -280,11 +289,15 @@ const RouteDetail = () => {
                   {/* Left: Large image card */}
                   <div className="relative">
                     <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                      <img
-                        src={route.image.large || imagePlaceholderUrl(400, 300)}
-                        alt={route.title}
-                        className="w-full h-[26rem] md:h-[32rem] object-cover rounded-3xl"
-                      />
+                      {route.image.large !== "" ?
+                        (<img
+                          src={route.image.large}
+                          alt={route.title}
+                          className="w-full h-[26rem] md:h-[32rem] object-cover rounded-3xl"
+                        />
+                        ) : (
+                          <ImagePlaceholder width="100%" height="26rem" />
+                        )}
                     </Card>
 
                     {/* VER FOTOS button (absolute over image, same look desktop & mobile) */}

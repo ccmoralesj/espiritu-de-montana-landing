@@ -1,7 +1,3 @@
-export const imagePlaceholderUrl = (w: number, h: number) =>
-  `https://picsum.photos/${w}/${h}?random=${w}x${h}`;
-
-
 export function formatPrice(
   amount: number | string,
   currency: string,

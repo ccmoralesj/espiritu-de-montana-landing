@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { formatDateLong, formatPrice, imagePlaceholderUrl } from "@/consts/utils";
+import { formatDateLong, formatPrice } from "@/consts/utils";
 import { Adventure } from "@/interfaces/Adventure";
+import { ImagePlaceholder } from "../ui/image-placeholder";
 
 interface OneRouteProps {
   route: Adventure;
@@ -51,12 +52,16 @@ const OneRoute: React.FC<OneRouteProps> = ({ route }) => {
 
       {/* Image */}
       <div className="w-72 h-40 rounded-xl overflow-hidden">
-        <img
-          src={route.image.large || imagePlaceholderUrl(400, 300)}
-          alt={route.title}
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
+        {route.image.large !== "" ?
+          (<img
+            src={route.image.large}
+            alt={route.title}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+          ) : (
+            <ImagePlaceholder width="100%" height="100%" />
+          )}
       </div>
     </>
   )

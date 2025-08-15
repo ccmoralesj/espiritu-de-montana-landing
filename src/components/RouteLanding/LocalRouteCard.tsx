@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Adventure } from "@/interfaces/Adventure";
 import { Card } from "../ui/card";
-import { formatPrice, imagePlaceholderUrl } from "@/consts/utils";
+import { formatPrice } from "@/consts/utils";
+import { ImagePlaceholder } from "../ui/image-placeholder";
 
 interface OneRouteProps {
   route: Adventure;
@@ -19,12 +20,16 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ route, selectedLocation }) =>
         }`}>
         <div className="">
           <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-            <img
-              src={route.image.large || imagePlaceholderUrl(400, 300)}
-              alt={route.title}
-              loading="lazy"
-              className="w-full h-80 lg:h-96 object-cover"
-            />
+            {route.image.large !== "" ?
+              (<img
+                src={route.image.large}
+                alt={route.title}
+                loading="lazy"
+                className="w-full h-80 lg:h-96 object-cover"
+              />
+              ) : (
+                <ImagePlaceholder width="100%" height="20rem" />
+              )}
           </Card>
         </div>
 

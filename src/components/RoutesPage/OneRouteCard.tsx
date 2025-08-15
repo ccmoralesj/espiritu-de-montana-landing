@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Adventure } from "@/interfaces/Adventure";
 import { CardContent } from "../ui/card";
-import { formatDateLong, formatPrice, imagePlaceholderUrl } from "@/consts/utils";
+import { formatDateLong, formatPrice } from "@/consts/utils";
+import { ImagePlaceholder } from "../ui/image-placeholder";
 
 interface RouteProps {
   route: Adventure;
@@ -15,13 +16,16 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
     <>
       <div className="relative overflow-hidden rounded-2xl">
         {/* Image */}
-        <img
-          src={route.image.large || imagePlaceholderUrl(400, 300)}
-          alt={route.title}
-          loading="lazy"
-          className="w-full h-[29rem] object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
-        />
-
+        {route.image.large !== "" ?
+          (<img
+            src={route.image.large}
+            alt={route.title}
+            loading="lazy"
+            className="w-full h-[29rem] object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
+          />
+          ) : (
+            <ImagePlaceholder width="100%" height="29rem" />
+          )}
         {/* Country/Location Badge (top-left) */}
         <div className="absolute top-4 left-4 z-50">
           <span className="bg-white/90 text-secondary font-semibold px-4 py-1 rounded-full shadow-sm text-sm">
