@@ -1,15 +1,27 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Adventure } from "@/interfaces/Adventure";
-import { localRoutes } from "@/db/routes";
+import { Adventure, Category } from "@/interfaces/Adventure";
 import LocalRouteCard from "./RouteLanding/LocalRouteCard";
+import { useAdventures } from "@/hooks/api/useAdventures";
+import LoadingAdventure from "./LoadingAdventure";
 
 const LocalAdventures = () => {
   const [selectedType, setSelectedType] = useState("AVENTURA");
   const [selectedLocation, setSelectedLocation] = useState("JERICÓ");
+  const { adventures, loading: loadingAdventures, error } = useAdventures()
 
-  const adventureTypes = ["AVENTURA", "PRIVADOS", "CULTURALES"];
-  const locations = localRoutes.map(route => route.title.toUpperCase())
+  if (loadingAdventures) {
+    console.log('Cargando aventuras locales...')
+  }
+
+  const localCatogey: Category = 'Local'
+  const localAdventures = adventures.filter(route => {
+    return route.category === localCatogey
+  });
+
+
+  const adventureTypes = ["AVENTURA", "PRIVADOS"];
+  const locations = localAdventures.map(route => route.title.toUpperCase())
 
 
   return (
@@ -25,9 +37,9 @@ const LocalAdventures = () => {
           <div className="mb-8">
             {/* Desktop Layout */}
             <div className="hidden md:flex gap-4">
-              {adventureTypes.map((type) => (
+              {adventureTypes.map((type, index) => (
                 <Button
-                  key={type}
+                  key={index}
                   variant={selectedType === type ? "default" : "outline"}
                   className={`font-body text-lg px-8 py-3 view-all-routes rounded-full transition-all ${selectedType === type
                     ? "text-white"
@@ -45,9 +57,9 @@ const LocalAdventures = () => {
         {/* Mobile Slider */}
         <div className="md:hidden mb-6">
           <div className="flex gap-4 pb-4 overflow-x-auto scrollbar-hide">
-            {adventureTypes.map((type) => (
+            {adventureTypes.map((type, index) => (
               <Button
-                key={type}
+                key={index}
                 variant={selectedType === type ? "default" : "outline"}
                 className={`font-body text-lg px-8 py-3 rounded-full whitespace-nowrap flex-shrink-0 transition-all ${selectedType === type
                   ? "text-white"
@@ -70,7 +82,7 @@ const LocalAdventures = () => {
           <div className="hidden md:flex items-center gap-8">
             <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide">
               {locations.map((location, index) => (
-                <div key={location} className="flex items-center gap-6">
+                <div key={index} className="flex items-center gap-6">
                   <button
                     onClick={() => setSelectedLocation(location)}
                     className={`font-body text-lg transition-all ${selectedLocation === location
@@ -89,6 +101,7 @@ const LocalAdventures = () => {
             <Button
               variant="outline"
               className="font-body text-sm px-6 py-2 rounded-full border-secondary text-secondary hover:border-secondary hover:text-white hover:bg-primary ml-auto"
+              onClick={() => window.location.href = '/rutas?category=Local'}
             >
               VER TODOS
             </Button>
@@ -97,9 +110,9 @@ const LocalAdventures = () => {
           {/* Mobile Slider */}
           <div className="md:hidden">
             <div className="flex gap-6 overflow-x-auto scrollbar-hide">
-              {locations.map((location) => (
+              {locations.map((location, index) => (
                 <button
-                  key={location}
+                  key={index}
                   onClick={() => setSelectedLocation(location)}
                   className={`font-body text-lg whitespace-nowrap flex-shrink-0 transition-all ${selectedLocation === location
                     ? "text-primary"
@@ -116,9 +129,14 @@ const LocalAdventures = () => {
         {/* Divider */}
         <div className="border-b border-border mb-12"></div>
 
+        {/* Loading State */}
+        <LoadingAdventure loadingAdventures={loadingAdventures} ></LoadingAdventure>
+
         {/* Route Card */}
-        {localRoutes.map((route) => (
-          <LocalRouteCard route={route} selectedLocation={selectedLocation} />
+        {localAdventures.map((route) => (
+          <div key={route.id}>
+            <LocalRouteCard key={route.id} adventure={route} selectedLocation={selectedLocation} />
+          </div>
         ))}
       </div>
     </section>

@@ -3,23 +3,25 @@ import { Adventure } from "@/interfaces/Adventure";
 import { CardContent } from "../ui/card";
 import { formatDateLong, formatPrice } from "@/consts/utils";
 import { ImagePlaceholder } from "../ui/image-placeholder";
+import { useNavigateWithSlug } from "@/hooks/use-navigation-with-slug";
 
 interface RouteProps {
-  route: Adventure;
-  handleRouteClick: (route: Adventure) => void;
+  adventure: Adventure
 }
 
-const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
-  const capacityPercentage = (route.riders / route.capacity) * 100;
-  const isFull = route.riders >= route.capacity;
+const OneRouteCard: React.FC<RouteProps> = ({ adventure }) => {
+  const { goToAdventure } = useNavigateWithSlug()
+
+  const capacityPercentage = (adventure.riders / adventure.capacity) * 100;
+  const isFull = adventure.riders >= adventure.capacity;
   return (
     <>
       <div className="relative overflow-hidden rounded-2xl">
         {/* Image */}
-        {route.image.large !== "" ?
+        {adventure.image.large !== "" ?
           (<img
-            src={route.image.large}
-            alt={route.title}
+            src={adventure.image.large}
+            alt={adventure.title}
             loading="lazy"
             className="w-full h-[29rem] object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
           />
@@ -29,7 +31,7 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
         {/* Country/Location Badge (top-left) */}
         <div className="absolute top-4 left-4 z-50">
           <span className="bg-white/90 text-secondary font-semibold px-4 py-1 rounded-full shadow-sm text-sm">
-            {route.location.toUpperCase()}
+            {adventure.location.toUpperCase()}
           </span>
         </div>
 
@@ -54,7 +56,7 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
               </div>
               <div className="flex w-full justify-between absolute right-0 top-0 -translate-y-7 px-1.5 text-background/80 text-sm font-semibold drop-shadow">
                 <span>
-                  {formatDateLong(route.firstDate)}
+                  {formatDateLong(adventure.firstDate)}
                 </span>
                 <div className="">
                   {Math.round(capacityPercentage)}%
@@ -81,12 +83,12 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
       <CardContent className="p-1 mt-2 ml-2">
         <div className="mb-2">
           <h3 className="font-title text-2xl text-secondary uppercase tracking-wide">
-            {route.title}
+            {adventure.title}
           </h3>
           <div className="flex items-center gap-4">
             <p className="font-body text-muted-foreground text-md">Desde</p>
             <div className="font-body text-secondary text-2xl tracking-wide">
-              {formatPrice(route.price, route.currency)}
+              {formatPrice(adventure.price, adventure.currency)}
             </div>
           </div>
         </div>
@@ -95,6 +97,7 @@ const OneRouteCard: React.FC<RouteProps> = ({ route, handleRouteClick }) => {
           variant="outline"
           className="w-32 h-8 font-body border-2 border-secondary text-secondary hover:bg-primary hover:text-white transition-all rounded-full py-1 text-md font-semibold tracking-wide"
           disabled={isFull}
+          onClick={() => goToAdventure(adventure)}
         >
           VER DETALLE
         </Button>

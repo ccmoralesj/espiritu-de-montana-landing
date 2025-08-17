@@ -9,7 +9,7 @@ import { Adventure } from "@/interfaces/Adventure";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { formatDateLong, formatPrice } from "@/consts/utils";
+import { createSlug, formatDateLong, formatPrice } from "@/consts/utils";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 const RouteDetail = () => {
@@ -19,11 +19,11 @@ const RouteDetail = () => {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   // Get route from state or find by slug
-  const route: Adventure = location.state?.route || allRoutes.find(r =>
-    r.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') === slug
+  const adventure: Adventure = location.state?.adventure || allRoutes.find(r =>
+    createSlug(r.title) === slug
   );
 
-  if (!route) {
+  if (!adventure) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
@@ -36,10 +36,10 @@ const RouteDetail = () => {
     );
   }
 
-  const progressPercentage = Math.round((route.riders / route.capacity) * 100);
+  const progressPercentage = Math.round((adventure.riders / adventure.capacity) * 100);
 
   const handleContact = () => {
-    const message = `Hola! Estoy interesado en la ruta "${route.title}" programada para el ${formatDateLong(route.firstDate)}. ¿Podrían darme más información?`;
+    const message = `Hola! Estoy interesado en la ruta "${adventure.title}" programada para el ${formatDateLong(adventure.firstDate)}. ¿Podrían darme más información?`;
     window.open(`https://wa.me/573054499987?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -79,7 +79,7 @@ const RouteDetail = () => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage className="text-secondary font-medium">
-                  {route.title}
+                  {adventure.title}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -94,7 +94,7 @@ const RouteDetail = () => {
                 {/* Title and Progress */}
                 <div className="mb-8">
                   <h1 className="font-title text-4xl xl:text-5xl text-secondary uppercase leading-tight tracking-wide mb-6">
-                    {route.title}
+                    {adventure.title}
                   </h1>
 
                   {/* Progress Bar */}
@@ -113,12 +113,12 @@ const RouteDetail = () => {
                   </div>
 
                   <p className="font-body text-md text-muted-foreground leading-relaxed mt-8 w-full lg:w-4/5 max-w-2xl">
-                    {route.long_description.split('\n\n')[0]}
+                    {adventure.long_description.split('\n\n')[0]}
                   </p>
 
-                  {route.long_description.split('\n\n').length > 1 && (
+                  {adventure.long_description.split('\n\n').length > 1 && (
                     <p className="font-body text-lg text-muted-foreground leading-relaxed mt-4 w-full lg:w-4/5 max-w-2xl">
-                      {route.long_description.split('\n\n')[1]}
+                      {adventure.long_description.split('\n\n')[1]}
                     </p>
                   )}
                 </div>
@@ -129,7 +129,7 @@ const RouteDetail = () => {
                       <Ticket className="w-8 h-8 text-primary" fill="none" />
                     </div>
                     <span className="font-body text-3xl text-secondary font-bold tracking-wide">
-                      {formatPrice(route.price, route.currency)}
+                      {formatPrice(adventure.price, adventure.currency)}
                     </span>
                   </div>
 
@@ -158,10 +158,10 @@ const RouteDetail = () => {
                     {/* Main Image */}
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                        {route.image.large !== "" ?
+                        {adventure.image.large !== "" ?
                           (<img
-                            src={route.image.large}
-                            alt={route.title}
+                            src={adventure.image.large}
+                            alt={adventure.title}
                             className="w-full h-64 object-cover"
                           />
                           ) : (
@@ -180,10 +180,10 @@ const RouteDetail = () => {
                     {/* Second Image */}
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                        {route.image.large !== "" ?
+                        {adventure.image.large !== "" ?
                           (<img
-                            src={route.image.large}
-                            alt={route.title}
+                            src={adventure.image.large}
+                            alt={adventure.title}
                             className="w-full h-64 object-cover"
                           />
                           ) : (
@@ -289,10 +289,10 @@ const RouteDetail = () => {
                   {/* Left: Large image card */}
                   <div className="relative">
                     <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                      {route.image.large !== "" ?
+                      {adventure.image.large !== "" ?
                         (<img
-                          src={route.image.large}
-                          alt={route.title}
+                          src={adventure.image.large}
+                          alt={adventure.title}
                           className="w-full h-[26rem] md:h-[32rem] object-cover rounded-3xl"
                         />
                         ) : (

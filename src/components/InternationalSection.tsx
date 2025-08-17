@@ -1,11 +1,23 @@
 import RouteCard from "./RouteCard";
 import { Button } from "@/components/ui/button";
 import RouteRows from "./RouteLanding/RouteRows";
-import { Route } from "@/interfaces/Route";
 import RouteCards from "./Mobile/RouteLanding/RouteCards";
-import { internationalRoutes } from "@/db/routes";
+import { useAdventures } from "@/hooks/api/useAdventures";
+import { Category } from "@/interfaces/Adventure";
+import LoadingAdventure from "./LoadingAdventure";
 
 const RoutesSection = () => {
+  const { adventures, loading: loadingAdventures, error } = useAdventures()
+
+  if (loadingAdventures) {
+    console.log('Cargando aventuras internacionales...')
+  }
+
+  const internationalCatogey: Category = 'Internacional'
+  const internationalRoutes = adventures.filter(route => {
+    return route.category === internationalCatogey
+  });
+
   return (
     <section id="rutas" className="py-14 lg:py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -14,16 +26,20 @@ const RoutesSection = () => {
           {/* Desktop Layout */}
           <div className="flex items-center justify-between mb-12">
             <h2 className="font-title text-4xl md:text-5xl font-secondary leading-tight tracking-wide">
-              RUTAS INTERNACIONALES Y NACIONALES
+              RUTAS INTERNACIONALES
             </h2>
             <Button
               variant="default"
               className="font-body view-all-routes rounded-full px-8 hover:bg-primary-hover"
-              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+              onClick={() => window.location.href = '/rutas?category=Internacional'}
             >
               VER TODAS LAS RUTAS
             </Button>
           </div>
+
+          {/* Loading State */}
+          <LoadingAdventure loadingAdventures={loadingAdventures} ></LoadingAdventure>
+
           {/* Route Row */}
           < RouteRows routes={internationalRoutes} />
         </div>

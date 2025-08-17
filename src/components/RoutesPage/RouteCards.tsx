@@ -30,7 +30,7 @@ const RouteCards: React.FC<RouteProps> = ({
             className="group h-[37rem] w-full max-w-80 border-0 cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 transform hover:-translate-y-4"
             onClick={() => handleRouteClick(route)}
           >
-            <OneRouteCard route={route} handleRouteClick={handleRouteClick} />
+            <OneRouteCard adventure={route} />
           </div>
         ))}
       </div>

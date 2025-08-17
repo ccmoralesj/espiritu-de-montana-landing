@@ -1,4 +1,5 @@
 // src/hooks/useAdventures.ts
+import { fetchAdventures } from '@/api/adventures';
 import { api } from '@/api/client';
 import { Adventure } from '@/interfaces/Adventure';
 import axios from 'axios';
@@ -13,9 +14,12 @@ export function useAdventures() {
     const controller = new AbortController();
     setLoading(true);
 
-    api.get<Adventure[]>('/adventures', { signal: controller.signal })
-      .then(res => setAdventures(res.data || []))
-      .catch(err => {
+    (async () => {
+      try {
+        const adventures = await fetchAdventures()
+        setAdventures(adventures)
+
+      } catch (err: any) {
         if (axios.isCancel(err)) {
           console.log("Request cancelled:", err.message);
         } else {
@@ -23,8 +27,10 @@ export function useAdventures() {
         } if (err.name !== 'CanceledError') {
           setError(err.message);
         }
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false)
+      }
+    })();
     return () => controller.abort();
   }, []);
 

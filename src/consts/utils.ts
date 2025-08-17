@@ -72,4 +72,17 @@ function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-
+/**
+ * Convierte un título en slug URL-friendly.
+ */
+export function createSlug(title: string): string {
+  return title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")       // Elimina diacríticos
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')         // espacios a guiones
+    .replace(/[^\w-]+/g, '')      // elimina caracteres no alfanuméricos excepto guion
+    .replace(/--+/g, '-')         // múltiples guiones → uno
+    .replace(/^-+|-+$/g, '');     // sin guiones al inicio o final
+}

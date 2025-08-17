@@ -7,18 +7,24 @@ import { Adventure, Category } from "@/interfaces/Adventure";
 // import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import RouteCards from "@/components/RoutesPage/RouteCards";
 import Pagination from "@/components/RoutesPage/Pagination";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { useAdventures } from "@/hooks/api/useAdventures";
+import LoadingAdventure from "@/components/LoadingAdventure";
+import { useNavigateWithSlug } from "@/hooks/use-navigation-with-slug";
+
 
 const Routes = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('Internacional');
+  const [searchParams] = useSearchParams();
+  const initialCategory = (searchParams.get('category') as Category) ?? 'Internacional';
+
+  const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [routesPerPage, setRoutesPerPage] = useState(8);
-  const navigate = useNavigate();
+  const { goToAdventure } = useNavigateWithSlug();
   const searchBarRef = useRef<HTMLDivElement>(null);
 
   const { adventures, loading: loadingAdventures, error } = useAdventures()
@@ -60,13 +66,6 @@ const Routes = () => {
 
   const totalPages = Math.ceil(filteredRoutes.length / routesPerPage);
 
-  const handleRouteClick = (route: Adventure) => {
-    // Create a URL-friendly slug from the route title
-    const slug = route.title.toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]/g, '');
-    navigate(`/rutas/${slug}`, { state: { route } });
-  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -215,24 +214,18 @@ const Routes = () => {
           )}
 
           {/* Loading State */}
-          {loadingAdventures && (
-            <div className="text-center py-20">
-              <p className="font-body text-xl text-muted-foreground">
-                Cargando aventuras...
-              </p>
-            </div>
-          )}
+          <LoadingAdventure loadingAdventures={loadingAdventures} ></LoadingAdventure>
 
           {/* Routes Grid */}
           <RouteCards
             routes={filteredRoutes}
-            handleRouteClick={handleRouteClick}
+            handleRouteClick={(adv) => goToAdventure(adv)}
             currentPage={currentPage}
             routesPerPage={routesPerPage}
           />
 
           {/* Empty State */}
-          {filteredRoutes.length === 0 && (
+          {!loadingAdventures && filteredRoutes.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-xl text-muted-foreground">
                 No hay rutas disponibles para esta categoría

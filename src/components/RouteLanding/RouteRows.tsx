@@ -13,7 +13,7 @@ const RouteRows: React.FC<RouteProps> = ({ routes }) => {
         <div className="space-y-8">
           {routes.map((route, index) => (
             <div key={index} className="font-body flex flex-row items-center justify-between gap-6 py-8 border-b border-border last:border-b-0">
-              <OneRoute route={route} />
+              <OneRoute adventure={route} />
             </div>
           ))}
         </div>
