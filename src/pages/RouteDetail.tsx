@@ -9,14 +9,13 @@ import { Adventure } from "@/interfaces/Adventure";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { createSlug, formatDateLong, formatPrice } from "@/consts/utils";
+import { contactThruWhatsapp, createSlug, formatDateLong, formatPrice } from "@/consts/utils";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 const RouteDetail = () => {
   const { slug } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   // Get route from state or find by slug
   const adventure: Adventure = location.state?.adventure || allRoutes.find(r =>
@@ -37,11 +36,6 @@ const RouteDetail = () => {
   }
 
   const progressPercentage = Math.round((adventure.riders / adventure.capacity) * 100);
-
-  const handleContact = () => {
-    const message = `Hola! Estoy interesado en la ruta "${adventure.title}" programada para el ${formatDateLong(adventure.firstDate)}. ¿Podrían darme más información?`;
-    window.open(`https://wa.me/573054499987?text=${encodeURIComponent(message)}`, '_blank');
-  };
 
   const includedItems = [
     { icon: Car, text: "Recogida y traslado" },
@@ -113,12 +107,12 @@ const RouteDetail = () => {
                   </div>
 
                   <p className="font-body text-md text-muted-foreground leading-relaxed mt-8 w-full lg:w-4/5 max-w-2xl">
-                    {adventure.long_description.split('\n\n')[0]}
+                    {adventure.longDescription.split('\n\n')[0]}
                   </p>
 
-                  {adventure.long_description.split('\n\n').length > 1 && (
+                  {adventure.longDescription.split('\n\n').length > 1 && (
                     <p className="font-body text-lg text-muted-foreground leading-relaxed mt-4 w-full lg:w-4/5 max-w-2xl">
-                      {adventure.long_description.split('\n\n')[1]}
+                      {adventure.longDescription.split('\n\n')[1]}
                     </p>
                   )}
                 </div>
@@ -133,19 +127,36 @@ const RouteDetail = () => {
                     </span>
                   </div>
 
+
                   <div className="flex gap-4 flex-wrap">
                     <Button
                       variant="outline"
                       className="px-8 py-2 rounded-full border-secondary text-secondary hover:bg-primary hover:text-white"
+                      onClick={() => contactThruWhatsapp({
+                        adventureTitle: adventure.title,
+                        price: adventure.price,
+                        currency: adventure.currency,
+                        date: adventure.firstDate,
+                      })}
                     >
-                      JUNIO 23, 2025
+                      {formatDateLong(adventure.firstDate)}
                     </Button>
-                    <Button
-                      variant="outline"
-                      className="px-8 py-2 rounded-full border-secondary text-secondary hover:bg-primary hover:text-white"
-                    >
-                      JULIO 12, 2025
-                    </Button>
+                    {adventure.secondDate &&
+                      <>
+                        <Button
+                          variant="outline"
+                          className="px-8 py-2 rounded-full border-secondary text-secondary hover:bg-primary hover:text-white"
+                          onClick={() => contactThruWhatsapp({
+                            adventureTitle: adventure.title,
+                            price: adventure.price,
+                            currency: adventure.currency,
+                            date: adventure.secondDate,
+                          })}
+                        >
+                          {formatDateLong(adventure.secondDate)}
+                        </Button>
+                      </>
+                    }
                   </div>
                 </div>
               </div>
@@ -225,15 +236,15 @@ const RouteDetail = () => {
                 <div className="flex justify-center gap-6 lg:gap-16">
                   <div className="flex items-center gap-1 lg:gap-2 text-center">
                     <Mountain className="w-8 h-8 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-body text-lg text-secondary mb-1">Difícil</p>
+                    <p className="font-body text-lg text-secondary mb-1">{adventure.difficulty}</p>
                   </div>
                   <div className="flex items-center gap-1 lg:gap-2 text-center">
                     <MapPin className="w-8 h-8 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-body text-lg text-secondary mb-1">54 Km</p>
+                    <p className="font-body text-lg text-secondary mb-1">{adventure.totalDistance} Km</p>
                   </div>
                   <div className="flex items-center gap-1 lg:gap-2 text-center">
                     <Calendar className="w-8 h-8 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-body text-lg text-secondary mb-1">7 Días</p>
+                    <p className="font-body text-lg text-secondary mb-1">{adventure.duration} días</p>
                   </div>
                 </div>
               </div>
@@ -251,11 +262,16 @@ const RouteDetail = () => {
 
                 <div className="w-full lg:w-2/3 flex flex-col lg:flex-row gap-4 items-center lg:items-start">
                   <a
-                    onClick={() => setSelectedPackage('package1')}
+                    onClick={() => contactThruWhatsapp({
+                      adventureTitle: adventure.title,
+                      price: adventure.price,
+                      currency: adventure.currency,
+                      date: adventure.firstDate,
+                    })}
                     className="w-full lg:w-fit flex-1 px-2 py-8 bg-primary rounded-md cursor-pointer hover:bg-primary/90 transition"
                   >
                     <div className="flex flex-col items-center">
-                      <p className="font-body text-3xl text-background">$1.800.000</p>
+                      <p className="font-body text-3xl text-background">{formatPrice(adventure.price, adventure.currency)}</p>
                       <div className="flex mt-2 justify-between items-center">
                         <p className="font-body font-semibold text-lg text-secondary tracking-wide">PAQUETE 01</p>
                         <ChevronRight className="w-6 h-6 text-secondary ml-8" />
@@ -263,18 +279,27 @@ const RouteDetail = () => {
                     </div>
                   </a>
 
-                  <a
-                    onClick={() => setSelectedPackage('package2')}
-                    className="w-full lg:w-fit flex-1 px-2 py-8 bg-primary rounded-md cursor-pointer hover:bg-primary/90 transition"
-                  >
-                    <div className="flex flex-col items-center">
-                      <p className="font-body text-3xl text-background">$1.400.000</p>
-                      <div className="flex mt-2 justify-between items-center">
-                        <p className="font-body font-semibold text-lg text-secondary tracking-wide">PAQUETE 02</p>
-                        <ChevronRight className="w-6 h-6 text-secondary ml-8" />
-                      </div>
-                    </div>
-                  </a>
+                  {adventure.alternativePrice &&
+                    <>
+                      <a
+                        onClick={() => contactThruWhatsapp({
+                          adventureTitle: adventure.title,
+                          price: adventure.alternativePrice,
+                          currency: adventure.currency,
+                          date: adventure.firstDate,
+                        })}
+                        className="w-full lg:w-fit flex-1 px-2 py-8 bg-primary rounded-md cursor-pointer hover:bg-primary/90 transition"
+                      >
+                        <div className="flex flex-col items-center">
+                          <p className="font-body text-3xl text-background">{formatPrice(adventure.alternativePrice, adventure.currency)}</p>
+                          <div className="flex mt-2 justify-between items-center">
+                            <p className="font-body font-semibold text-lg text-secondary tracking-wide">PAQUETE 02</p>
+                            <ChevronRight className="w-6 h-6 text-secondary ml-8" />
+                          </div>
+                        </div>
+                      </a>
+                    </>
+                  }
                 </div>
               </div>
             </section>

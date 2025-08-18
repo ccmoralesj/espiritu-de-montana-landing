@@ -14,9 +14,10 @@ export interface Adventure {
   firstDate: string;
   secondDate?: string;
   duration: number;
+  totalDistance: number;
   location: string;
-  short_description: string;
-  long_description: string;
+  shortDescription: string;
+  longDescription: string;
   image: {
     thumbnail: string;
     large: string;

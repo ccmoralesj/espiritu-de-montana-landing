@@ -26,7 +26,7 @@ const OneRoute: React.FC<OneRouteProps> = ({ adventure }) => {
           {adventure.title}
         </h3>
         <p className="text-muted-foreground max-w-md">
-          {adventure.short_description}
+          {adventure.shortDescription}
         </p>
         <Button
           variant="outline"

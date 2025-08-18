@@ -43,7 +43,7 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ adventure, selectedLocation }
           </h3>
 
           <p className="font-body text-xl text-secondary leading-tight">
-            {adventure.short_description}
+            {adventure.shortDescription}
           </p>
 
           {/* Metadata */}
@@ -72,7 +72,7 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ adventure, selectedLocation }
 
           {/* Detailed Description */}
           <div className="space-y-4">
-            {adventure.long_description.split('\n\n').map((paragraph, index) => (
+            {adventure.longDescription.split('\n\n').map((paragraph, index) => (
               <p key={index} className="font-body text-muted-foreground leading-tight">
                 {paragraph}
               </p>

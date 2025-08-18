@@ -65,7 +65,7 @@ const Footer = () => {
                   Hablemos por WhatsApp
                 </Button>
                 <Instagram size={34}
-                  className="cursor pointer"
+                  className="cursor-pointer"
                   onClick={() => window.open('https://www.instagram.com/espiritu.montana/', '_blank')}
                 />
               </span>

@@ -37,8 +37,6 @@ export function formatPrice(
   }
 }
 
-// src/utils/formatDate.ts
-
 /**
  * Convierte "YYYY-MM-DD" en "Mon DD, YYYY" según idioma.
  * @param dateStr - Fecha en formato ISO (YYYY-MM-DD)
@@ -85,4 +83,59 @@ export function createSlug(title: string): string {
     .replace(/[^\w-]+/g, '')      // elimina caracteres no alfanuméricos excepto guion
     .replace(/--+/g, '-')         // múltiples guiones → uno
     .replace(/^-+|-+$/g, '');     // sin guiones al inicio o final
+}
+
+interface WhatsappContactInfo {
+  adventureTitle: string;         // Nombre de la aventura
+  type?: "tour" | "expedition";   // Tipo de experiencia (opcional)
+  date?: string;                  // Fecha en legible (MMM, DD YYYY)
+  price?: number;                 // Precio o plan de interés
+  currency?: string;                 // Tipo de moneda
+  peopleCount?: number;           // Cantidad de personas
+  customerName?: string;          // Nombre de la persona que escribe (opcional)
+}
+
+/**
+ * Genera un mensaje estructurado para WhatsApp y abre la ventana de chat.
+ *
+ * Ejemplo de mensaje generado:
+ * 👋 Hola! Mi nombre es Carlos.
+ * Estoy interesado en el tour "Costa Rica - Volcanes" 🌋
+ * 📅 Fecha: Dic 19, 2025
+ * 👥 Personas: 2
+ * 💲 Paquete: $1200
+ * 
+ * ¿Podrían darme más información? Gracias 🙏
+ *
+ * @param info - Datos de la aventura y del interesado
+ */
+export function contactThruWhatsapp(info: WhatsappContactInfo) {
+  const {
+    adventureTitle,
+    type,
+    date,
+    price,
+    currency,
+    peopleCount,
+    customerName,
+  } = info;
+
+  const formattedDate = date ? formatDateLong(date) : null;
+
+  // Construcción del mensaje dinámico
+  let message = `👋 Hola!`;
+  if (customerName) message += ` Mi nombre es ${customerName}.`;
+  message += `\nEstoy interesado en ${type === "tour" ? "el tour" : "la experiencia"} "${adventureTitle}"`;
+
+  if (formattedDate) message += `\n📅 Fecha: ${formattedDate}`;
+  if (peopleCount) message += `\n👥 Personas: ${peopleCount}`;
+  if (price) message += `\n💲 Paquete: ${formatPrice(price, currency)}`;
+
+  message += `\n\n¿Podrían darme más información? Gracias 🙏`;
+  // Abrimos el chat en WhatsApp
+  window.open(
+    // `https://wa.me/573054499987?text=${encodeURIComponent(message)}`,
+    `https://api.whatsapp.com/send?phone=573054499987&text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
