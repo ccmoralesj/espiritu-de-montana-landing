@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, Instagram, Bike } from "lucide-react";
 import { useState } from "react";
 import MobileHeader from "./Mobile/MobileHeader";
+import { LanguageSelector } from "./LanguageSelector";
 
 const Header = () => {
+  const whatsAPPNumber = import.meta.env.VITE_COMPANY_WHATSAPP
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -42,7 +45,7 @@ const Header = () => {
                 e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(90%)';
               }}
               loading="lazy"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
             />
           </div>
           <div className="block md:hidden flex items-center space-x-4">
@@ -61,7 +64,7 @@ const Header = () => {
                 e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(90%)';
               }}
               loading="lazy"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
             />
           </div>
 
@@ -133,14 +136,15 @@ const Header = () => {
                   e.currentTarget.style.filter = 'none';
                 }}
                 loading="lazy"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+                onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
               />
-              <Button
+              {/* <Button
                 variant="outline"
                 className="rounded-full border-2 border-secondary text-black-700 hover:bg-primary-hover"
               >
                 INGRESAR
-              </Button>
+              </Button> */}
+              <LanguageSelector />
             </div>
 
             {/* Mobile Hamburger */}
@@ -159,7 +163,7 @@ const Header = () => {
                   e.currentTarget.style.filter = 'none';
                 }}
                 loading="lazy"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+                onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
               />
               <Button
                 variant="outline"

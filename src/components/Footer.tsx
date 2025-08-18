@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Instagram, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
+  const whatsAPPNumber = import.meta.env.VITE_COMPANY_WHATSAPP
+
   return (
     <footer className="bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 py-8">
@@ -60,7 +62,7 @@ const Footer = () => {
               <span className="flex space-x-4 py-4 w-full justify-center md:justify-start lg:justify-end order-2 items-center">
                 <Button
                   variant='default'
-                  onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+                  onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
                 >
                   Hablemos por WhatsApp
                 </Button>

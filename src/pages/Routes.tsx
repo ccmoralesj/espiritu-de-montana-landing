@@ -29,6 +29,8 @@ const Routes = () => {
 
   const { adventures, loading: loadingAdventures, error } = useAdventures()
 
+  const whatsAPPNumber = import.meta.env.VITE_COMPANY_WHATSAPP
+
   if (loadingAdventures) {
     console.log('Cargando aventuras...')
   }
@@ -171,7 +173,7 @@ const Routes = () => {
             <Button
               variant="default"
               className="bg-primary text-primary-foreground font-body mt-2 lg:mt-0 px-8 py-3 rounded-full hover:bg-primary-hover flex items-center gap-2 w-full lg:w-auto"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              onClick={() => window.open(`https://wa.me/${whatsAPPNumber}?text=${encodeURIComponent("Hola, necesito ayuda")}`, '_blank')}
             >
               <Phone className="w-4 h-4" />
               CONTÁCTANOS

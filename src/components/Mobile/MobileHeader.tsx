@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, Instagram, Bike } from "lucide-react";
 import { useEffect, useState } from "react";
+import { LanguageSelector } from "../LanguageSelector";
 
 interface MobileHeaderProps {
   isVisible?: boolean;
@@ -13,6 +14,8 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
     const timeout = setTimeout(() => setIsVisible(true), 10);
     return () => clearTimeout(timeout);
   }, []);
+
+  const whatsAPPNumber = import.meta.env.VITE_COMPANY_WHATSAPP
 
   return (
     <>
@@ -54,7 +57,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
                   e.currentTarget.style.filter = 'brightness(0) saturate(100%) invert(90%)';
                 }}
                 loading="lazy"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+                onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
               />
             </div>
 
@@ -99,7 +102,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
                 e.currentTarget.style.filter = 'none';
               }}
               loading="lazy"
-              onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+              onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
             />
             <Button
               variant="outline"
@@ -135,16 +138,17 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
               <Button
                 variant="outline"
                 className="rounded-full border-2 border-secondary text-secondary font-bold hover:bg-primary-hover"
-                onClick={() => window.open('https://wa.me/573054499987', '_blank')}
+                onClick={() => window.open(`https://wa.me/${whatsAPPNumber}`, '_blank')}
               >
                 CONTACTAR
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 className="rounded-full border-2 border-secondary text-secondary font-bold hover:bg-primary-hover"
               >
                 INGRESAR
-              </Button>
+              </Button> */}
+              <LanguageSelector />
             </div>
           </div>
         </nav>

@@ -127,15 +127,16 @@ export function contactThruWhatsapp(info: WhatsappContactInfo) {
   if (customerName) message += ` Mi nombre es ${customerName}.`;
   message += `\nEstoy interesado en ${type === "tour" ? "el tour" : "la experiencia"} "${adventureTitle}"`;
 
-  if (formattedDate) message += `\n📅 Fecha: ${formattedDate}`;
-  if (peopleCount) message += `\n👥 Personas: ${peopleCount}`;
-  if (price) message += `\n💲 Paquete: ${formatPrice(price, currency)}`;
+  if (formattedDate) message += `\n📅 *Fecha:* ${formattedDate}`;
+  if (peopleCount) message += `\n👥 *Personas:* ${peopleCount}`;
+  if (price) message += `\n💲 *Paquete:* ${formatPrice(price, currency)}`;
 
   message += `\n\n¿Podrían darme más información? Gracias 🙏`;
+
+  const whatsAPPNumber = import.meta.env.VITE_COMPANY_WHATSAPP
   // Abrimos el chat en WhatsApp
   window.open(
-    // `https://wa.me/573054499987?text=${encodeURIComponent(message)}`,
-    `https://api.whatsapp.com/send?phone=573054499987&text=${encodeURIComponent(message)}`,
+    `https://api.whatsapp.com/send?phone=${whatsAPPNumber}&text=${encodeURIComponent(message)}`,
     "_blank"
   );
 }
