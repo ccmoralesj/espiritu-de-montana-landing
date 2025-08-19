@@ -43,17 +43,12 @@ Esto iniciará el servidor local y podrás ver la web en tu navegador (usualment
 
 Puedes trabajar en este proyecto de varias maneras:
 
-### 1. Usando [Lovable](https://lovable.dev/projects/a52e51ba-7486-437a-b46f-0cb1801b98f8)
-
-* Haz cambios directamente con prompts.
-* Todo se sincroniza automáticamente con el repositorio.
-
-### 2. Usando tu editor de código (VSCode, WebStorm, etc.)
+### 1. Usando tu editor de código (VSCode, WebStorm, etc.)
 
 * Clona el repo, haz tus cambios y haz push normalmente.
 * Todos los cambios se reflejan en Lovable también.
 
-### 3. Usando GitHub Codespaces
+### 2. Usando GitHub Codespaces
 
 * Ve al repositorio en GitHub.
 * Haz clic en el botón verde "Code", elige la pestaña **Codespaces** y crea uno nuevo.
