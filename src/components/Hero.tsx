@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
 import heroImage from "@/assets/[HERO]PlaceHolder.png";
 import { useState } from "react";
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState<'internacionales' | 'nacionales'>('internacionales');
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
@@ -30,6 +31,7 @@ const Hero = () => {
             <Button
               variant="outline"
               className="bg-black/20 border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-3"
+              onClick={() => setShowVideo(true)}
             >
               <Play className="w-5 h-5 mr-2" />
               INICIAR VIDEO
@@ -86,6 +88,14 @@ const Hero = () => {
             </h1>
           </div>
 
+          <Button
+            variant="outline"
+            className="bg-black/20 border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-3"
+            onClick={() => setShowVideo(true)}
+          >
+            <Play className="w-5 h-5 mr-2" />
+            INICIAR VIDEO
+          </Button>
           {/* Adventure Info */}
           <div className="space-y-6">
             <div className="space-y-4">
@@ -125,6 +135,37 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal / Modo Teatro */}
+      {showVideo && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setShowVideo(false)} // Cierra al hacer click en el fondo
+        >
+          {/* Botón cerrar */}
+          <button
+            onClick={() => setShowVideo(false)}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 z-50"
+          >
+            <X className="w-8 h-8 text-primary" />
+          </button>
+
+          {/* Contenedor del video */}
+          <div
+            className="w-full max-w-4xl aspect-video"
+            onClick={(e) => e.stopPropagation()} // Evita que el click dentro cierre el modal
+          >
+            <iframe
+              className="w-full h-full rounded-xl"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              title="Video de presentación"
+              frameBorder="0"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
