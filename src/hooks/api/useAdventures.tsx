@@ -5,6 +5,12 @@ import { Adventure } from '@/interfaces/Adventure';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+export interface UseAdventure {
+  adventures: Adventure[];
+  loading: boolean;
+  error: string;
+}
+
 export function useAdventures() {
   const [adventures, setAdventures] = useState<Adventure[]>([]);
   const [loading, setLoading] = useState(true);

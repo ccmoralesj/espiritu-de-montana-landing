@@ -140,3 +140,7 @@ export function contactThruWhatsapp(info: WhatsappContactInfo) {
     "_blank"
   );
 }
+
+export function isEmptyObject(param?: Object | null): boolean {
+  return param == null || Object.keys(param).length === 0;
+}

@@ -47,7 +47,9 @@ const Routes = () => {
     ];
 
   const [searchParams] = useSearchParams();
-  const initialCategory = (searchParams.get('category') as Category) ?? isAdventure ? 'Internacional' : 'Tour';
+  const queryCategory = searchParams.get('category') as Category
+
+  const initialCategory = queryCategory ?? (isAdventure ? 'Internacional' : 'Tour');
 
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory);
   const [searchTerm, setSearchTerm] = useState('');

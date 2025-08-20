@@ -1,27 +1,66 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Adventure, Category } from "@/interfaces/Adventure";
+import { Category } from "@/interfaces/Adventure";
 import LocalRouteCard from "./RouteLanding/LocalRouteCard";
-import { useAdventures } from "@/hooks/api/useAdventures";
+import { UseAdventure, useAdventures } from "@/hooks/api/useAdventures";
 import LoadingAdventure from "./LoadingAdventure";
+import { isEmptyObject } from "@/consts/utils";
 
-const LocalAdventures = () => {
-  const [selectedType, setSelectedType] = useState("AVENTURA");
-  const [selectedLocation, setSelectedLocation] = useState("JERICÓ");
-  const { adventures, loading: loadingAdventures, error } = useAdventures()
+interface LocalAdventuresProps {
+  useAdventureHookParam?: UseAdventure;
+}
+
+const LocalAdventures = ({ useAdventureHookParam }: LocalAdventuresProps) => {
+  let localUseAdventures = useAdventureHookParam
+
+  if (isEmptyObject(localUseAdventures)) {
+    localUseAdventures = useAdventures()
+  }
+  const { adventures, loading: loadingAdventures, error } = localUseAdventures
 
   if (loadingAdventures) {
     console.log('Cargando aventuras locales...')
   }
 
   const localCatogey: Category = 'Local'
-  const localAdventures = adventures.filter(route => {
-    return route.category === localCatogey
+  const tourCatogey: Category = 'Tour'
+  const localAdventures = adventures.filter(adventure => {
+    return adventure.category === localCatogey || adventure.category === tourCatogey
   });
 
 
-  const adventureTypes = ["AVENTURA", "PRIVADOS"];
-  const locations = localAdventures.map(route => route.title.toUpperCase())
+  const defaultAdventureLocation = localAdventures[0]?.title.toUpperCase() ?? 'DEFAULT ADVENTURE'
+  const [selectedType, setSelectedType] = useState<"AVENTURA" | "PRIVADOS">("AVENTURA");
+  const [selectedLocation, setSelectedLocation] = useState<string>(defaultAdventureLocation);
+
+  useEffect(() => {
+    setSelectedLocation(defaultAdventureLocation);
+  }, [defaultAdventureLocation]);
+
+  const adventureTypes: Array<"AVENTURA" | "PRIVADOS"> = ["AVENTURA", "PRIVADOS"];
+  // calculá las ubicaciones filtradas
+  const filteredAdventures = useMemo(() => {
+    return localAdventures.filter(adventure =>
+      selectedType === "AVENTURA" ? adventure.category === "Local" : adventure.category === "Tour"
+    );
+  }, [localAdventures, selectedType]);
+
+  // locations en UPPERCASE
+  const locations = useMemo(() => filteredAdventures.map(a => a.title.toUpperCase()), [filteredAdventures]);
+
+
+  useEffect(() => {
+    if (locations.length === 0) return setSelectedLocation("");
+
+    const currentUpper = selectedLocation?.toUpperCase() ?? "";
+    if (!locations.includes(currentUpper)) {
+      setSelectedLocation(locations[0]);
+    }
+  }, [locations, selectedLocation]);
+
+  const displayAdventure = filteredAdventures.find(
+    a => a.title.toUpperCase() === selectedLocation
+  ) ?? filteredAdventures[0] ?? null;
 
 
   return (
@@ -101,7 +140,7 @@ const LocalAdventures = () => {
             <Button
               variant="outline"
               className="font-body text-sm px-6 py-2 rounded-full border-secondary text-secondary hover:border-secondary hover:text-white hover:bg-primary ml-auto"
-              onClick={() => window.location.href = '/rutas?category=Local'}
+              onClick={() => window.location.href = selectedType === 'AVENTURA' ? '/rutas?category=Local' : '/tours'}
             >
               VER TODOS
             </Button>
@@ -132,12 +171,9 @@ const LocalAdventures = () => {
         {/* Loading State */}
         <LoadingAdventure loadingAdventures={loadingAdventures} ></LoadingAdventure>
 
-        {/* Route Card */}
-        {localAdventures.map((route) => (
-          <div key={route.id}>
-            <LocalRouteCard key={route.id} adventure={route} selectedLocation={selectedLocation} />
-          </div>
-        ))}
+        {displayAdventure && (
+          <LocalRouteCard key={displayAdventure.id} adventure={displayAdventure} selectedLocation={displayAdventure.title.toUpperCase()} />
+        )}
       </div>
     </section>
   );
