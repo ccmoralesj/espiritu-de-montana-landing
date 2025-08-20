@@ -3,6 +3,7 @@ import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { formatDateLong, formatPrice } from "@/consts/utils";
 import { useNavigateWithSlug } from "@/hooks/use-navigation-with-slug";
 import { Adventure } from "@/interfaces/Adventure";
+import { CircleDollarSign, MapPinPlus, Mountain } from "lucide-react";
 
 interface OneRouteProps {
   adventure: Adventure;
@@ -35,15 +36,15 @@ const OneRouteCard: React.FC<OneRouteProps> = ({ adventure }) => {
       {/* Metadata Icons */}
       <div className="font-body flex items-center gap-3 text-base text-muted-foreground justify-between whitespace-nowrap">
         <div className="flex items-center gap-2">
-          <span className="text-lg">▲</span>
+          <Mountain />
           <span>{adventure.difficulty}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-lg">📍</span>
-          <span>{adventure.duration}</span>
+          <MapPinPlus />
+          <span>{adventure.duration} días</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-lg">💰</span>
+          <CircleDollarSign />
           <span>{formatPrice(adventure.price, adventure.currency)}</span>
         </div>
       </div>
