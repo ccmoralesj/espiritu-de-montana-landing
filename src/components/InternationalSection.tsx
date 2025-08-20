@@ -2,12 +2,23 @@ import RouteCard from "./RouteCard";
 import { Button } from "@/components/ui/button";
 import RouteRows from "./RouteLanding/RouteRows";
 import RouteCards from "./Mobile/RouteLanding/RouteCards";
-import { useAdventures } from "@/hooks/api/useAdventures";
+import { UseAdventure, useAdventures } from "@/hooks/api/useAdventures";
 import { Category } from "@/interfaces/Adventure";
 import LoadingAdventure from "./LoadingAdventure";
+import { isEmptyObject } from "@/consts/utils";
 
-const RoutesSection = () => {
-  const { adventures, loading: loadingAdventures, error } = useAdventures()
+
+interface InternacionalAdventuresProps {
+  useAdventureHookParam?: UseAdventure;
+}
+const RoutesSection = ({ useAdventureHookParam }: InternacionalAdventuresProps) => {
+  console.log(`Llegó el use useAdventureHookParam: ${JSON.stringify(useAdventureHookParam, null, 2)}`)
+  let iternationalUseAdventures = useAdventureHookParam
+
+  if (isEmptyObject(iternationalUseAdventures)) {
+    iternationalUseAdventures = useAdventures()
+  }
+  const { adventures, loading: loadingAdventures, error } = iternationalUseAdventures
 
   if (loadingAdventures) {
     console.log('Cargando aventuras internacionales...')

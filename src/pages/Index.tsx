@@ -6,15 +6,17 @@ import LocalAdventures from "@/components/LocalAdventures";
 import GearSection from "@/components/GearSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
+import { useAdventures } from "@/hooks/api/useAdventures";
 
 const Index = () => {
+  const adventuresHook = useAdventures()
   return (
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <RoutesSection />
+      <RoutesSection useAdventureHookParam={adventuresHook} />
       <ReasonsToJoin />
-      <LocalAdventures />
+      <LocalAdventures useAdventureHookParam={adventuresHook} />
       <GearSection />
       <TestimonialsSection />
       <Footer />
