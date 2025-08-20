@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { MapPin, Users, Mountain, Car, Utensils, Shield, Camera, ChevronRight, Calendar, Ticket } from "lucide-react";
 import { Adventure } from "@/interfaces/Adventure";
 import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { contactThruWhatsapp, createSlug, formatDateLong, formatPrice } from "@/consts/utils";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { getIconComponent } from "@/consts/lucide-react-mapping";
+import { Calendar, Camera, ChevronRight, MapPin, Mountain, Ticket } from "lucide-react";
 
 const RouteDetail = () => {
   const { slug } = useParams();
@@ -37,16 +38,15 @@ const RouteDetail = () => {
 
   const progressPercentage = Math.round((adventure.riders / adventure.capacity) * 100);
 
-  const includedItems = [
-    { icon: Car, text: "Recogida y traslado" },
-    { icon: Users, text: "Estadía por los 7 días" },
-    { icon: Utensils, text: "Desayuno, almuerzo y cena" },
-    { icon: Shield, text: "Hidratación y snacks" },
-    { icon: Mountain, text: "Entradas a los parques naturales" },
-    { icon: Users, text: "Rutas guiadas" },
-    { icon: Shield, text: "Seguro médico de accidentes" },
-    { icon: Shield, text: "Seguro de viaje" }
-  ];
+  const includedAsComponents = adventure.included.map(included => ({
+    ...included,
+    reactItem: getIconComponent(included.reactItem)
+  }))
+
+  const notIncludedAsComponents = adventure.notIncluded.map(notIncluded => ({
+    ...notIncluded,
+    reactItem: getIconComponent(notIncluded.reactItem)
+  }))
 
   return (
     <div className="min-h-screen bg-background">
@@ -370,35 +370,21 @@ const RouteDetail = () => {
                         >
                           QUE NO INCLUYE
                         </TabsTrigger>
-                        <span className="text-muted-foreground">•</span>
-                        <TabsTrigger
-                          value="transporte"
-                          className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
-                          data-[state=active]:bg-transparent 
-                          data-[state=active]:border-b-2
-                          data-[state=active]:border-primary
-                          data-[state=active]:shadow-none
-                          data-[state=active]:text-primary
-                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
-                          whitespace-nowrap"
-                        >
-                          TRANSPORTE
-                        </TabsTrigger>
                       </TabsList>
                       {/* Divider */}
                       <div className="border-b border-border mt-4"></div>
                       {/* CONTENT: mantiene estructura responsive */}
                       <TabsContent value="incluye" className="mt-4">
                         <h3 className="font-body text-lg font-semibold text-secondary mb-6">
-                          Donde cada calle cuenta una historia y cada pedaleada es una experiencia
+                          Un amor infinito por andar
                         </h3>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {includedItems.map((item, i) => (
+                          {includedAsComponents.map((included, i) => (
                             <div key={i} className="flex items-start gap-4">
-                              <item.icon className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                              <included.reactItem className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
                               <span className="font-body text-muted-foreground leading-relaxed">
-                                {item.text}
+                                {included.name}
                               </span>
                             </div>
                           ))}
@@ -407,27 +393,14 @@ const RouteDetail = () => {
 
                       <TabsContent value="no-incluye" className="mt-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="flex items-start gap-4">
-                            <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
-                            <span className="font-body text-muted-foreground">Gastos personales</span>
-                          </div>
-                          <div className="flex items-start gap-4">
-                            <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
-                            <span className="font-body text-muted-foreground">Propinas</span>
-                          </div>
-                        </div>
-                      </TabsContent>
-
-                      <TabsContent value="transporte" className="mt-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="flex items-start gap-4">
-                            <Car className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
-                            <span className="font-body text-muted-foreground">Transporte incluido desde punto de encuentro</span>
-                          </div>
-                          <div className="flex items-start gap-4">
-                            <Car className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
-                            <span className="font-body text-muted-foreground">Vehículo de apoyo durante la ruta</span>
-                          </div>
+                          {notIncludedAsComponents.map((notIncluded, i) => (
+                            <div key={i} className="flex items-start gap-4">
+                              <notIncluded.reactItem className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                              <span className="font-body text-muted-foreground leading-relaxed">
+                                {notIncluded.name}
+                              </span>
+                            </div>
+                          ))}
                         </div>
                       </TabsContent>
                     </Tabs>

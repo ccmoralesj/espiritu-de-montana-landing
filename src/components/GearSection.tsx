@@ -94,7 +94,7 @@ const GearSection = () => {
                   <Button
                     variant='outline'
                     className="font-body text-sm font-medium text-primary rounded-full"
-                    onClick={() => alert('hello')}
+                    onClick={() => alert('Próximamente')}
                   >
                     {gearItems[0].label}
                   </Button>
@@ -114,7 +114,7 @@ const GearSection = () => {
                   <Button
                     variant='outline'
                     className="font-body text-sm font-medium text-primary rounded-full"
-                    onClick={() => alert('hello')}
+                    onClick={() => alert('Próximamente')}
                   >
                     {gearItems[2].label}
                   </Button>
@@ -135,7 +135,7 @@ const GearSection = () => {
                   <Button
                     variant='outline'
                     className="font-body text-sm font-medium text-primary rounded-full"
-                    onClick={() => alert('hello')}
+                    onClick={() => alert('Próximamente')}
                   >
                     {gearItems[1].label}
                   </Button>
@@ -155,7 +155,7 @@ const GearSection = () => {
                   <Button
                     variant='outline'
                     className="font-body text-sm font-medium text-primary rounded-full"
-                    onClick={() => alert('hello')}
+                    onClick={() => alert('Próximamente')}
                   >
                     {gearItems[3].label}
                   </Button>

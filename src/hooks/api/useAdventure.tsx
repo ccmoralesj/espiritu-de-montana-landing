@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import type { Adventure } from '@/interfaces/Adventure';
-import { fetchAdventureById, resolveAdventureIdBySlug } from '@/api/adventures';
+import { resolveAdventureIdBySlug } from '@/api/adventures';
 import axios from 'axios';
 
 export function useAdventureBySlug(slug?: string) {

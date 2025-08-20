@@ -1,3 +1,4 @@
+import React from "react";
 
 export type AdventureId = string | number | undefined;
 export type Difficulty = 'Muy Fácil' | 'Fácil' | 'Moderada' | 'Intermedia' | 'Difícil' | 'Muy Difícil' | 'Legendaria';
@@ -8,8 +9,14 @@ export type Category =
   'B2B' |
   'Tour';
 
+export interface IncludeItem {
+  id: string;
+  name: string;
+  reactItem: string;
+}
+
 export interface Adventure {
-  id: AdventureId;
+  id: string;
   title: string;
   firstDate: string;
   secondDate?: string;
@@ -30,4 +37,7 @@ export interface Adventure {
   category: Category;
   capacity: number;
   riders: number;
+  included: IncludeItem[];
+  notIncluded: IncludeItem[];
 }
+
