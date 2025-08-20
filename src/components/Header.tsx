@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, Instagram, Bike } from "lucide-react";
+import { Phone, Mail, Instagram } from "lucide-react";
 import { useState } from "react";
 import MobileHeader from "./Mobile/MobileHeader";
 import { LanguageSelector } from "./LanguageSelector";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const whatsAPPNumber = import.meta.env.VITE_COMPANY_WHATSAPP
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -106,15 +108,18 @@ const Header = () => {
               >
                 RUTAS
               </Button>
-              <a href="#tours" className="text-foreground hover:text-primary transition-colors font-medium">
+              <a
+                className="text-foreground hover:text-primary hover:cursor-pointer transition-colors font-medium"
+                onClick={() => window.location.href = '/tours'}
+              >
                 TOURS
               </a>
-              <a href="#espiritu" className="text-foreground hover:text-primary transition-colors font-medium">
+              <a className="text-muted-foreground transition-colors font-medium">
                 NUESTRO ESPÍRITU
               </a>
-              <a href="#tribu" className="text-foreground hover:text-primary transition-colors font-medium">
+              {/* <a className="text-muted-foreground hover:text-primary transition-colors font-medium">
                 TRIBU DE MONTAÑA
-              </a>
+              </a> */}
             </nav>
           </div>
 

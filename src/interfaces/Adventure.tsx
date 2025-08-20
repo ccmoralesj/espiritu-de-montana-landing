@@ -7,7 +7,7 @@ export type Category =
   'Nacional' |
   'Internacional' |
   'B2B' |
-  'Tour';
+  'Tour' | 'Gastronomía' | 'Culturales';
 
 export interface IncludeItem {
   id: string;

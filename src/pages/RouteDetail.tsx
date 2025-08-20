@@ -49,15 +49,16 @@ const RouteDetail = () => {
   }))
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      {/* <div className="absolute top-0 left-0 w-full h-52 bg-primary/10" /> */}
       <Header />
 
       {/* Main Content */}
-      <main className="pt-32">
-        <div className="container mx-auto px-4 mt-10">
+      <main className="pt-28">
+        <div className="container mx-auto px-4 mt-12">
 
           {/* Breadcrumb */}
-          <Breadcrumb className="mb-8">
+          <Breadcrumb className="mb-8 z-80">
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink href="/" className="text-muted-foreground hover:text-secondary">
@@ -80,7 +81,7 @@ const RouteDetail = () => {
           </Breadcrumb>
 
           {/* --- Responsive Layout (stacks on mobile, rows on lg+) --- */}
-          <div className="flex flex-col gap-12 my-12 w-full">
+          <div className="flex flex-col gap-12 my-16 w-full">
             {/* First Row */}
             <section className="flex flex-col lg:flex-row gap-10 w-full items-start lg:items-stretch">
               {/* Left Side */}
@@ -376,7 +377,7 @@ const RouteDetail = () => {
                       {/* CONTENT: mantiene estructura responsive */}
                       <TabsContent value="incluye" className="mt-4">
                         <h3 className="font-body text-lg font-semibold text-secondary mb-6">
-                          Un amor infinito por andar
+                          ¡Un amor infinito por rodar!
                         </h3>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

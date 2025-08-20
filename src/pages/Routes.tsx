@@ -7,18 +7,47 @@ import { Adventure, Category } from "@/interfaces/Adventure";
 // import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useMatch, useSearchParams } from "react-router-dom";
 import RouteCards from "@/components/RoutesPage/RouteCards";
 import Pagination from "@/components/RoutesPage/Pagination";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { useAdventures } from "@/hooks/api/useAdventures";
 import LoadingAdventure from "@/components/LoadingAdventure";
 import { useNavigateWithSlug } from "@/hooks/use-navigation-with-slug";
-
+import CategorySwitcher from "@/components/RoutesPage/CategorySwitcher";
 
 const Routes = () => {
+  const adventureMainInfo = (<>
+    Desde los Andes hasta senderos locales,<br />
+    activa el modo explorador y decide tu próxima aventura.<br />
+    <span className="font-semibold">¡El destino lo eliges tú, la bici es tu pasaporte!</span>
+  </>)
+  const toursMainInfo = (<>
+    Nuestras experiencias están diseñadas para quienes<br />
+    <span className="font-semibold">buscan más que solo pedalear</span>: buscan conocer culturas,<br />
+    conectar con la naturaleza y desafiar sus propios límites.
+  </>)
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isAdventure = Boolean(useMatch("/rutas"));
+
+
+  const categoryButtons: { label: string; value: Category }[] = isAdventure
+    ? [
+      { label: "Internacional", value: 'Internacional' },
+      { label: "Nacional", value: 'Nacional' },
+      { label: "Local", value: 'Local' },
+    ]
+    : [
+      { label: "Aventura", value: 'Tour' },
+      // { label: "Gastronomía", value: 'Gastronomía' }, // Próximamente
+      // { label: "Culturales", value: 'Culturales' },
+    ];
+
   const [searchParams] = useSearchParams();
-  const initialCategory = (searchParams.get('category') as Category) ?? 'Internacional';
+  const initialCategory = (searchParams.get('category') as Category) ?? isAdventure ? 'Internacional' : 'Tour';
 
   const [selectedCategory, setSelectedCategory] = useState<Category>(initialCategory);
   const [searchTerm, setSearchTerm] = useState('');
@@ -116,7 +145,7 @@ const Routes = () => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage className="text-secondary font-medium">
-                  Rutas
+                  {isAdventure ? "Rutas" : "Tours"}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -125,50 +154,20 @@ const Routes = () => {
           {/* Page Title and Description */}
           <div className="mb-12">
             <h1 className="font-title text-5xl lg:text-7xl text-secondary uppercase leading-tight tracking-wide mb-6">
-              RUTAS
+              {isAdventure ? "Rutas" : "Tours"}
             </h1>
             <p className="font-body text-lg text-secondary max-w-3xl leading-relaxed">
-              Desde los Andes hasta senderos locales,<br />
-              activa el modo explorador y decide tu próxima aventura.<br />
-              <span className="font-semibold">¡El destino lo eliges tú, la bici es tu pasaporte!</span>
+              {isAdventure ? adventureMainInfo : toursMainInfo}
             </p>
           </div>
 
           {/* Filter Buttons and Contact Button */}
           <div className="flex flex-col lg:flex-row lg:justify-between items-center mb-8 lg:mb-12 gap-4 lg:gap-0">
-            <div className="flex gap-4 overflow-x-auto w-full pb-4 lg:w-auto scrollbar-hide items-center py-4 lg:py-4">
-              <Button
-                variant={selectedCategory === 'Internacional' ? 'default' : 'outline'}
-                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'Internacional'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'border-secondary text-secondary hover:bg-primary hover:text-white'
-                  }`}
-                onClick={() => setSelectedCategory('Internacional')}
-              >
-                INTERNACIONAL
-              </Button>
-              <Button
-                variant={selectedCategory === 'Nacional' ? 'default' : 'outline'}
-                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'Nacional'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'border-secondary text-secondary hover:bg-primary hover:text-white'
-                  }`}
-                onClick={() => setSelectedCategory('Nacional')}
-              >
-                NACIONAL
-              </Button>
-              <Button
-                variant={selectedCategory === 'Local' ? 'default' : 'outline'}
-                className={`font-body px-6 py-3 rounded-full transition-all ${selectedCategory === 'Local'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'border-secondary text-secondary hover:bg-primary hover:text-white'
-                  }`}
-                onClick={() => setSelectedCategory('Local')}
-              >
-                LOCAL
-              </Button>
-            </div>
-
+            <CategorySwitcher
+              options={categoryButtons}
+              selected={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
             {/* Contact Button */}
             <Button
               variant="default"
@@ -221,7 +220,7 @@ const Routes = () => {
           {/* Routes Grid */}
           <RouteCards
             routes={filteredRoutes}
-            handleRouteClick={(adv) => goToAdventure(adv)}
+            handleRouteClick={(adv) => goToAdventure(adv, currentPath)}
             currentPage={currentPage}
             routesPerPage={routesPerPage}
           />

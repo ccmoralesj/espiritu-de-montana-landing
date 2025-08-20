@@ -11,9 +11,9 @@ export function useNavigateWithSlug() {
    * @param adventure Objeto Adventure completo
    * @param paramName Nombre del param en URL, opcional
    */
-  const goToAdventure = (adventure: Adventure, paramName = 'rutas') => {
+  const goToAdventure = (adventure: Adventure, paramName = '/rutas') => {
     const slug = createSlug(adventure.title);
-    navigate(`/${paramName}/${slug}`, { state: { adventure } });
+    navigate(`${paramName}/${slug}`, { state: { adventure } });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
