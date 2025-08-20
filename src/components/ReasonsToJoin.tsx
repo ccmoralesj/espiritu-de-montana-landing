@@ -12,12 +12,12 @@ const ReasonsToJoin = () => {
     {
       number: "02.",
       title: "EXPERIENCIAS SEGURAS Y AUTÉNTICAS",
-      image: "https://images.pexels.com/photos/8926961/pexels-photo-8926961.jpeg"
+      image: `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/secure-rides.jpg`
     },
     {
       number: "03.",
       title: "CONOCE NUEVAS FRONTERAS EN BICI",
-      image: "https://images.pexels.com/photos/32552591/pexels-photo-32552591.jpeg"
+      image: `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/new-frontiers.jpg`
     }
   ];
 
