@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Adventure } from "@/interfaces/Adventure";
 import { Card } from "../ui/card";
-import { formatDateLong, formatPrice } from "@/consts/utils";
+import { contactThruWhatsapp, formatDateLong, formatPrice } from "@/consts/utils";
 import { ImagePlaceholder } from "../ui/image-placeholder";
 import { useNavigateWithSlug } from "@/hooks/use-navigation-with-slug";
 import { Calendar, CalendarClock, CircleDollarSign } from "lucide-react";
@@ -87,6 +87,12 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ adventure, selectedLocation }
             </Button>
             <Button
               className="font-body text-lg px-8 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+              onClick={() => contactThruWhatsapp({
+                adventureTitle: adventure.title,
+                price: adventure.price,
+                currency: adventure.currency,
+                date: adventure.firstDate,
+              })}
             >
               RESERVAR
             </Button>
