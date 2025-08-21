@@ -19,15 +19,17 @@ const Footer = () => {
               <a href="#tours" className="hover:text-primary transition-colors font-medium">
                 RUTAS
               </a>
-              <a href="#tours" className="hover:text-primary transition-colors font-medium">
+              <a
+                className="hover:text-primary transition-colors font-medium"
+                onClick={() => window.location.href = '/tours'}>
                 TOURS
               </a>
               <a href="#espiritu" className="hover:text-primary transition-colors font-medium">
                 NUESTRO ESPÍRITU
               </a>
-              <a href="#tribu" className="hover:text-primary transition-colors font-medium">
+              {/* <a href="#tribu" className="hover:text-primary transition-colors font-medium">
                 TRIBU DE MONTAÑA
-              </a>
+              </a> */}
             </nav>
           </div>
 

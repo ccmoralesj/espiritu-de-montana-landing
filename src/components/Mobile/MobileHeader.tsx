@@ -119,21 +119,24 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ setIsMenuOpen }) => {
         <nav className="h-full">
           <div className="container mx-auto px-4 py-6 flex flex-col space-y-6 h-full">
             <div className="flex justify-between">
-              <a href="#tours" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
+              <a
+                className="font-semibold text-secondary hover:text-primary transition-colors font-medium text-lg"
+                onClick={() => window.location.href = '/tours'}
+              >
                 TOURS
               </a>
             </div>
             <div className="flex justify-between">
-              <a href="#espiritu" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
+              <a href="#espiritu" className="font-semibold text-muted-foreground hover:text-primary transition-colors font-medium text-lg">
                 NUESTRO ESPÍRITU
               </a>
 
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <a href="#tribu" className="font-semibold text-secondary text-foreground hover:text-primary transition-colors font-medium text-lg">
                 TRIBU DE MONTAÑA
               </a>
-            </div>
+            </div> */}
             <div className="flex flex-col space-y-4 justify-end">
               <Button
                 variant="outline"

@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { assetsFolders, jsDelivrCDN, jsDelivrRepo } from "@/consts/assets";
 import { Play, X } from "lucide-react";
-import heroImage from "@/assets/[HERO]PlaceHolder.png";
 import { useState } from "react";
 
 const Hero = () => {
-  const [activeTab, setActiveTab] = useState<'internacionales' | 'nacionales'>('internacionales');
+  const [activeTab, setActiveTab] = useState<'internacionales' | 'nacionales'>('nacionales');
   const [showVideo, setShowVideo] = useState(false);
 
+  const heroImage = `${jsDelivrCDN}/${jsDelivrRepo}/${assetsFolders.LANDING}/new-hero.webp`
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background Video/Image */}
@@ -30,7 +31,7 @@ const Hero = () => {
 
             <Button
               variant="outline"
-              className="bg-black/20 border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-3"
+              className="bg-black/40 border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-3"
               onClick={() => setShowVideo(true)}
             >
               <Play className="w-5 h-5 mr-2" />
@@ -80,25 +81,16 @@ const Hero = () => {
         {/* Mobile Layout */}
         <div className="lg:hidden text-secondary space-y-8 pb-20">
           {/* Main Hero Text */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <h1 className="font-title text-4xl md:text-5xl font-secondary leading-tight tracking-wide">
               VIVE EL MUNDO
               <br />
               EN DOS RUEDAS
             </h1>
           </div>
-
-          <Button
-            variant="outline"
-            className="bg-black/20 border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-3"
-            onClick={() => setShowVideo(true)}
-          >
-            <Play className="w-5 h-5 mr-2" />
-            INICIAR VIDEO
-          </Button>
           {/* Adventure Info */}
-          <div className="space-y-6">
-            <div className="space-y-4">
+          <div className="pb-20">
+            <div className="space-y-3 mb-6">
               <h2 className="text-xl font-body font-bold">
                 Aquí empieza tu aventura!
               </h2>
@@ -112,7 +104,7 @@ const Hero = () => {
             </div>
 
             {/* Toggle Buttons */}
-            <div className="font-body flex border-2 border-secondary rounded-full p-1 backdrop-blur-sm">
+            <div className="font-body flex border-2 border-secondary rounded-full p-1 backdrop-blur-sm mb-6">
               <button
                 onClick={() => setActiveTab('internacionales')}
                 className={`flex-1 py-3 px-4 rounded-full text-sm font-medium transition-all ${activeTab === 'internacionales'
@@ -131,6 +123,16 @@ const Hero = () => {
               >
                 NACIONALES
               </button>
+            </div>
+            <div className="flex justify-center items-center mt-28">
+              <Button
+                variant="outline"
+                className="bg-black/50 border-white/40 text-white hover:bg-white/10 rounded-full px-8 py-5"
+                onClick={() => setShowVideo(true)}
+              >
+                <Play className="w-5 h-5 mr-2" />
+                INICIAR VIDEO
+              </Button>
             </div>
           </div>
         </div>
