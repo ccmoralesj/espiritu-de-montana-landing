@@ -13,7 +13,7 @@ export async function fetchAdventureById(id: string, signal?: AbortSignal): Prom
 
 // Devuelve { id: string } o el Adventure completo si prefieres
 export async function resolveAdventureIdBySlug(slug: string, signal?: AbortSignal): Promise<Adventure> {
-  const { data } = await api.get<Adventure>(`/adventures/resolve`, {
+  const { data } = await api.get<Adventure>(`/adventures/slug/resolve`, {
     params: { slug },
     signal,
   });
