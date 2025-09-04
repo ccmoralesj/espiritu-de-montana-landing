@@ -39,5 +39,6 @@ export interface Adventure {
   riders: number;
   included: IncludeItem[];
   notIncluded: IncludeItem[];
+  notesIncluded: string;
 }
 

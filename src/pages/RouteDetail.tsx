@@ -4,16 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { Adventure } from "@/interfaces/Adventure";
-import { allRoutes } from "@/db/routes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { contactThruWhatsapp, createSlug, formatDateLong, formatPrice, isEmptyObject } from "@/consts/utils";
+import { contactThruWhatsapp, formatDateLong, formatPrice } from "@/consts/utils";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { getIconComponent } from "@/consts/lucide-react-mapping";
 import { Calendar, Camera, ChevronRight, MapPin, Mountain, Ticket } from "lucide-react";
 import { useAdventureBySlug } from "@/hooks/api/useAdventureBySlug";
 import LoadingAdventure from "@/components/LoadingAdventure";
+import BulletList from "@/components/RoutesPage/BulletList";
 
 const RouteDetail = () => {
   const { slug } = useParams();
@@ -360,73 +359,78 @@ const RouteDetail = () => {
                     </div>
 
                     {/* Right: Tabs + content */}
-                    <div>
-                      {/* Tabs headers (visual: separators + active highlight) */}
-                      {/* Divider */}
-                      <div className="border-b border-border mb-4"></div>
-                      <Tabs defaultValue="incluye" className="w-full">
-                        <TabsList className="flex justify-start lg:justify-center items-center gap-6 border-0 bg-transparent p-0 overflow-x-auto scrollbar-hide whitespace-nowrap">
-                          <TabsTrigger
-                            value="incluye"
-                            className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
-                          data-[state=active]:bg-transparent 
-                          data-[state=active]:border-b-2
-                          data-[state=active]:border-primary
-                          data-[state=active]:shadow-none
-                          data-[state=active]:text-primary
-                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
-                          whitespace-nowrap"
-                          >
-                            QUE INCLUYE
-                          </TabsTrigger>
-                          <span className="text-muted-foreground">•</span>
-                          <TabsTrigger
-                            value="no-incluye"
-                            className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
-                          data-[state=active]:bg-transparent 
-                          data-[state=active]:border-b-2
-                          data-[state=active]:border-primary
-                          data-[state=active]:shadow-none
-                          data-[state=active]:text-primary
-                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
-                          whitespace-nowrap"
-                          >
-                            QUE NO INCLUYE
-                          </TabsTrigger>
-                        </TabsList>
+                    <div className="flex flex-col h-full justify-between">
+                      <div>
+                        {/* Tabs headers (visual: separators + active highlight) */}
                         {/* Divider */}
-                        <div className="border-b border-border mt-4"></div>
-                        {/* CONTENT: mantiene estructura responsive */}
-                        <TabsContent value="incluye" className="mt-4">
-                          <h3 className="font-body text-lg font-semibold text-secondary mb-6">
-                            ¡Un amor infinito por rodar!
-                          </h3>
+                        <div className="border-b border-border mb-4"></div>
+                        <Tabs defaultValue="incluye" className="w-full">
+                          <TabsList className="flex justify-start lg:justify-center items-center gap-6 border-0 bg-transparent p-0 overflow-x-auto scrollbar-hide whitespace-nowrap">
+                            <TabsTrigger
+                              value="incluye"
+                              className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
+                          data-[state=active]:bg-transparent 
+                          data-[state=active]:border-b-2
+                          data-[state=active]:border-primary
+                          data-[state=active]:shadow-none
+                          data-[state=active]:text-primary
+                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
+                          whitespace-nowrap"
+                            >
+                              QUE INCLUYE
+                            </TabsTrigger>
+                            <span className="text-muted-foreground">•</span>
+                            <TabsTrigger
+                              value="no-incluye"
+                              className="bg-transparent shadow-none rounded-none px-2 lg:px-0 py-0 font-body text-lg transition-all text-lg font-medium
+                          data-[state=active]:bg-transparent 
+                          data-[state=active]:border-b-2
+                          data-[state=active]:border-primary
+                          data-[state=active]:shadow-none
+                          data-[state=active]:text-primary
+                          border-b-2 border-transparent text-muted-foreground hover:text-secondary hover:font-medium hover:mb-1
+                          whitespace-nowrap"
+                            >
+                              QUE NO INCLUYE
+                            </TabsTrigger>
+                          </TabsList>
+                          {/* Divider */}
+                          <div className="border-b border-border mt-4"></div>
+                          {/* CONTENT: mantiene estructura responsive */}
+                          <TabsContent value="incluye" className="mt-4">
+                            <h3 className="font-body text-lg font-semibold text-secondary mb-6">
+                              ¡Un amor infinito por rodar!
+                            </h3>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {includedAsComponents.map((included, i) => (
-                              <div key={i} className="flex items-start gap-4">
-                                <included.reactItem className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
-                                <span className="font-body text-muted-foreground leading-relaxed">
-                                  {included.name}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </TabsContent>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {includedAsComponents.map((included, i) => (
+                                <div key={i} className="flex items-start gap-4">
+                                  <included.reactItem className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                                  <span className="font-body text-muted-foreground leading-relaxed">
+                                    {included.name}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </TabsContent>
 
-                        <TabsContent value="no-incluye" className="mt-4">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {notIncludedAsComponents.map((notIncluded, i) => (
-                              <div key={i} className="flex items-start gap-4">
-                                <notIncluded.reactItem className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
-                                <span className="font-body text-muted-foreground leading-relaxed">
-                                  {notIncluded.name}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </TabsContent>
-                      </Tabs>
+                          <TabsContent value="no-incluye" className="mt-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {notIncludedAsComponents.map((notIncluded, i) => (
+                                <div key={i} className="flex items-start gap-4">
+                                  <notIncluded.reactItem className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
+                                  <span className="font-body text-muted-foreground leading-relaxed">
+                                    {notIncluded.name}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </TabsContent>
+                        </Tabs>
+                      </div>
+                      <div className="flex-end text-body text-sm text-muted-foreground">
+                        <BulletList text={adventure.notesIncluded} />
+                      </div>
                     </div>
                   </div>
                 </div>
