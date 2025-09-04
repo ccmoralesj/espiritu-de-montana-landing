@@ -24,6 +24,7 @@ export interface IncludeItem {
 export interface Adventure {
   id: string;
   title: string;
+  coordinates?: string;
   firstDate: string;
   secondDate?: string;
   duration: number;

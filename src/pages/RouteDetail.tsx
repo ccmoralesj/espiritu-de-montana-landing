@@ -14,6 +14,36 @@ import { useAdventureBySlug } from "@/hooks/api/useAdventureBySlug";
 import LoadingAdventure from "@/components/LoadingAdventure";
 import BulletList from "@/components/RoutesPage/BulletList";
 
+interface MapEmbedParams {
+  coordinates: string;
+  title?: string;
+  zoom?: number;
+}
+
+const MapEmbed = ({ coordinates, zoom = 14, title = "Mapa" }: MapEmbedParams) => {
+  const latlngStr = coordinates.split(",", 2);
+  const lat = parseFloat(latlngStr[0]);
+  const lng = parseFloat(latlngStr[1]);
+  const API_KEY = 'AIzaSyBib51hePDouvADs2fo6zDN7vZoUK8NTSY'// import.meta.env.VITE_GOOGLE_MAPS_KEY;
+  const src = `https://www.google.com/maps/embed/v1/view?key=${API_KEY}&center=${lat},${lng}&zoom=${zoom}&maptype=roadmap`;
+
+  return (
+    <div className="rounded-3xl aspect-video relative w-full h-full overflow-hidden">
+      <iframe
+        title={title}
+        src={src}
+        width="100%"
+        height="400"
+        className="absolute top-0 left-0 w-full h-full border-0"
+        loading="lazy"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+  );
+};
+
+
 const RouteDetail = () => {
   const { slug } = useParams();
   const location = useLocation();
@@ -235,10 +265,16 @@ const RouteDetail = () => {
 
                     {/* Map Placeholder */}
                     <div className="bg-gray-100 rounded-3xl flex items-center justify-center lg:h-full">
-                      <div className="text-center text-gray-500">
-                        <MapPin className="w-16 h-16 mx-auto mb-4" />
-                        <p className="font-body text-lg">Mapa de la ruta</p>
-                      </div>
+                      {(adventure.coordinates && MapEmbed({
+                        coordinates: adventure.coordinates,
+                        title: adventure.title
+                      })) ??
+                        (
+                          <div className="text-center text-gray-500">
+                            <MapPin className="w-16 h-16 mx-auto mb-4" />
+                            <p className="font-body text-lg">Mapa de la ruta</p>
+                          </div>
+                        )}
                     </div>
                   </div>
                 </div>
