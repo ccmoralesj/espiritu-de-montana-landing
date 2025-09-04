@@ -24,7 +24,7 @@ const MapEmbed = ({ coordinates, zoom = 14, title = "Mapa" }: MapEmbedParams) =>
   const latlngStr = coordinates.split(",", 2);
   const lat = parseFloat(latlngStr[0]);
   const lng = parseFloat(latlngStr[1]);
-  const API_KEY = 'AIzaSyBib51hePDouvADs2fo6zDN7vZoUK8NTSY'// import.meta.env.VITE_GOOGLE_MAPS_KEY;
+  const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_KEY;
   const src = `https://www.google.com/maps/embed/v1/view?key=${API_KEY}&center=${lat},${lng}&zoom=${zoom}&maptype=roadmap`;
 
   return (
