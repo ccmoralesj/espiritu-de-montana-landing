@@ -24,9 +24,9 @@ const LocalRouteCard: React.FC<OneRouteProps> = ({ adventure, selectedLocation }
         }`}>
         <div className="">
           <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-            {adventure.image.large !== "" ?
+            {adventure.images[0].large !== "" ?
               (<img
-                src={adventure.image.large}
+                src={adventure.images[0].large}
                 alt={adventure.title}
                 loading="lazy"
                 className="w-full h-80 lg:h-96 object-cover"

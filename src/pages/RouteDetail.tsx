@@ -191,9 +191,9 @@ const RouteDetail = () => {
                       {/* Main Image */}
                       <div className="relative">
                         <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                          {adventure.image.large !== "" ?
+                          {adventure.images[0].large !== "" ?
                             (<img
-                              src={adventure.image.large}
+                              src={adventure.images[0].large}
                               alt={adventure.title}
                               className="w-full h-64 object-cover"
                             />
@@ -213,9 +213,9 @@ const RouteDetail = () => {
                       {/* Second Image */}
                       <div className="relative">
                         <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                          {adventure.image.large !== "" ?
+                          {adventure.images[1].large !== "" ?
                             (<img
-                              src={adventure.image.large}
+                              src={adventure.images[1].large}
                               alt={adventure.title}
                               className="w-full h-64 object-cover"
                             />
@@ -336,9 +336,9 @@ const RouteDetail = () => {
                     {/* Left: Large image card */}
                     <div className="relative">
                       <Card className="overflow-hidden border-0 shadow-lg rounded-3xl">
-                        {adventure.image.large !== "" ?
+                        {adventure.images[2].large !== "" ?
                           (<img
-                            src={adventure.image.large}
+                            src={adventure.images[2].large}
                             alt={adventure.title}
                             className="w-full h-[26rem] md:h-[32rem] object-cover rounded-3xl"
                           />

@@ -56,9 +56,9 @@ const OneRoute: React.FC<OneRouteProps> = ({ adventure }) => {
 
       {/* Image */}
       <div className="w-72 h-40 rounded-xl overflow-hidden">
-        {adventure.image.large !== "" ?
+        {adventure.images[0].large !== "" ?
           (<img
-            src={adventure.image.large}
+            src={adventure.images[0].large}
             alt={adventure.title}
             loading="lazy"
             className="w-full h-full object-cover"

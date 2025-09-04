@@ -18,9 +18,9 @@ const OneRouteCard: React.FC<RouteProps> = ({ adventure }) => {
     <>
       <div className="relative overflow-hidden rounded-2xl">
         {/* Image */}
-        {adventure.image.large !== "" ?
+        {adventure.images[0].large !== "" ?
           (<img
-            src={adventure.image.large}
+            src={adventure.images[0].large}
             alt={adventure.title}
             loading="lazy"
             className="w-full h-[29rem] object-cover transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"

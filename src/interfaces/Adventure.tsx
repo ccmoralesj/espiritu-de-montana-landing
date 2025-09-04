@@ -9,6 +9,12 @@ export type Category =
   'B2B' |
   'Tour' | 'Gastronomía' | 'Culturales';
 
+export interface ImageThumbnail {
+  thumbnail: string;
+  large: string;
+  full: string;
+}
+
 export interface IncludeItem {
   id: string;
   name: string;
@@ -25,11 +31,7 @@ export interface Adventure {
   location: string;
   shortDescription: string;
   longDescription: string;
-  image: {
-    thumbnail: string;
-    large: string;
-    full: string;
-  };
+  images: ImageThumbnail[];
   difficulty: Difficulty;
   price: number;
   alternativePrice?: number;
