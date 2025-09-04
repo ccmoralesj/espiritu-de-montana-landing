@@ -159,7 +159,7 @@ const Hero = () => {
           >
             <iframe
               className="w-full h-full rounded-xl"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              src="https://www.youtube.com/embed/AuDo6FKzAHM?autoplay=1"
               title="Video de presentación"
               frameBorder="0"
               allow="autoplay; fullscreen"

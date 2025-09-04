@@ -36,9 +36,9 @@ const Footer = () => {
           {/* Quick Links */}
           <div className="flex items-end">
             <div className="flex flex-col font-body font-semibold text-white tracking-wide">
-              <a href="#tribu" className="hover:text-primary transition-colors font-medium">
+              {/* <a href="#tribu" className="hover:text-primary transition-colors font-medium">
                 INGLÉS
-              </a>
+              </a> */}
               <a href="#tribu" className="hover:text-primary transition-colors font-medium">
                 ESPAÑOL
               </a>
